@@ -8,6 +8,8 @@
   const expect = chai.expect;
   const assert = chai.assert;
   
+  chai.use(require('chai-as-promised'));
+  
   const AbstractTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraber');
 
   const smokeCaptions = require(__dirname + '/data/smoke/captions.json');
@@ -22,11 +24,13 @@
     });
     
     it('Smoke test for field captions extraction', () => {
-      expect(smokeTestScraper.captions).to.eql(smokeCaptions);   
+      return expect(Promise.resolve(smokeTestScraper.captions))
+        .to.eventually.eql(smokeCaptions);
     });
     
     it('Smoke test for field values extraction', () => {
-      expect(smokeTestScraper.captions).to.eql(smokeValues);   
+      return expect(Promise.resolve(smokeTestScraper.values))
+        .to.eventually.eql(smokeValues);
     });
     
     

@@ -18,29 +18,47 @@
     }
     
     get captions() {
-      if (this._captions === null) {
-        this._captions = this.scrapeCaptions();  
-      }
-      
-      return this._captions;
+      return new Promise((resolve, reject) => {
+        if (this._captions !== null) {
+          resolve(this._captions);
+        } else {
+          this.scrapeCaptions()
+            .then((captions) => {
+              this._captions = captions;
+              resolve(this._captions);
+            })
+            .catch(reject);
+        }
+      });
     }
     
     get values() {
-      if (this._values === null) {
-        this._values = this.scrapeValues();  
-      }
-      
-      return this._values;
+      return new Promise((resolve, reject) => {
+        if (this._values !== null) {
+          resolve(this._values);
+        } else {
+          this.scrapeValues()
+            .then((values) => {
+              this._values = values;
+              resolve(this._values);
+            })
+            .catch(reject);
+        }
+      });
     }
     
     scrapeCaptions() {
       // TODO: Implement
-      return [];
+      return new Promise((resolve, reject) => {
+        resolve([]);
+      });
     }
     
     scrapeValues() {
       // TODO: Implement
-      return [];
+      return new Promise((resolve, reject) => {
+        resolve([]);
+      });
     }
     
   }
