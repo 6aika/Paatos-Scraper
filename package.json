@@ -18,10 +18,14 @@
     "url": "https://github.com/6aika/Paatos-Scraper/issues"
   },
   "homepage": "https://github.com/6aika/Paatos-Scraper#readme",
+  "dependencies": {
+    "pdf2json": "^1.1.7"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "2.13.0",
     "mocha": "^3.2.0",
-    "nyc": "10.2.0"
+    "nyc": "10.2.0",
+    "mocha": "^3.2.0"
   }
 }
