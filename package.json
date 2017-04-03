@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "Scraper to scrape decision data from web pages and PDF documents in Finland",
   "main": "app.js",
-  "scripts": {"start":"node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/6aika/Paatos-Scraper/issues"
   },
-  "homepage": "https://github.com/6aika/Paatos-Scraper#readme"
+  "homepage": "https://github.com/6aika/Paatos-Scraper#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
