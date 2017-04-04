@@ -18,21 +18,21 @@
       this.pdfParser.on('pdfParser_dataReady', this.onPdfParseReady.bind(this));
       this.pdfParser.loadPDF(this.pdfFile);
       this._pdfData = null;
-      this._pdfDataPromise = null;
+      this._pdfDataCallback = null;
     }
     
     onPdfParseError(errData) {
-      if (this._pdfDataPromise !== null) {
-        this._pdfDataPromise.reject(errData);
-        this._pdfDataPromise = null;
+      if (this._pdfDataCallback !== null) {
+        this._pdfDataCallback(errData);
+        this._pdfDataCallback = null;
       }
     }
     
     onPdfParseReady(pdfData) {
-      if (this._pdfDataPromise !== null) {
-        this._pdfDataPromise.resolve(pdfData);
+      if (this._pdfDataCallback !== null) {
+        this._pdfDataCallback(null, pdfData);
         this._pdfData = pdfData;
-        this._pdfDataPromise = null;
+        this._pdfDataCallback = null;
       } else {
         this._pdfData = pdfData;
       }
@@ -41,7 +41,13 @@
     get pdfData() {
       return new Promise((resolve, reject) => {
         if (this._pdfData === null) {
-          this._pdfDataPromise = new Promise((resolve, reject));
+          this._pdfDataCallback = (err, pdfData) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(pdfData);
+            }
+          };
         } else {
           resolve(this._pdfData);
         }
