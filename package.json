@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/6aika/Paatos-Scraper#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4",
     "pdf2json": "^1.1.7"
   },
   "devDependencies": {
