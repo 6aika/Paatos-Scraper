@@ -136,12 +136,44 @@
     }
     
     /**
-     * Does actual values scraping and returns a promise for the result.
+     * Does actual captions scraping and returns a promise for the result.
      */
     scrapeValues() {
-      // TODO: Implement
       return new Promise((resolve, reject) => {
-        resolve([]);
+      
+        this.scrapeTexts()
+          .then((pdfTexts) => {
+            var result = [];
+            
+            var blocks = this.detectBlocks(pdfTexts);
+            for (var i = 0; i < blocks.length; i++) {
+              var block = blocks[i];
+
+              var blockTexts = _.filter(pdfTexts, (pdfText) => {
+                return pdfText.y >= block.top && pdfText.y <= block.bottom;
+              });
+
+              var blockValues = _.filter(blockTexts, (blockText) => {
+                return blockText.type === PositionedText.VALUE;
+              });
+
+              var blockTexts = _.map(blockValues, (blockValue) => {
+                return _.trim(blockValue.text);
+              });
+              
+              blockTexts = this.mergeHyphenatedTexts(blockTexts);
+              
+              var blockValue = _.filter(blockTexts, (blockText) => {
+                return !!blockText;
+              }).join(' ');
+              
+              result.push(blockValue);
+            }
+    
+            resolve(result);
+          })
+          .catch(reject);
+         
       });
     }
     
@@ -250,7 +282,7 @@
         pageOffsetY += pdfPage.Height;
       }
       
-      return this.mergeContinuousTexts(result);
+      return result;
     }
     
     /**
