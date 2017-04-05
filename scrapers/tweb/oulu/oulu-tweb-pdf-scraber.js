@@ -44,12 +44,14 @@
       this._captions = null;
       this._values = null;
       this._offset = {
-        contentY: 8.0,
+        contentTop: 8.0,
+        contentBottom: 7.0,
         captionX: 3.0,
         valueX: 11.0,
         blockThreshold: 1.0,
         blockMargin: 0.1,
-        sameWordThreshold: 0.1
+        sameWordThreshold: 0.1,
+        emptyLineThreshold: 1.2
       };
     }
     
@@ -106,7 +108,7 @@
             var blocks = this.detectBlocks(pdfTexts);
             for (var i = 0; i < blocks.length; i++) {
               var block = blocks[i];
-
+              
               var blockTexts = _.filter(pdfTexts, (pdfText) => {
                 return pdfText.y >= block.top && pdfText.y <= block.bottom;
               });
@@ -146,9 +148,10 @@
             var result = [];
             
             var blocks = this.detectBlocks(pdfTexts);
-            for (var i = 0; i < blocks.length; i++) {
-              var block = blocks[i];
 
+            for (var blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
+              var block = blocks[blockIndex];
+              
               var blockTexts = _.filter(pdfTexts, (pdfText) => {
                 return pdfText.y >= block.top && pdfText.y <= block.bottom;
               });
@@ -156,17 +159,35 @@
               var blockValues = _.filter(blockTexts, (blockText) => {
                 return blockText.type === PositionedText.VALUE;
               });
+              
+              if (!blockValues.length) {
+                continue;
+              }
+              
+              var blockTexts = [];
+              
+              for (var i = 0; i < blockValues.length - 1; i++) {
+                var value = _.trim(blockValues[i].text); 
+                var y = blockValues[i].y;
+                var nextY = blockValues[i + 1].y;
+                var samePage = blockValues[i].pageOffsetY == blockValues[i + 1].pageOffsetY;
+                if (!samePage) {
+                  nextY -= this._offset.contentTop + this._offset.contentBottom;  
+                }
+                
+                if ((nextY - y) > this._offset.emptyLineThreshold) {
+                  value += '\n\n';                  
+                }
+                
+                blockTexts.push(value);
+              }
+              
+              blockTexts.push(_.trim(blockValues[blockValues.length - 1].text));
+              
+              var blockValue = _.trim(_.map(blockTexts, (blockText) => {
+                return _.endsWith(blockText, '\n') ? blockText : blockText + ' ';
+              }).join(''));
 
-              var blockTexts = _.map(blockValues, (blockValue) => {
-                return _.trim(blockValue.text);
-              });
-              
-              blockTexts = this.mergeHyphenatedTexts(blockTexts);
-              
-              var blockValue = _.filter(blockTexts, (blockText) => {
-                return !!blockText;
-              }).join(' ');
-              
               result.push(blockValue);
             }
     
@@ -218,7 +239,7 @@
         var lastCaption = captions[captions.length - 1];
         var lastTop = lastCaption.y;
         var lastBottom = lastCaption.pageOffsetY + lastCaption.pageHeight;
-        
+
         blocks.push({
           top: lastTop,
           bottom: lastBottom
@@ -268,7 +289,7 @@
           var pdfText = pdfTexts[textIndex];
           var x = pdfText.x;
           var y = pdfText.y;
-          if ((y >= this._offset.contentY) && (x >= this._offset.captionX) && (pdfText.R.length)) {
+          if ((y >= this._offset.contentTop) && (x >= this._offset.captionX) && (pdfText.R.length)) {
             if (pdfText.R.length === 1) {
               var text = decodeURIComponent(pdfText.R[0].T);
               var type = x >= this._offset.valueX ? PositionedText.VALUE : PositionedText.CAPTION;
@@ -323,7 +344,7 @@
       while (i > 0) {
         var text = _.trim(texts[i - 1]);
         if (_.endsWith(text, '-')) {
-          texts[i - 1] = _.trim(text.substring(0, text.length - 1)) + _.trim(texts[i]);
+          texts[i - 1] = _.trim(text.substring(0, text.length - 1)) + texts[i];
           texts.splice(i, 1);
         }
         
