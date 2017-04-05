@@ -6,7 +6,7 @@
 
   const _ = require('lodash');
   const Promise = require('bluebird'); 
-  const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraber');
+  const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraper');
   
   process.on('unhandledRejection', function(error, promise) {
     console.error("UNHANDLED REJECTION", error.stack);
