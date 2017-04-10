@@ -10,12 +10,12 @@
   
   chai.use(require('chai-as-promised'));
   
-  const AbstractTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraber');
+  const AbstractTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
 
   const smokeCaptions = require(__dirname + '/data/smoke/captions.json');
   const smokeValues = require(__dirname + '/data/smoke/values.json');
 
-  describe('Oulu Tweb Pdf Scraber tests', () => {
+  describe('Oulu Tweb Pdf Scraper tests', () => {
     
     var smokeTestScraper = new AbstractTwebPdfScraper(__dirname + '/data/smoke/395959398.pdf');
     
