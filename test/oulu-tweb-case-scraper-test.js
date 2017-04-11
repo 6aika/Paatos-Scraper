@@ -23,7 +23,7 @@
     
     it('Test events scraping', () => {
       nock('http://localhost')
-        .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?%2Bbid=12867')
+        .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?+bid=12867')
         .replyWithFile(200, __dirname + '/data/oulu_tweb_kaupunginhallitus_5_2017.html');
       
       return expect(Promise.resolve(htmlTestScraper.getOrganizationEventCases("12867")))
