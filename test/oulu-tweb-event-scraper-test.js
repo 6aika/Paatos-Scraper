@@ -5,6 +5,7 @@
   'use strict';
   
   const chai = require('chai');
+  const nock = require('nock');
   const expect = chai.expect;
   const assert = chai.assert;
   
@@ -16,9 +17,18 @@
 
   describe('Oulu Tweb Html Events Scraper tests', () => {
     
-    var htmlTestScraper = new OuluTwebHtmlScraper();
+    var htmlTestScraper = new OuluTwebHtmlScraper({
+      "host": "localhost"
+    });
     
     it('Test events scraping', () => {
+      nock('http://localhost')
+        .post('/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm', {
+          'kirjaamo': '690',
+          'oper': 'where'
+        })
+        .replyWithFile(200, __dirname + '/data/oulu_tweb_kaupunginhallitus_kokoukset.html');
+      
       return expect(Promise.resolve(htmlTestScraper.getOrganizationEvents("690")))
         .to.eventually.eql(ouluKaupunginhallitusKokoukset);
     });

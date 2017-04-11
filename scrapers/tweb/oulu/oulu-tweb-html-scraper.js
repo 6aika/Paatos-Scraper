@@ -5,6 +5,7 @@
   'use strict';
 
   const _ = require('lodash');
+  const util = require('util');
   const moment = require('moment');
   const Promise = require('bluebird'); 
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
@@ -23,11 +24,12 @@
       
       this._organizations = null;
       
-      this.options = {
-        "searchFormUrl": "http://asiakirjat.ouka.fi/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
-        "eventsUrl": "http://asiakirjat.ouka.fi/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
+      this.options = Object.assign({
+        "host": "asiakirjat.ouka.fi",
+        "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
+        "eventsPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
         "encoding": "binary"
-      };
+      }, options || {});
     }
     
     /**
@@ -60,7 +62,7 @@
     getOrganizationEvents(organizationId) {
       return new Promise((resolve, reject) => {       
         var options = {
-          "url": this.options.eventsUrl,
+          "url": util.format("http://%s%s", this.options.host, this.options.eventsPath),
           "method": "POST",
           "encoding": this.options.encoding,
           "form": {
@@ -90,8 +92,6 @@
               });
             });
             
-            console.log(JSON.stringify(events));
-            
             resolve(events);
           })
           .catch(reject);
@@ -105,7 +105,7 @@
     scrapeOrganizations() {
       return new Promise((resolve, reject) => {
         var options = {
-          url: this.options.searchFormUrl,
+          url: util.format("http://%s%s", this.options.host, this.options.searchFormPath),
           encoding: this.options.encoding
         };
         
