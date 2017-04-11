@@ -5,6 +5,7 @@
   'use strict';
   
   const chai = require('chai');
+  const nock = require('nock');
   const expect = chai.expect;
   const assert = chai.assert;
   
@@ -16,10 +17,16 @@
 
   describe('Oulu Tweb Html Organization Scraper tests', () => {
     
-    var htmlTestScraper = new OuluTwebHtmlScraper();
+    var htmlTestScraper = new OuluTwebHtmlScraper({
+      "host": "localhost"
+    })
     
     it('Test organizations scraping', () => {
-      return expect(Promise.resolve(htmlTestScraper.getOrganizations()))
+      nock('http://localhost')
+        .get('/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm')
+        .replyWithFile(200, __dirname + '/data/oulu_tweb_haku.html');
+      
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizations()))
         .to.eventually.eql(ouluToimielimet);
     });
     
