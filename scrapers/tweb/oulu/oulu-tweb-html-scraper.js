@@ -8,6 +8,7 @@
   const util = require('util');
   const moment = require('moment');
   const Promise = require('bluebird'); 
+  const normalize = require('normalize-space');
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
   
   process.on('unhandledRejection', function(error, promise) {
@@ -28,6 +29,7 @@
         "host": "asiakirjat.ouka.fi",
         "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
         "eventsPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
+        "eventPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm",
         "encoding": "binary"
       }, options || {});
     }
@@ -79,7 +81,7 @@
               var link = $(row).find('td:nth-of-type(1) a');
               var dateText = link.text();
               var linkHref = link.attr('href');
-              var idMatch = /(.*bid=)([0-9]*)/.exec(linkHref); 
+              var idMatch = /(.*bid=)([0-9]*)(.*)/.exec(linkHref); 
               var name =  $(row).find('td:nth-of-type(2)').text();
               var dateTime = moment(dateText, 'D.M.YYYY HH:mm', true).toISOString();
               var id = idMatch[2];
@@ -93,6 +95,57 @@
             });
             
             resolve(events);
+          })
+          .catch(reject);
+  
+      });
+    }
+    
+    /**
+     * Returns a promise for organization event cases.
+     * 
+     * Returned data is ordered in same order that it is in html page. 
+     * 
+     * @param {String} eventId eventId where to scrape cases
+     */
+    getOrganizationEventCases(eventId) {
+      return new Promise((resolve, reject) => {       
+        var options = {
+          "url": util.format("http://%s%s", this.options.host, this.options.eventPath),
+          "method": "GET",
+          "encoding": this.options.encoding,
+          "qs": {
+            "+bid": eventId 
+          },
+          qsStringifyOptions: { encode: false }
+        };
+        
+        this.getParsedHtml(options)
+          .then(($) => {
+            var cases = [];
+            var rows = $('table.list tr[class*="data"]').filter((index, row) => {
+              return !!$(row).find('.data_pykala').text();
+            });
+                    
+            rows.each((index, row) => {
+              var link = $(row).find('td.data:nth-of-type(2) a');
+              var linkHref = link.attr('href');
+              var idMatch = /(.*docid=)([0-9]*)(.*)/.exec(linkHref);
+              
+              var id = idMatch[2];
+              var registerId = $(row).find('.data_pykala').text();
+              var title = normalize(link.text());
+              
+              cases.push({
+                "sourceId": id,  
+                "registerId": registerId,
+                "title": title,
+                "function": null,
+                "geometries": null
+              });
+            });
+ 
+            resolve(cases);
           })
           .catch(reject);
   
