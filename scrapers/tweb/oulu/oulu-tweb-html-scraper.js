@@ -7,7 +7,6 @@
   const _ = require('lodash');
   const Promise = require('bluebird'); 
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
-  const legacy = require('legacy-encoding');
   
   process.on('unhandledRejection', function(error, promise) {
     console.error("UNHANDLED REJECTION", error.stack);
