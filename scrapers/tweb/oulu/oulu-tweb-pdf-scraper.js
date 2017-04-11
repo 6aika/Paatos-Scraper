@@ -60,7 +60,7 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    get captions() {
+    extractCaptions() {
       return new Promise((resolve, reject) => {
         if (this._captions !== null) {
           resolve(this._captions);
@@ -80,7 +80,7 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    get values() {
+    extractValues() {
       return new Promise((resolve, reject) => {
         if (this._values !== null) {
           resolve(this._values);

@@ -24,12 +24,12 @@
     });
     
     it('Smoke test for field captions extraction', () => {
-      return expect(Promise.resolve(smokeTestScraper.captions))
+      return expect(Promise.resolve(smokeTestScraper.extractCaptions()))
         .to.eventually.eql(smokeCaptions);
     });
     
     it('Smoke test for field values extraction', () => {
-      return expect(Promise.resolve(smokeTestScraper.values))
+      return expect(Promise.resolve(smokeTestScraper.extractValues()))
         .to.eventually.eql(smokeValues);
     });
     
