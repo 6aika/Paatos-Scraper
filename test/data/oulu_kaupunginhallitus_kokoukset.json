@@ -1,0 +1,571 @@
+[{
+    "sourceId": "12867",
+    "name": "Kaupunginhallitus: 5/2017",
+    "startDate": "2017-03-27T12:00:00.000Z",
+    "endDate": "2017-03-27T12:00:00.000Z"
+  }, {
+    "sourceId": "12838",
+    "name": "Kaupunginhallitus: 6/2017",
+    "startDate": "2017-03-20T13:00:00.000Z",
+    "endDate": "2017-03-20T13:00:00.000Z"
+  }, {
+    "sourceId": "12754",
+    "name": "Kaupunginhallitus: 5/2017",
+    "startDate": "2017-03-13T13:00:00.000Z",
+    "endDate": "2017-03-13T13:00:00.000Z"
+  }, {
+    "sourceId": "12626",
+    "name": "Kaupunginhallitus: 4/2017",
+    "startDate": "2017-02-20T13:00:00.000Z",
+    "endDate": "2017-02-20T13:00:00.000Z"
+  }, {
+    "sourceId": "12527",
+    "name": "Kaupunginhallitus: 3/2017",
+    "startDate": "2017-02-06T13:00:00.000Z",
+    "endDate": "2017-02-06T13:00:00.000Z"
+  }, {
+    "sourceId": "12391",
+    "name": "Kaupunginhallitus: 2/2017",
+    "startDate": "2017-01-23T13:00:00.000Z",
+    "endDate": "2017-01-23T13:00:00.000Z"
+  }, {
+    "sourceId": "12343",
+    "name": "Kaupunginhallitus: 1/2017",
+    "startDate": "2017-01-16T13:00:00.000Z",
+    "endDate": "2017-01-16T13:00:00.000Z"
+  }, {
+    "sourceId": "11798",
+    "name": "Kaupunginhallitus: 30/2016",
+    "startDate": "2016-12-19T13:00:00.000Z",
+    "endDate": "2016-12-19T13:00:00.000Z"
+  }, {
+    "sourceId": "11711",
+    "name": "Kaupunginhallitus: 29/2016",
+    "startDate": "2016-12-01T06:30:00.000Z",
+    "endDate": "2016-12-01T06:30:00.000Z"
+  }, {
+    "sourceId": "11647",
+    "name": "Kaupunginhallitus: 28/2016",
+    "startDate": "2016-11-21T13:00:00.000Z",
+    "endDate": "2016-11-21T13:00:00.000Z"
+  }, {
+    "sourceId": "11619",
+    "name": "Kaupunginhallitus: 27/2016",
+    "startDate": "2016-11-14T13:00:00.000Z",
+    "endDate": "2016-11-14T13:00:00.000Z"
+  }, {
+    "sourceId": "11593",
+    "name": "Kaupunginhallitus: 26/2016",
+    "startDate": "2016-11-08T13:00:00.000Z",
+    "endDate": "2016-11-08T13:00:00.000Z"
+  }, {
+    "sourceId": "11535",
+    "name": "Kaupunginhallitus: 25/2016",
+    "startDate": "2016-11-03T06:00:00.000Z",
+    "endDate": "2016-11-03T06:00:00.000Z"
+  }, {
+    "sourceId": "11474",
+    "name": "Kaupunginhallitus: 24/2016",
+    "startDate": "2016-10-17T12:00:00.000Z",
+    "endDate": "2016-10-17T12:00:00.000Z"
+  }, {
+    "sourceId": "11430",
+    "name": "Kaupunginhallitus: 23/2016",
+    "startDate": "2016-10-10T17:00:00.000Z",
+    "endDate": "2016-10-10T17:00:00.000Z"
+  }, {
+    "sourceId": "11358",
+    "name": "Kaupunginhallitus: 22/2016",
+    "startDate": "2016-10-03T12:00:00.000Z",
+    "endDate": "2016-10-03T12:00:00.000Z"
+  }, {
+    "sourceId": "11276",
+    "name": "Kaupunginhallitus: 21/2016",
+    "startDate": "2016-09-26T12:00:00.000Z",
+    "endDate": "2016-09-26T12:00:00.000Z"
+  }, {
+    "sourceId": "11204",
+    "name": "Kaupunginhallitus: 20/2016",
+    "startDate": "2016-09-19T12:00:00.000Z",
+    "endDate": "2016-09-19T12:00:00.000Z"
+  }, {
+    "sourceId": "11143",
+    "name": "Kaupunginhallitus: 19/2016",
+    "startDate": "2016-09-05T12:00:00.000Z",
+    "endDate": "2016-09-05T12:00:00.000Z"
+  }, {
+    "sourceId": "11093",
+    "name": "Kaupunginhallitus: 18/2016",
+    "startDate": "2016-08-22T12:00:00.000Z",
+    "endDate": "2016-08-22T12:00:00.000Z"
+  }, {
+    "sourceId": "11026",
+    "name": "Kaupunginhallitus: 17/2016",
+    "startDate": "2016-08-15T12:00:00.000Z",
+    "endDate": "2016-08-15T12:00:00.000Z"
+  }, {
+    "sourceId": "10900",
+    "name": "Kaupunginhallitus: 16/2016",
+    "startDate": "2016-06-20T12:00:00.000Z",
+    "endDate": "2016-06-20T12:00:00.000Z"
+  }, {
+    "sourceId": "10827",
+    "name": "Kaupunginhallitus: 15/2016",
+    "startDate": "2016-06-06T12:00:00.000Z",
+    "endDate": "2016-06-06T12:00:00.000Z"
+  }, {
+    "sourceId": "10794",
+    "name": "Kaupunginhallitus: 14/2016",
+    "startDate": "2016-05-30T12:00:00.000Z",
+    "endDate": "2016-05-30T12:00:00.000Z"
+  }, {
+    "sourceId": "10724",
+    "name": "Kaupunginhallitus: 13/2016",
+    "startDate": "2016-05-23T12:00:00.000Z",
+    "endDate": "2016-05-23T12:00:00.000Z"
+  }, {
+    "sourceId": "10668",
+    "name": "Kaupunginhallitus: 12/2016",
+    "startDate": "2016-05-09T12:00:00.000Z",
+    "endDate": "2016-05-09T12:00:00.000Z"
+  }, {
+    "sourceId": "10589",
+    "name": "Kaupunginhallitus: 11/2016",
+    "startDate": "2016-05-02T12:00:00.000Z",
+    "endDate": "2016-05-02T12:00:00.000Z"
+  }, {
+    "sourceId": "10525",
+    "name": "Kaupunginhallitus: 10/2016",
+    "startDate": "2016-04-25T12:00:00.000Z",
+    "endDate": "2016-04-25T12:00:00.000Z"
+  }, {
+    "sourceId": "10397",
+    "name": "Kaupunginhallitus: 9/2016",
+    "startDate": "2016-04-11T12:00:00.000Z",
+    "endDate": "2016-04-11T12:00:00.000Z"
+  }, {
+    "sourceId": "10311",
+    "name": "Kaupunginhallitus: 8/2016",
+    "startDate": "2016-03-29T12:00:00.000Z",
+    "endDate": "2016-03-29T12:00:00.000Z"
+  }, {
+    "sourceId": "10203",
+    "name": "Kaupunginhallitus: 7/2016",
+    "startDate": "2016-03-14T13:00:00.000Z",
+    "endDate": "2016-03-14T13:00:00.000Z"
+  }, {
+    "sourceId": "10134",
+    "name": "Kaupunginhallitus: 6/2016",
+    "startDate": "2016-02-22T13:00:00.000Z",
+    "endDate": "2016-02-22T13:00:00.000Z"
+  }, {
+    "sourceId": "10082",
+    "name": "Kaupunginhallitus: 5/2016",
+    "startDate": "2016-02-15T13:00:00.000Z",
+    "endDate": "2016-02-15T13:00:00.000Z"
+  }, {
+    "sourceId": "10021",
+    "name": "Kaupunginhallitus: 4/2016",
+    "startDate": "2016-02-08T13:00:00.000Z",
+    "endDate": "2016-02-08T13:00:00.000Z"
+  }, {
+    "sourceId": "9972",
+    "name": "Kaupunginhallitus: 3/2016",
+    "startDate": "2016-01-25T13:00:00.000Z",
+    "endDate": "2016-01-25T13:00:00.000Z"
+  }, {
+    "sourceId": "9935",
+    "name": "Kaupunginhallitus: 2/2016",
+    "startDate": "2016-01-18T13:00:00.000Z",
+    "endDate": "2016-01-18T13:00:00.000Z"
+  }, {
+    "sourceId": "9862",
+    "name": "Kaupunginhallitus: 1/2016",
+    "startDate": "2016-01-11T13:00:00.000Z",
+    "endDate": "2016-01-11T13:00:00.000Z"
+  }, {
+    "sourceId": "9253",
+    "name": "Kaupunginhallitus: 25/2015",
+    "startDate": "2015-12-14T13:00:00.000Z",
+    "endDate": "2015-12-14T13:00:00.000Z"
+  }, {
+    "sourceId": "9216",
+    "name": "Kaupunginhallitus: 24/2015",
+    "startDate": "2015-11-23T13:00:00.000Z",
+    "endDate": "2015-11-23T13:00:00.000Z"
+  }, {
+    "sourceId": "9153",
+    "name": "Kaupunginhallitus: 23/2015",
+    "startDate": "2015-11-16T13:00:00.000Z",
+    "endDate": "2015-11-16T13:00:00.000Z"
+  }, {
+    "sourceId": "9074",
+    "name": "Kaupunginhallitus: 22/2015",
+    "startDate": "2015-10-29T11:45:00.000Z",
+    "endDate": "2015-10-29T11:45:00.000Z"
+  }, {
+    "sourceId": "8990",
+    "name": "Kaupunginhallitus: 21/2015",
+    "startDate": "2015-10-26T13:00:00.000Z",
+    "endDate": "2015-10-26T13:00:00.000Z"
+  }, {
+    "sourceId": "8901",
+    "name": "Kaupunginhallitus: 20/2015",
+    "startDate": "2015-10-05T12:00:00.000Z",
+    "endDate": "2015-10-05T12:00:00.000Z"
+  }, {
+    "sourceId": "8851",
+    "name": "Kaupunginhallitus: 19/2015",
+    "startDate": "2015-09-21T12:00:00.000Z",
+    "endDate": "2015-09-21T12:00:00.000Z"
+  }, {
+    "sourceId": "8734",
+    "name": "Kaupunginhallitus: 18/2015",
+    "startDate": "2015-09-14T12:00:00.000Z",
+    "endDate": "2015-09-14T12:00:00.000Z"
+  }, {
+    "sourceId": "8671",
+    "name": "Kaupunginhallitus: 17/2015",
+    "startDate": "2015-08-24T12:00:00.000Z",
+    "endDate": "2015-08-24T12:00:00.000Z"
+  }, {
+    "sourceId": "8633",
+    "name": "Kaupunginhallitus: 16/2015",
+    "startDate": "2015-08-17T12:00:00.000Z",
+    "endDate": "2015-08-17T12:00:00.000Z"
+  }, {
+    "sourceId": "8510",
+    "name": "Kaupunginhallitus: 15/2015",
+    "startDate": "2015-06-16T12:00:00.000Z",
+    "endDate": "2015-06-16T12:00:00.000Z"
+  }, {
+    "sourceId": "8459",
+    "name": "Kaupunginhallitus: 14/2015",
+    "startDate": "2015-06-08T12:00:00.000Z",
+    "endDate": "2015-06-08T12:00:00.000Z"
+  }, {
+    "sourceId": "8359",
+    "name": "Kaupunginhallitus: 13/2015",
+    "startDate": "2015-05-25T12:00:00.000Z",
+    "endDate": "2015-05-25T12:00:00.000Z"
+  }, {
+    "sourceId": "8304",
+    "name": "Kaupunginhallitus: 12/2015",
+    "startDate": "2015-05-18T12:00:00.000Z",
+    "endDate": "2015-05-18T12:00:00.000Z"
+  }, {
+    "sourceId": "8242",
+    "name": "Kaupunginhallitus: 11/2015",
+    "startDate": "2015-05-04T12:00:00.000Z",
+    "endDate": "2015-05-04T12:00:00.000Z"
+  }, {
+    "sourceId": "8185",
+    "name": "Kaupunginhallitus: 10/2015",
+    "startDate": "2015-04-27T12:00:00.000Z",
+    "endDate": "2015-04-27T12:00:00.000Z"
+  }, {
+    "sourceId": "8085",
+    "name": "Kaupunginhallitus: 9/2015",
+    "startDate": "2015-04-13T12:00:00.000Z",
+    "endDate": "2015-04-13T12:00:00.000Z"
+  }, {
+    "sourceId": "8036",
+    "name": "Kaupunginhallitus: 8/2015",
+    "startDate": "2015-03-30T12:00:00.000Z",
+    "endDate": "2015-03-30T12:00:00.000Z"
+  }, {
+    "sourceId": "7946",
+    "name": "Kaupunginhallitus: 7/2015",
+    "startDate": "2015-03-16T13:00:00.000Z",
+    "endDate": "2015-03-16T13:00:00.000Z"
+  }, {
+    "sourceId": "7756",
+    "name": "Kaupunginhallitus: 6/2015",
+    "startDate": "2015-03-09T13:00:00.000Z",
+    "endDate": "2015-03-09T13:00:00.000Z"
+  }, {
+    "sourceId": "7734",
+    "name": "Kaupunginhallitus: 5/2015",
+    "startDate": "2015-02-16T13:00:00.000Z",
+    "endDate": "2015-02-16T13:00:00.000Z"
+  }, {
+    "sourceId": "7684",
+    "name": "Kaupunginhallitus: 4/2015",
+    "startDate": "2015-02-09T13:00:00.000Z",
+    "endDate": "2015-02-09T13:00:00.000Z"
+  }, {
+    "sourceId": "7641",
+    "name": "Kaupunginhallitus: 3/2015",
+    "startDate": "2015-02-02T13:00:00.000Z",
+    "endDate": "2015-02-02T13:00:00.000Z"
+  }, {
+    "sourceId": "7579",
+    "name": "Kaupunginhallitus: 2/2015",
+    "startDate": "2015-01-19T13:00:00.000Z",
+    "endDate": "2015-01-19T13:00:00.000Z"
+  }, {
+    "sourceId": "7526",
+    "name": "Kaupunginhallitus: 1/2015",
+    "startDate": "2015-01-12T13:00:00.000Z",
+    "endDate": "2015-01-12T13:00:00.000Z"
+  }, {
+    "sourceId": "6917",
+    "name": "Kaupunginhallitus: 28/2014",
+    "startDate": "2014-12-08T08:00:00.000Z",
+    "endDate": "2014-12-08T08:00:00.000Z"
+  }, {
+    "sourceId": "6950",
+    "name": "Kaupunginhallitus: 27/2014",
+    "startDate": "2014-11-24T10:00:00.000Z",
+    "endDate": "2014-11-24T10:00:00.000Z"
+  }, {
+    "sourceId": "6855",
+    "name": "Kaupunginhallitus: 26/2014",
+    "startDate": "2014-11-17T13:00:00.000Z",
+    "endDate": "2014-11-17T13:00:00.000Z"
+  }, {
+    "sourceId": "6797",
+    "name": "Kaupunginhallitus: 25/2014",
+    "startDate": "2014-11-10T13:00:00.000Z",
+    "endDate": "2014-11-10T13:00:00.000Z"
+  }, {
+    "sourceId": "6709",
+    "name": "Kaupunginhallitus: 24/2014",
+    "startDate": "2014-10-28T13:00:00.000Z",
+    "endDate": "2014-10-28T13:00:00.000Z"
+  }, {
+    "sourceId": "6560",
+    "name": "Kaupunginhallitus: 23/2014",
+    "startDate": "2014-10-13T12:00:00.000Z",
+    "endDate": "2014-10-13T12:00:00.000Z"
+  }, {
+    "sourceId": "6512",
+    "name": "Kaupunginhallitus: 22/2014",
+    "startDate": "2014-09-22T12:00:00.000Z",
+    "endDate": "2014-09-22T12:00:00.000Z"
+  }, {
+    "sourceId": "6436",
+    "name": "Kaupunginhallitus: 21/2014",
+    "startDate": "2014-09-15T12:00:00.000Z",
+    "endDate": "2014-09-15T12:00:00.000Z"
+  }, {
+    "sourceId": "6371",
+    "name": "Kaupunginhallitus: 20/2014",
+    "startDate": "2014-09-08T12:00:00.000Z",
+    "endDate": "2014-09-08T12:00:00.000Z"
+  }, {
+    "sourceId": "6312",
+    "name": "Kaupunginhallitus: 19/2014",
+    "startDate": "2014-08-25T12:00:00.000Z",
+    "endDate": "2014-08-25T12:00:00.000Z"
+  }, {
+    "sourceId": "6282",
+    "name": "Kaupunginhallitus: 18/2014",
+    "startDate": "2014-08-18T12:00:00.000Z",
+    "endDate": "2014-08-18T12:00:00.000Z"
+  }, {
+    "sourceId": "6187",
+    "name": "Kaupunginhallitus: 17/2014",
+    "startDate": "2014-08-11T12:00:00.000Z",
+    "endDate": "2014-08-11T12:00:00.000Z"
+  }, {
+    "sourceId": "6057",
+    "name": "Kaupunginhallitus: 16/2014",
+    "startDate": "2014-06-17T12:00:00.000Z",
+    "endDate": "2014-06-17T12:00:00.000Z"
+  }, {
+    "sourceId": "6004",
+    "name": "Kaupunginhallitus: 15/2014",
+    "startDate": "2014-06-09T12:00:00.000Z",
+    "endDate": "2014-06-09T12:00:00.000Z"
+  }, {
+    "sourceId": "5961",
+    "name": "Kaupunginhallitus: 14/2014",
+    "startDate": "2014-06-02T12:00:00.000Z",
+    "endDate": "2014-06-02T12:00:00.000Z"
+  }, {
+    "sourceId": "5869",
+    "name": "Kaupunginhallitus: 13/2014",
+    "startDate": "2014-05-26T12:00:00.000Z",
+    "endDate": "2014-05-26T12:00:00.000Z"
+  }, {
+    "sourceId": "5769",
+    "name": "Kaupunginhallitus: 12/2014",
+    "startDate": "2014-05-12T13:00:00.000Z",
+    "endDate": "2014-05-12T13:00:00.000Z"
+  }, {
+    "sourceId": "5754",
+    "name": "Kaupunginhallitus: 11/2014",
+    "startDate": "2014-05-05T12:00:00.000Z",
+    "endDate": "2014-05-05T12:00:00.000Z"
+  }, {
+    "sourceId": "5666",
+    "name": "Kaupunginhallitus: 10/2014",
+    "startDate": "2014-04-28T13:00:00.000Z",
+    "endDate": "2014-04-28T13:00:00.000Z"
+  }, {
+    "sourceId": "5513",
+    "name": "Kaupunginhallitus: 9/2014",
+    "startDate": "2014-04-07T12:00:00.000Z",
+    "endDate": "2014-04-07T12:00:00.000Z"
+  }, {
+    "sourceId": "5106",
+    "name": "Kaupunginhallitus: 8/2014",
+    "startDate": "2014-03-31T12:00:00.000Z",
+    "endDate": "2014-03-31T12:00:00.000Z"
+  }, {
+    "sourceId": "4995",
+    "name": "Kaupunginhallitus: 7/2014",
+    "startDate": "2014-03-17T13:00:00.000Z",
+    "endDate": "2014-03-17T13:00:00.000Z"
+  }, {
+    "sourceId": "4898",
+    "name": "Kaupunginhallitus: 6/2014",
+    "startDate": "2014-03-10T15:00:00.000Z",
+    "endDate": "2014-03-10T15:00:00.000Z"
+  }, {
+    "sourceId": "4841",
+    "name": "Kaupunginhallitus: 5/2014",
+    "startDate": "2014-02-24T13:00:00.000Z",
+    "endDate": "2014-02-24T13:00:00.000Z"
+  }, {
+    "sourceId": "4688",
+    "name": "Kaupunginhallitus: 4/2014",
+    "startDate": "2014-02-10T13:00:00.000Z",
+    "endDate": "2014-02-10T13:00:00.000Z"
+  }, {
+    "sourceId": "4618",
+    "name": "Kaupunginhallitus: 3/2014",
+    "startDate": "2014-02-03T13:00:00.000Z",
+    "endDate": "2014-02-03T13:00:00.000Z"
+  }, {
+    "sourceId": "4501",
+    "name": "Kaupunginhallitus: 2/2014",
+    "startDate": "2014-01-20T13:00:00.000Z",
+    "endDate": "2014-01-20T13:00:00.000Z"
+  }, {
+    "sourceId": "4297",
+    "name": "Kaupunginhallitus: 1/2014",
+    "startDate": "2014-01-13T13:00:00.000Z",
+    "endDate": "2014-01-13T13:00:00.000Z"
+  }, {
+    "sourceId": "4135",
+    "name": "Kaupunginhallitus: 33/2013",
+    "startDate": "2013-12-09T13:00:00.000Z",
+    "endDate": "2013-12-09T13:00:00.000Z"
+  }, {
+    "sourceId": "4016",
+    "name": "Kaupunginhallitus: 32/2013",
+    "startDate": "2013-11-18T13:00:00.000Z",
+    "endDate": "2013-11-18T13:00:00.000Z"
+  }, {
+    "sourceId": "3804",
+    "name": "Kaupunginhallitus: 31/2013",
+    "startDate": "2013-11-11T13:00:00.000Z",
+    "endDate": "2013-11-11T13:00:00.000Z"
+  }, {
+    "sourceId": "3787",
+    "name": "Kaupunginhallitus: 30/2013",
+    "startDate": "2013-11-07T06:00:00.000Z",
+    "endDate": "2013-11-07T06:00:00.000Z"
+  }, {
+    "sourceId": "3113",
+    "name": "Kaupunginhallitus: 29/2013",
+    "startDate": "2013-10-28T13:00:00.000Z",
+    "endDate": "2013-10-28T13:00:00.000Z"
+  }, {
+    "sourceId": "2726",
+    "name": "Kaupunginhallitus: 28/2013",
+    "startDate": "2013-10-07T12:00:00.000Z",
+    "endDate": "2013-10-07T12:00:00.000Z"
+  }, {
+    "sourceId": "2673",
+    "name": "Kaupunginhallitus: 27/2013",
+    "startDate": "2013-09-23T12:00:00.000Z",
+    "endDate": "2013-09-23T12:00:00.000Z"
+  }, {
+    "sourceId": "2465",
+    "name": "Kaupunginhallitus: 26/2013",
+    "startDate": "2013-09-09T09:00:00.000Z",
+    "endDate": "2013-09-09T09:00:00.000Z"
+  }, {
+    "sourceId": "2396",
+    "name": "Kaupunginhallitus: 25/2013",
+    "startDate": "2013-08-26T12:00:00.000Z",
+    "endDate": "2013-08-26T12:00:00.000Z"
+  }, {
+    "sourceId": "2336",
+    "name": "Kaupunginhallitus: 24/2013",
+    "startDate": "2013-08-12T12:00:00.000Z",
+    "endDate": "2013-08-12T12:00:00.000Z"
+  }, {
+    "sourceId": "2244",
+    "name": "Kaupunginhallitus: 23/2013",
+    "startDate": "2013-06-18T12:00:00.000Z",
+    "endDate": "2013-06-18T12:00:00.000Z"
+  }, {
+    "sourceId": "2172",
+    "name": "Kaupunginhallitus: 22/2013",
+    "startDate": "2013-06-10T12:00:00.000Z",
+    "endDate": "2013-06-10T12:00:00.000Z"
+  }, {
+    "sourceId": "2118",
+    "name": "Kaupunginhallitus: 21/2013",
+    "startDate": "2013-06-03T12:00:00.000Z",
+    "endDate": "2013-06-03T12:00:00.000Z"
+  }, {
+    "sourceId": "2070",
+    "name": "Kaupunginhallitus: 20/2013",
+    "startDate": "2013-05-28T12:00:00.000Z",
+    "endDate": "2013-05-28T12:00:00.000Z"
+  }, {
+    "sourceId": "2020",
+    "name": "Kaupunginhallitus: 19/2013",
+    "startDate": "2013-05-20T12:00:00.000Z",
+    "endDate": "2013-05-20T12:00:00.000Z"
+  }, {
+    "sourceId": "1923",
+    "name": "Kaupunginhallitus: 18/2013",
+    "startDate": "2013-05-13T12:00:00.000Z",
+    "endDate": "2013-05-13T12:00:00.000Z"
+  }, {
+    "sourceId": "1878",
+    "name": "Kaupunginhallitus: 17/2013",
+    "startDate": "2013-05-06T12:00:00.000Z",
+    "endDate": "2013-05-06T12:00:00.000Z"
+  }, {
+    "sourceId": "1791",
+    "name": "Kaupunginhallitus: 16/2013",
+    "startDate": "2013-04-22T12:00:00.000Z",
+    "endDate": "2013-04-22T12:00:00.000Z"
+  }, {
+    "sourceId": "1741",
+    "name": "Kaupunginhallitus: 15/2013",
+    "startDate": "2013-04-15T12:00:00.000Z",
+    "endDate": "2013-04-15T12:00:00.000Z"
+  }, {
+    "sourceId": "1697",
+    "name": "Kaupunginhallitus: 14/2013",
+    "startDate": "2013-04-08T12:00:00.000Z",
+    "endDate": "2013-04-08T12:00:00.000Z"
+  }, {
+    "sourceId": "1637",
+    "name": "Kaupunginhallitus: 13/2013",
+    "startDate": "2013-03-26T14:00:00.000Z",
+    "endDate": "2013-03-26T14:00:00.000Z"
+  }, {
+    "sourceId": "1625",
+    "name": "Kaupunginhallitus: 12/2013",
+    "startDate": "2013-03-25T15:00:00.000Z",
+    "endDate": "2013-03-25T15:00:00.000Z"
+  }, {
+    "sourceId": "1418",
+    "name": "Kaupunginhallitus: 11/2013",
+    "startDate": "2013-03-21T07:00:00.000Z",
+    "endDate": "2013-03-21T07:00:00.000Z"
+  }, {
+    "sourceId": "1350",
+    "name": "Kaupunginhallitus: 10/2013",
+    "startDate": "2013-03-19T13:00:00.000Z",
+    "endDate": "2013-03-19T13:00:00.000Z"
+  }]
