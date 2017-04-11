@@ -29,7 +29,7 @@
         })
         .replyWithFile(200, __dirname + '/data/oulu_tweb_kaupunginhallitus_kokoukset.html');
       
-      return expect(Promise.resolve(htmlTestScraper.getOrganizationEvents("690")))
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEvents("690")))
         .to.eventually.eql(ouluKaupunginhallitusKokoukset);
     });
     

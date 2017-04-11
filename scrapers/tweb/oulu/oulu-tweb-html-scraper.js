@@ -23,8 +23,6 @@
     constructor(options) {
       super();
       
-      this._organizations = null;
-      
       this.options = Object.assign({
         "host": "asiakirjat.ouka.fi",
         "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
@@ -39,18 +37,35 @@
      * 
      * Returned data is ordered in same order that it is in html page. 
      */
-    getOrganizations() {
+    extractOrganizations() {
       return new Promise((resolve, reject) => {
-        if (this._organizations !== null) {
-          resolve(this._organizations);
-        } else {
-          this.scrapeOrganizations()
-            .then((organizations) => {
-              this._organizations = organizations;
-              resolve(this._organizations);
-            })
-            .catch(reject);
-        }
+        var options = {
+          url: util.format("http://%s%s", this.options.host, this.options.searchFormPath),
+          encoding: this.options.encoding
+        };
+        
+        this.getParsedHtml(options)
+          .then(($) => {
+            var options = $('form[name="form1"] select[name="kirjaamo"] option').filter((index, option) => {
+              return $(option).val();
+            });
+            
+            var organizations = _.map(options, (option) => {
+              var id = $(option).val(); 
+              var name = $(option).text();
+              return {
+                "sourceId": id,
+                "classification": this.guessClassification(name),
+                "name": name,
+                "founding_date": null,
+                "dissolution_date": null,
+                "parent": null
+              };
+            });
+            
+            resolve(organizations);
+          })
+          .catch(reject);         
       });
     }
     
@@ -61,7 +76,7 @@
      * 
      * @param {String} organizationId organizationId where to scrape events
      */
-    getOrganizationEvents(organizationId) {
+    extractOrganizationEvents(organizationId) {
       return new Promise((resolve, reject) => {       
         var options = {
           "url": util.format("http://%s%s", this.options.host, this.options.eventsPath),
@@ -108,7 +123,7 @@
      * 
      * @param {String} eventId eventId where to scrape cases
      */
-    getOrganizationEventCases(eventId) {
+    extractOrganizationEventCases(eventId) {
       return new Promise((resolve, reject) => {       
         var options = {
           "url": util.format("http://%s%s", this.options.host, this.options.eventPath),
@@ -149,41 +164,6 @@
           })
           .catch(reject);
   
-      });
-    }
-    
-    /**
-     * Does actual scraping of organizations.
-     */
-    scrapeOrganizations() {
-      return new Promise((resolve, reject) => {
-        var options = {
-          url: util.format("http://%s%s", this.options.host, this.options.searchFormPath),
-          encoding: this.options.encoding
-        };
-        
-        this.getParsedHtml(options)
-          .then(($) => {
-            var options = $('form[name="form1"] select[name="kirjaamo"] option').filter((index, option) => {
-              return $(option).val();
-            });
-            
-            var organizations = _.map(options, (option) => {
-              var id = $(option).val(); 
-              var name = $(option).text();
-              return {
-                "sourceId": id,
-                "classification": this.guessClassification(name),
-                "name": name,
-                "founding_date": null,
-                "dissolution_date": null,
-                "parent": null
-              };
-            });
-            
-            resolve(organizations);
-          })
-          .catch(reject);         
       });
     }
     
