@@ -1,0 +1,250 @@
+[
+  {
+    "sourceId": "750",
+    "name": "BusinessOulu liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "715",
+    "name": "Hyvinvointilautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "735",
+    "name": "Hyvinvointipalvelujen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "5035",
+    "name": "Hyvinvointitoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "951",
+    "name": "Joukkoliikennejaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "705",
+    "name": "Kaupunginhallituksen henkilöstöjaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "710",
+    "name": "Kaupunginhallituksen kehittämisjaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "7611",
+    "name": "Kaupunginhallituksen konsernijaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "690",
+    "name": "Kaupunginhallitus",
+    "classification": "hallitus",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "695",
+    "name": "Kaupunginvaltuusto",
+    "classification": "valtuusto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "765",
+    "name": "Keskusvaalilautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "775",
+    "name": "Liikelaitos Oulun Serviisin johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "780",
+    "name": "Liikelaitos Oulun Tilakeskuksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "760",
+    "name": "Liikelaitosten johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "956",
+    "name": "Lähidemokratiatoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "785",
+    "name": "Oulu-Koillismaan pelastusliikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "790",
+    "name": "Oulun Energia liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "810",
+    "name": "Oulun Konttori liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "755",
+    "name": "Oulun seudun ympäristötoimi liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "770",
+    "name": "Oulun teknisen liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "795",
+    "name": "Oulun Tietotekniikka liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "800",
+    "name": "Oulun Työterveys liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "9293",
+    "name": "Oulun Vesi liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "805",
+    "name": "Oulunsalon Kulttuuri-Instituutti liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "745",
+    "name": "Rakennuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "730",
+    "name": "Sivistys- ja kulttuurilautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "830",
+    "name": "Tarkastuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "740",
+    "name": "Tarkastustoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "845",
+    "name": "Tasa-arvotoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "720",
+    "name": "Yhdyskuntajaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "700",
+    "name": "Yhdyskuntalautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  }
+]
