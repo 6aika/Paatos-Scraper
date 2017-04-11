@@ -10,14 +10,14 @@
   
   chai.use(require('chai-as-promised'));
   
-  const AbstractTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
+  const OuluTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
 
   const smokeCaptions = require(__dirname + '/data/smoke/captions.json');
   const smokeValues = require(__dirname + '/data/smoke/values.json');
 
   describe('Oulu Tweb Pdf Scraper tests', () => {
     
-    var smokeTestScraper = new AbstractTwebPdfScraper(__dirname + '/data/smoke/395959398.pdf');
+    var smokeTestScraper = new OuluTwebPdfScraper(__dirname + '/data/smoke/395959398.pdf');
     
     it('Class construct test', () => {
       assert.isNotNull(smokeTestScraper, 'Failed to construct smoke test scraper');
