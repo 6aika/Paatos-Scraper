@@ -17,14 +17,12 @@
     /**
      * Returns promise for parsed html
      * 
-     * @param {String} url url
-     * @param {String} encoding content encoding 
-     * @returns {unresolved}
-     * 
+     * @param {Object} options options te be passed to request
+     * @returns {Promise} Promise for parsed html data
      */
-    getParsedHtml(url, encoding) {
+    getParsedHtml(options) {
       return new Promise((resolve, reject) => {
-        this.doGetRequest(url, encoding)
+        this.doRequest(options)
           .then((body) => {
             resolve(cheerio.load(body));   
           })
@@ -33,18 +31,14 @@
     }
     
     /**
-     * Returns Promise for request data. Uses GET -method
+     * Returns Promise for request data
      * 
-     * @param {String} url url
-     * @param {String} encoding content encoding 
-     * @returns {Promise} 
+     * @param {Object} options options te be passed to request
+     * @returns {Promise} Promise for request data
      */
-    doGetRequest(url, encoding) {
+    doRequest(options) {
       return new Promise((resolve, reject) => {
-        request({
-          "url": url, 
-          "encoding": encoding
-        }, (error, response, body) => {
+        request(options, (error, response, body) => {
           if (error) {
             reject(error);
           } else {
@@ -52,10 +46,6 @@
           }
         });
       });
-    }
-    
-    doPostRequest(url, bodyParams) {
-      
     }
     
   }

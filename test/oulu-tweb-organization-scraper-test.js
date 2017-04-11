@@ -16,10 +16,10 @@
 
   describe('Oulu Tweb Html Organization Scraper tests', () => {
     
-    var htmlTestScraper = new OuluTwebHtmlScraper('http://asiakirjat.ouka.fi/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm');
+    var htmlTestScraper = new OuluTwebHtmlScraper();
     
     it('Test organizations scraping', () => {
-      return expect(Promise.resolve(htmlTestScraper.organizations))
+      return expect(Promise.resolve(htmlTestScraper.getOrganizations()))
         .to.eventually.eql(ouluToimielimet);
     });
     

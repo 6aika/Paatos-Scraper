@@ -5,6 +5,7 @@
   'use strict';
 
   const _ = require('lodash');
+  const moment = require('moment');
   const Promise = require('bluebird'); 
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
   
@@ -24,6 +25,7 @@
       
       this.options = {
         "searchFormUrl": "http://asiakirjat.ouka.fi/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
+        "eventsUrl": "http://asiakirjat.ouka.fi/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
         "encoding": "binary"
       };
     }
@@ -33,7 +35,7 @@
      * 
      * Returned data is ordered in same order that it is in html page. 
      */
-    get organizations() {
+    getOrganizations() {
       return new Promise((resolve, reject) => {
         if (this._organizations !== null) {
           resolve(this._organizations);
@@ -49,11 +51,65 @@
     }
     
     /**
+     * Returns a promise for organization events.
+     * 
+     * Returned data is ordered in same order that it is in html page. 
+     * 
+     * @param {String} organizationId organizationId where to scrape events
+     */
+    getOrganizationEvents(organizationId) {
+      return new Promise((resolve, reject) => {       
+        var options = {
+          "url": this.options.eventsUrl,
+          "method": "POST",
+          "encoding": this.options.encoding,
+          "form": {
+            'kirjaamo': organizationId,
+            'oper': 'where'
+          }
+        };
+        
+        this.getParsedHtml(options)
+          .then(($) => {
+            var events = [];
+            
+            $('table.list tr[class*="data"]').each((index, row) => {
+              var link = $(row).find('td:nth-of-type(1) a');
+              var dateText = link.text();
+              var linkHref = link.attr('href');
+              var idMatch = /(.*bid=)([0-9]*)/.exec(linkHref); 
+              var name =  $(row).find('td:nth-of-type(2)').text();
+              var dateTime = moment(dateText, 'D.M.YYYY HH:mm', true).toISOString();
+              var id = idMatch[2];
+              
+              events.push({
+                "sourceId": id,
+                "name": name,
+                "startDate": dateTime,
+                "endDate": dateTime
+              });
+            });
+            
+            console.log(JSON.stringify(events));
+            
+            resolve(events);
+          })
+          .catch(reject);
+  
+      });
+    }
+    
+    /**
      * Does actual scraping of organizations.
      */
     scrapeOrganizations() {
       return new Promise((resolve, reject) => {
-        this.getParsedHtml(this.options.searchFormUrl, this.options.encoding)
+        var options = {
+          url: this.options.searchFormUrl,
+          encoding: this.options.encoding
+        };
+        
+        this.getParsedHtml(options)
           .then(($) => {
             var options = $('form[name="form1"] select[name="kirjaamo"] option').filter((index, option) => {
               return $(option).val();
