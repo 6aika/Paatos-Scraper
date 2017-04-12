@@ -7,6 +7,8 @@ Before running tests make sure that you have installed dependencies by running f
 
     npm install
 
+Please note that you need to run this command after each time you pull new code
+
 After that you can run tests by running:
 
     npm test
