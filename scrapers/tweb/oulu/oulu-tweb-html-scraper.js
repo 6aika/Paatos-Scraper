@@ -28,7 +28,8 @@
         "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
         "eventsPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
         "eventPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm",
-        "encoding": "binary"
+        "encoding": "binary",
+        "requestInterval": 10
       }, options || {});
     }
     
@@ -41,7 +42,8 @@
       return new Promise((resolve, reject) => {
         var options = {
           url: util.format("http://%s%s", this.options.host, this.options.searchFormPath),
-          encoding: this.options.encoding
+          encoding: this.options.encoding,
+          requestInterval: this.options.requestInterval
         };
         
         this.getParsedHtml(options)
@@ -76,7 +78,7 @@
      * 
      * @param {String} organizationId organizationId where to scrape events
      */
-    extractOrganizationEvents(organizationId) {
+    extractOrganizationEvents(organizationId, maxEvents) {
       return new Promise((resolve, reject) => {       
         var options = {
           "url": util.format("http://%s%s", this.options.host, this.options.eventsPath),
@@ -85,13 +87,14 @@
           "form": {
             'kirjaamo': organizationId,
             'oper': 'where'
-          }
+          },
+          requestInterval: this.options.requestInterval
         };
         
         this.getParsedHtml(options)
           .then(($) => {
             var events = [];
-            
+    
             $('table.list tr[class*="data"]').each((index, row) => {
               var link = $(row).find('td:nth-of-type(1) a');
               var dateText = link.text();
@@ -108,6 +111,10 @@
                 "endDate": dateTime
               });
             });
+            
+            if (maxEvents) {
+              events = events.splice(0, maxEvents);  
+            }
             
             resolve(events);
           })
@@ -132,7 +139,8 @@
           "qs": {
             "+bid": eventId 
           },
-          qsStringifyOptions: { encode: false }
+          qsStringifyOptions: { encode: false },
+          requestInterval: this.options.requestInterval
         };
         
         this.getParsedHtml(options)
