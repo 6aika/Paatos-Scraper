@@ -15,6 +15,8 @@
   const ouluToimielimet = require(__dirname + '/data/oulu_toimielimet');
   const ouluKaupunginhallitusKokoukset = require(__dirname + '/data/oulu_kaupunginhallitus_kokoukset');
   const ouluKaupunginhallitus5_2017_asiat = require(__dirname + '/data/oulu_kaupunginhallitus_5_2017_asiat');
+  const ouluKaupunginhallitus5_2017_toimenpiteet = require(__dirname + '/data/oulu_kaupunginhallitus_5_2017_73_toimenpiteet');
+  const ouluKaupunginhallitus5_2017_sisallot = require(__dirname + '/data/oulu_kaupunginhallitus_5_2017_73_toimenpiteen_sisallot');
 
   describe('Oulu Tweb Pdf Scraper tests', () => {
     
@@ -50,6 +52,24 @@
       
       return expect(Promise.resolve(ouluDataExtractor.extractEventCases("690", "12867")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_asiat);
+    });
+    
+    it('Test actions extracting', () => {
+      nock('http://localhost')
+        .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=35090068')
+        .replyWithFile(200, __dirname + '/data/35090068.pdf');
+      
+      return expect(Promise.resolve(ouluDataExtractor.extractActions("690", "12867", "35090068")))
+        .to.eventually.eql(ouluKaupunginhallitus5_2017_toimenpiteet);
+    });
+    
+    it('Test actions contents extracting', () => {
+      nock('http://localhost')
+        .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=35090068')
+        .replyWithFile(200, __dirname + '/data/35090068.pdf');
+      
+      return expect(Promise.resolve(ouluDataExtractor.extractContents("690", "12867", "35090068")))
+        .to.eventually.eql(ouluKaupunginhallitus5_2017_sisallot);
     });
     
   });
