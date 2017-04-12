@@ -15,8 +15,12 @@
       
     }
     
-    static createDataExtractor(name, options) {
-      switch (name) {
+    static getSources() {
+      return ['oulu'];
+    }
+    
+    static createDataExtractor(source, options) {
+      switch (source) {
         case 'oulu':
           return new OuluDataExtractor(options);
         break;
