@@ -5,6 +5,7 @@
   'use strict';
 
   const _ = require('lodash');
+  const util = require('util');
   const Promise = require('bluebird'); 
   const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraper');
   
@@ -39,10 +40,12 @@
    */
   class OuluTwebPdfScraper extends AbstractTwebPdfScraper {
     
-    constructor(pdfStream) {
-      super(pdfStream);      
-      this._captions = null;
-      this._values = null;
+    constructor(options) {
+      super(Object.assign({
+        "host": "asiakirjat.ouka.fi",
+        "pdfPath": "/ktwebbin/ktproxy2.dll"
+      }, options || {}));      
+      
       this._offset = {
         contentTop: 8.0,
         contentBottom: 7.0,
@@ -60,48 +63,10 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractActions() {
-      return new Promise((resolve, reject) => {
-        if (this._captions !== null) {
-          resolve(this._captions);
-        } else {
-          this.scrapeCaptions()
-            .then((captions) => {
-              this._captions = captions;
-              resolve(this._captions);
-            })
-            .catch(reject);
-        }
-      });
-    }
-    
-    /**
-     * Returns a promise for values scraped out of the PDF-file.
-     * 
-     * Returned data is ordered in same order that it is in the PDF-document. 
-     */
-    extractContents() {
-      return new Promise((resolve, reject) => {
-        if (this._values !== null) {
-          resolve(this._values);
-        } else {
-          this.scrapeValues()
-            .then((values) => {
-              this._values = values;
-              resolve(this._values);
-            })
-            .catch(reject);
-        }
-      });
-    }
-    
-    /**
-     * Does actual captions scraping and returns a promise for the result.
-     */
-    scrapeCaptions() {
+    extractActions(organizationId, eventId, caseId) {
       return new Promise((resolve, reject) => {
       
-        this.scrapeTexts()
+        this.scrapeTexts(organizationId, eventId, caseId)
           .then((pdfTexts) => {
             var result = [];
             
@@ -138,12 +103,14 @@
     }
     
     /**
-     * Does actual captions scraping and returns a promise for the result.
+     * Returns a promise for values scraped out of the PDF-file.
+     * 
+     * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    scrapeValues() {
+    extractContents(organizationId, eventId, caseId) {
       return new Promise((resolve, reject) => {
       
-        this.scrapeTexts()
+        this.scrapeTexts(organizationId, eventId, caseId)
           .then((pdfTexts) => {
             var result = [];
             
@@ -259,12 +226,12 @@
      * Scrapes texts out of the PDF-document
      * @returns {Array} An array of pdf text fragments
      */
-    scrapeTexts() {
+    scrapeTexts(organizationId, eventId, caseId) {
       return new Promise((resolve, reject) => {
         if (this._pdfTexts) {
           resolve(this._pdfTexts);
         } else {        
-          this.pdfData
+          this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
             .then((pdfData) => {
               this._pdfTexts = this.extractTexts(pdfData);
               resolve(this._pdfTexts);
@@ -274,6 +241,10 @@
             });
         }
       });
+    }
+    
+    getPdfUrl(organizationId, eventId, caseId) {
+      return util.format("http://%s%s?doctype=3&docid=%s", this.options.host, this.options.pdfPath, caseId);
     }
     
     /**

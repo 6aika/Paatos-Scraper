@@ -25,9 +25,9 @@
         .extractOrganizations();
     }
     
-    extractOrganizationEvents(organizationId) {
+    extractOrganizationEvents(organizationId, maxEvents) {
       return new OuluTwebHtmlScraper(this.options)
-        .extractOrganizationEvents(organizationId);       
+        .extractOrganizationEvents(organizationId, maxEvents);       
     }
     
     extractEventCases(organizationId, eventId) {
@@ -36,21 +36,15 @@
     }
     
     extractActions(organizationId, eventId, caseId) {
-      // TODO: Reuse scraper, when scraping same pdf
-      return new OuluTwebPdfScraper(this.getPdfStream(organizationId, eventId, caseId))
-        .extractActions();
+      return new OuluTwebPdfScraper(this.options)
+        .extractActions(organizationId, eventId, caseId);
     }
     
     extractContents(organizationId, eventId, caseId) {
-      // TODO: Reuse scraper, when scraping same pdf
-      return new OuluTwebPdfScraper(this.getPdfStream(organizationId, eventId, caseId))
-        .extractContents();
+      return new OuluTwebPdfScraper(this.options)
+        .extractContents(organizationId, eventId, caseId);
     }
     
-    getPdfStream(organizationId, eventId, caseId) {
-      var downloadUrl = util.format('http://%s/ktwebbin/ktproxy2.dll?doctype=3&docid=%s', this.options.host, caseId);
-      return request(downloadUrl);
-    }
   }
   
   module.exports = OuluDataExtractor;

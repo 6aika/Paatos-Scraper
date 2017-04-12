@@ -5,6 +5,7 @@
   'use strict';
   
   const fs = require('fs');
+  const nock = require('nock');
   const chai = require('chai');
   const expect = chai.expect;
   const assert = chai.assert;
@@ -18,16 +19,28 @@
 
   describe('Oulu Tweb Pdf Scraper tests', () => {
     it('Smoke test for field captions extraction', () => {
-      var smokeTestScraper = new OuluTwebPdfScraper(fs.createReadStream(__dirname + '/data/smoke/395959398.pdf'));
+      nock('http://localhost')
+        .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=395959398')
+        .replyWithFile(200, __dirname + '/data/smoke/395959398.pdf');
+      
+      var smokeTestScraper = new OuluTwebPdfScraper({
+        "host": "localhost"
+      });
     
-      return expect(Promise.resolve(smokeTestScraper.extractActions()))
+      return expect(Promise.resolve(smokeTestScraper.extractActions("123", "123", "395959398")))
         .to.eventually.eql(smokeCaptions);
     });
     
     it('Smoke test for field values extraction', () => {
-      var smokeTestScraper = new OuluTwebPdfScraper(fs.createReadStream(__dirname + '/data/smoke/395959398.pdf'));
-    
-      return expect(Promise.resolve(smokeTestScraper.extractContents()))
+      nock('http://localhost')
+        .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=395959398')
+        .replyWithFile(200, __dirname + '/data/smoke/395959398.pdf');
+      
+      var smokeTestScraper = new OuluTwebPdfScraper({
+        "host": "localhost"
+      });
+      
+      return expect(Promise.resolve(smokeTestScraper.extractContents("123", "123", "395959398")))
         .to.eventually.eql(smokeValues);
     });
   });
