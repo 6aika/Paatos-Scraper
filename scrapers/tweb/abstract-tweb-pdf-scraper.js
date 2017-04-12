@@ -11,8 +11,8 @@
    */
   class AbstractTWebPdfScraper extends AbstractPdfScraper {
     
-    constructor(pdfFile) {
-      super(pdfFile);
+    constructor(pdfStream) {
+      super(pdfStream);
     }
     
   }

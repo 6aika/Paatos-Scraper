@@ -9,14 +9,12 @@
 
   class AbstractPdfScraper extends AbstractScraper {
     
-    constructor(pdfFile) {
+    constructor(pdfStream) {
       super();
       this.pdfParser = new PDFParser();
-      this.pdfFile = pdfFile;
-      
       this.pdfParser.on('pdfParser_dataError', this.onPdfParseError.bind(this));
       this.pdfParser.on('pdfParser_dataReady', this.onPdfParseReady.bind(this));
-      this.pdfParser.loadPDF(this.pdfFile);
+      pdfStream.pipe(this.pdfParser);
       this._pdfData = null;
       this._pdfDataCallback = null;
     }

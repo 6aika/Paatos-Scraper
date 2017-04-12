@@ -39,8 +39,8 @@
    */
   class OuluTwebPdfScraper extends AbstractTwebPdfScraper {
     
-    constructor(pdfFile) {
-      super(pdfFile);      
+    constructor(pdfStream) {
+      super(pdfStream);      
       this._captions = null;
       this._values = null;
       this._offset = {
@@ -60,7 +60,7 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractCaptions() {
+    extractActions() {
       return new Promise((resolve, reject) => {
         if (this._captions !== null) {
           resolve(this._captions);
@@ -80,7 +80,7 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractValues() {
+    extractContents() {
       return new Promise((resolve, reject) => {
         if (this._values !== null) {
           resolve(this._values);
@@ -215,7 +215,7 @@
       
       while (i < (captions.length - 1)) {
         var caption = captions[i];
-        var nextCaption = captions[i + 1];         
+        var nextCaption = captions[i + 1];
         
         var top = caption.y;
         var bottom = nextCaption.y;
@@ -223,7 +223,13 @@
         while (((nextCaption.y - caption.y) <= this._offset.blockThreshold) && i < (captions.length - 1)) {
           i++;  
           caption = captions[i];          
-          nextCaption = captions[i + 1];         
+          nextCaption = captions[i + 1];
+          if (!nextCaption) {
+            // Last block, so we extend it to fill the rest of the document
+            bottom = caption.pageHeight + caption.pageOffsetY;
+            break;
+          }
+          
           bottom = nextCaption.y - this._offset.blockMargin;
         }
         
