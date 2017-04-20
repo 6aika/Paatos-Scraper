@@ -6,6 +6,7 @@
 
   const _ = require('lodash');
   const util = require('util');
+  const winston = require('winston');
   const Promise = require('bluebird'); 
   const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraper');
   
@@ -88,14 +89,23 @@
             const ignoreZones = scrapedData.ignoreZones;
             
             var result = [];
-    
+            var unscrapableContents = false;
+                
             var blocks = this.detectBlocks(pdfTexts, ignoreZones);
             for (let blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
-              var block = blocks[blockIndex];
+              let block = blocks[blockIndex];
               
-              var blockTexts = _.filter(pdfTexts, (pdfText) => {
+              let blockTexts = _.filter(pdfTexts, (pdfText) => {
                 let textY = pdfText.y;
-                return textY >= block.top && textY <= block.bottom && !this.isInIngoreZone(ignoreZones, pdfText);
+                let result = textY >= block.top && textY <= block.bottom; 
+                if (result) {
+                  if (this.isInIngoreZone(ignoreZones, pdfText)) {
+                    unscrapableContents = true; 
+                    return false;
+                  }
+                }  
+                
+                return result; 
               });
               
               var blockValues = _.filter(blockTexts, (blockText) => {
@@ -144,13 +154,11 @@
               
               if (blockValue || blockCaption) {
                 if (!blockCaption) {
-                  // TODO: Error log
-                  console.error(util.format("Missing caption %", blockCaption));
+                  winston.log('warn', util.format('Missing case title (with content %s) on Oulu TWeb PDF (%s)', blockValue, this.getPdfUrl(organizationId, eventId, caseId)));
                 }
                 
                 if (!blockValue) {
-                  // TODO: Error log
-                  console.error(util.format("Missing value %", blockValue));
+                  winston.log('warn', util.format('Missing case content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
                 }
                 
                 result.push({
@@ -161,7 +169,11 @@
               }
               
             }
-    
+
+            if (unscrapableContents) {    
+              winston.log('warn', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
+            }
+
             resolve(result);
           })
           .catch(reject);

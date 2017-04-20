@@ -20,6 +20,7 @@
         { name: 'output-zip', alias: 'z', type: String },
         { name: 'organization-id', alias: 'o', type: String },
         { name: 'max-events', type: Number },
+        { name: "error-log", type: String },
         { name: 'help', alias: 'h', type: Boolean }
       ];
       
@@ -94,6 +95,9 @@
         }, {
           name: 'max-events',
           description: 'Limit number of events'
+        }, {
+          name: 'error-log',
+          description: 'Path to error log file. By default errors are written into console.'
         }, {
           name: 'help',
           description: 'Print this usage guide.'
