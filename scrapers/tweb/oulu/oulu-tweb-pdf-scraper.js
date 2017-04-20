@@ -43,8 +43,9 @@
     constructor(options) {
       super(Object.assign({
         "host": "asiakirjat.ouka.fi",
-        "pdfPath": "/ktwebbin/ktproxy2.dll"
-      }, options || {}));      
+        "pdfPath": "/ktwebbin/ktproxy2.dll",
+        "ignoreZoneOffset": 0.5
+      }, options || {}));
       
       this._offset = {
         contentTop: 8.0,
@@ -58,26 +59,45 @@
       };
     }
     
+    isInIngoreZone(ignoreZones, positionedText) {
+      for (let i = 0; i < ignoreZones.length; i++) {
+        var ignoreZone = ignoreZones[i];
+        if (positionedText.y >= ignoreZone.y1 && positionedText.y <= ignoreZone.y2) {
+          return true;
+        }
+      }
+      
+      return false;
+    }
+    
     /**
      * Returns a promise for captions scraped out of the PDF-file.
+     * 
+     * @param {String} organizationId organizationId 
+     * @param {String} eventId eventId
+     * @param {String} caseId caseId
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
     extractActions(organizationId, eventId, caseId) {
       return new Promise((resolve, reject) => {
       
-        this.scrapeTexts(organizationId, eventId, caseId)
-          .then((pdfTexts) => {
-            var result = [];
+        this.scrapePdf(organizationId, eventId, caseId)
+          .then((scrapedData) => {
+            const pdfTexts = scrapedData.pdfTexts;
+            const ignoreZones = scrapedData.ignoreZones;
             
-            var blocks = this.detectBlocks(pdfTexts);
+            var result = [];
+    
+            var blocks = this.detectBlocks(pdfTexts, ignoreZones);
             for (let blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
               var block = blocks[blockIndex];
               
               var blockTexts = _.filter(pdfTexts, (pdfText) => {
-                return pdfText.y >= block.top && pdfText.y <= block.bottom;
+                let textY = pdfText.y;
+                return textY >= block.top && textY <= block.bottom && !this.isInIngoreZone(ignoreZones, pdfText);
               });
-
+              
               var blockValues = _.filter(blockTexts, (blockText) => {
                 return blockText.type === PositionedText.VALUE;
               });
@@ -114,17 +134,32 @@
                 blockValueTexts.push(value);
               }
               
-              blockValueTexts.push(_.trim(blockValues[blockValues.length - 1].text));
-              
-              var blockValue = _.trim(_.map(blockValueTexts, (blockValueText) => {
+              if (blockValues.length) {
+                blockValueTexts.push(_.trim(blockValues[blockValues.length - 1].text));
+              }
+            
+              var blockValue = this.removeMultipleSpaces(_.trim(_.map(blockValueTexts, (blockValueText) => {
                 return _.endsWith(blockValueText, '\n') ? blockValueText : blockValueText + ' ';
-              }).join(''));
+              }).join('')));
               
-              result.push({
-                order: blockIndex,
-                title: blockCaption,
-                content: blockValue 
-              });
+              if (blockValue || blockCaption) {
+                if (!blockCaption) {
+                  // TODO: Error log
+                  console.error(util.format("Missing caption %", blockCaption));
+                }
+                
+                if (!blockValue) {
+                  // TODO: Error log
+                  console.error(util.format("Missing value %", blockValue));
+                }
+                
+                result.push({
+                  order: blockIndex,
+                  title: blockCaption,
+                  content: blockValue 
+                });
+              }
+              
             }
     
             resolve(result);
@@ -138,9 +173,10 @@
      * within the document
      * 
      * @param {Array} pdfTexts PDF texts array
+     * @param {Array} ignoreZones array of zones to be ignored
      * @returns {Array} detected blocks from the document
      */
-    detectBlocks(pdfTexts) {
+    detectBlocks(pdfTexts, ignoreZones) {
       var captions = _.filter(pdfTexts, (pdfText) => {
         return pdfText.type === PositionedText.CAPTION;
       });
@@ -155,7 +191,7 @@
         var top = caption.y;
         var bottom = nextCaption.y;
         
-        while (((nextCaption.y - caption.y) <= this._offset.blockThreshold) && i < (captions.length - 1)) {
+        while (this.isInIngoreZone(ignoreZones, nextCaption) || ((nextCaption.y - caption.y) <= this._offset.blockThreshold) && i < (captions.length - 1)) {
           i++;  
           caption = captions[i];          
           nextCaption = captions[i + 1];
@@ -191,23 +227,25 @@
     }
     
     /**
-     * Scrapes texts out of the PDF-document
+     * Scrapes the PDF-document
+     * 
+     * @param {String} organizationId organizationId 
+     * @param {String} eventId eventId
+     * @param {String} caseId caseId    
      * @returns {Array} An array of pdf text fragments
      */
-    scrapeTexts(organizationId, eventId, caseId) {
+    scrapePdf(organizationId, eventId, caseId) {
       return new Promise((resolve, reject) => {
-        if (this._pdfTexts) {
-          resolve(this._pdfTexts);
-        } else {        
-          this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
-            .then((pdfData) => {
-              this._pdfTexts = this.extractTexts(pdfData);
-              resolve(this._pdfTexts);
-            })
-            .catch((err) => {
-              reject(err);
+        this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
+          .then((pdfData) => {
+            resolve({
+              pdfTexts: this.extractTexts(pdfData),
+              ignoreZones: this.detectIgnoreZones(pdfData)
             });
-        }
+          })
+          .catch((err) => {
+            reject(err);
+          });
       });
     }
     
@@ -216,9 +254,42 @@
     }
     
     /**
+     * Attempts to detect unscrapeable parts from the source PDF
+     * 
+     * @param {Object} pdfData pdfData
+     * @returns {Array} array of unscrapeable parts
+     */
+    detectIgnoreZones (pdfData) {
+      var result = [];
+      var pageOffsetY = 0;
+
+      let pdfPages = pdfData.formImage.Pages;
+      for (let pageIndex = 0; pageIndex < pdfPages.length; pageIndex++) {
+        let pdfPage = pdfPages[pageIndex];  
+        for (let fillIndex = 0; fillIndex < pdfPage.Fills.length; fillIndex++) {
+          var fill = pdfPage.Fills[fillIndex];
+          if (!fill.oc && fill.clr === 0) {
+            // Fills contaning clr (color index) 1 are dropped. This should
+            // remove e.g. tables from the documents
+            if (fill.h > 0) {
+              result.push({
+                y1: fill.y + pageOffsetY - this.options.ignoreZoneOffset,
+                y2: fill.y + fill.h + pageOffsetY + this.options.ignoreZoneOffset
+              });
+            }
+          }
+        }
+        
+        pageOffsetY += pdfPage.Height;
+      }
+      
+      return result;
+    }
+    
+    /**
      * Extracts text fragments from the pdf data as PositionedText instances
      * 
-     * @param {Object} pdfData
+     * @param {Object} pdfData pdfData
      * @returns {Array} text fragments extracted from the pdf data
      */
     extractTexts (pdfData) {
@@ -277,6 +348,10 @@
       }
       
       return texts;
+    }
+    
+    removeMultipleSpaces(text) {
+      return text.replace(/  +/g, ' ');
     }
     
     /**

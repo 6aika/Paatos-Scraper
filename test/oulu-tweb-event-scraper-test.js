@@ -14,7 +14,7 @@
   const OuluTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-html-scraper');
 
   const ouluKaupunginhallitusKokoukset = require(__dirname + '/data/oulu_kaupunginhallitus_kokoukset');
-
+  
   describe('Oulu Tweb Html Events Scraper tests', () => {
     
     var htmlTestScraper = new OuluTwebHtmlScraper({
