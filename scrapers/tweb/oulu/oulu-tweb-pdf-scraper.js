@@ -71,52 +71,7 @@
             var result = [];
             
             var blocks = this.detectBlocks(pdfTexts);
-            for (var i = 0; i < blocks.length; i++) {
-              var block = blocks[i];
-              
-              var blockTexts = _.filter(pdfTexts, (pdfText) => {
-                return pdfText.y >= block.top && pdfText.y <= block.bottom;
-              });
-
-              var blockCaptions = _.filter(blockTexts, (blockText) => {
-                return blockText.type === PositionedText.CAPTION;
-              });
-
-              var blockTexts = _.map(blockCaptions, (blockCaption) => {
-                return _.trim(blockCaption.text);
-              });
-              
-              blockTexts = this.mergeHyphenatedTexts(blockTexts);
-              
-              var blockCaption = _.filter(blockTexts, (blockText) => {
-                return !!blockText;
-              }).join(' ');
-              
-              result.push(blockCaption);
-            }
-    
-            resolve(result);
-          })
-          .catch(reject);
-         
-      });
-    }
-    
-    /**
-     * Returns a promise for values scraped out of the PDF-file.
-     * 
-     * Returned data is ordered in same order that it is in the PDF-document. 
-     */
-    extractContents(organizationId, eventId, caseId) {
-      return new Promise((resolve, reject) => {
-      
-        this.scrapeTexts(organizationId, eventId, caseId)
-          .then((pdfTexts) => {
-            var result = [];
-            
-            var blocks = this.detectBlocks(pdfTexts);
-
-            for (var blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
+            for (let blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
               var block = blocks[blockIndex];
               
               var blockTexts = _.filter(pdfTexts, (pdfText) => {
@@ -126,18 +81,28 @@
               var blockValues = _.filter(blockTexts, (blockText) => {
                 return blockText.type === PositionedText.VALUE;
               });
+
+              var blockCaptions = _.filter(blockTexts, (blockText) => {
+                return blockText.type === PositionedText.CAPTION;
+              });
+
+              var blockCaptionTexts = _.map(blockCaptions, (blockCaption) => {
+                return _.trim(blockCaption.text);
+              });
               
-              if (!blockValues.length) {
-                continue;
-              }
+              blockCaptionTexts = this.mergeHyphenatedTexts(blockCaptionTexts);
               
-              var blockTexts = [];
+              var blockCaption = _.filter(blockCaptionTexts, (blockCaptionText) => {
+                return !!blockCaptionText;
+              }).join(' ');
               
-              for (var i = 0; i < blockValues.length - 1; i++) {
-                var value = _.trim(blockValues[i].text); 
-                var y = blockValues[i].y;
-                var nextY = blockValues[i + 1].y;
-                var samePage = blockValues[i].pageOffsetY == blockValues[i + 1].pageOffsetY;
+              let blockValueTexts = [];
+              
+              for (let i = 0; i < blockValues.length - 1; i++) {
+                let value = _.trim(blockValues[i].text); 
+                let y = blockValues[i].y;
+                let nextY = blockValues[i + 1].y;
+                let samePage = blockValues[i].pageOffsetY === blockValues[i + 1].pageOffsetY;
                 if (!samePage) {
                   nextY -= this._offset.contentTop + this._offset.contentBottom;  
                 }
@@ -146,22 +111,25 @@
                   value += '\n\n';                  
                 }
                 
-                blockTexts.push(value);
+                blockValueTexts.push(value);
               }
               
-              blockTexts.push(_.trim(blockValues[blockValues.length - 1].text));
+              blockValueTexts.push(_.trim(blockValues[blockValues.length - 1].text));
               
-              var blockValue = _.trim(_.map(blockTexts, (blockText) => {
-                return _.endsWith(blockText, '\n') ? blockText : blockText + ' ';
+              var blockValue = _.trim(_.map(blockValueTexts, (blockValueText) => {
+                return _.endsWith(blockValueText, '\n') ? blockValueText : blockValueText + ' ';
               }).join(''));
-
-              result.push(blockValue);
+              
+              result.push({
+                order: blockIndex,
+                title: blockCaption,
+                content: blockValue 
+              });
             }
     
             resolve(result);
           })
           .catch(reject);
-         
       });
     }
     

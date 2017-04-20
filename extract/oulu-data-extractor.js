@@ -40,11 +40,6 @@
         .extractActions(organizationId, eventId, caseId);
     }
     
-    extractContents(organizationId, eventId, caseId) {
-      return new OuluTwebPdfScraper(this.options)
-        .extractContents(organizationId, eventId, caseId);
-    }
-    
   }
   
   module.exports = OuluDataExtractor;

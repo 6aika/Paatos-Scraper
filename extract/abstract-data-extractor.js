@@ -29,10 +29,6 @@
       throw new Error("Unimplemented");
     }
     
-    extractContents(organizationId, eventId, caseId) {
-      throw new Error("Unimplemented");
-    }
-    
   }
   
   module.exports = AbstractDataExtractor;

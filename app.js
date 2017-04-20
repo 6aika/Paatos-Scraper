@@ -63,7 +63,6 @@
               var caseIds = [];
               var caseOrganizationIds = [];
               var caseEventIds = [];
-              var contentPromises = [];
               var actionPromises = [];
               
               for (let eventIndex = 0; eventIndex < eventIds.length; eventIndex++) {
@@ -76,27 +75,22 @@
                   caseIds.push(cases[caseIndex].sourceId);
                   caseOrganizationIds.push(eventOrganizationId);
                   caseEventIds.push(eventId);
-                  contentPromises.push(extractor.extractContents(eventOrganizationId, eventId, cases[caseIndex].sourceId));
                   actionPromises.push(extractor.extractActions(eventOrganizationId, eventId, cases[caseIndex].sourceId));
                 }
               }
               
-              console.log("Extracting organization event case actions and contents...");
+              console.log("Extracting organization event case actions...");
               
-              Promise.all([Promise.all(actionPromises), Promise.all(contentPromises)])
+              Promise.all(actionPromises)
                 .then((data) => {
                   var caseActions = data[0];
-                  var caseContents = data[1];
                   
                   for (var i = 0; i < caseIds.length; i++) {
                     var caseOrganizationId = caseOrganizationIds[i];
                     var caseEventId = caseEventIds[i];
                     var caseId = caseIds[i];
                     var actions = caseActions[i];
-                    var contents = caseContents[i];
-
                     resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
-                    resultBuilder.setOrganizationCaseContents(caseOrganizationId, caseEventId, caseId, contents);
                   }
                   
                   console.log("Building zip file...");
