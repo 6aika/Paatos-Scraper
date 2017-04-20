@@ -91,9 +91,7 @@
               console.log("Extracting organization event case actions...");
               
               Promise.all(actionPromises)
-                .then((data) => {
-                  var caseActions = data[0];
-                  
+                .then((caseActions) => {                  
                   for (var i = 0; i < caseIds.length; i++) {
                     var caseOrganizationId = caseOrganizationIds[i];
                     var caseEventId = caseEventIds[i];

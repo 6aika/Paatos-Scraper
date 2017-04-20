@@ -67,11 +67,9 @@
           _.forEach(caseDatas, (caseData, caseId) => {
             var eventCase = caseData.case;
             var actions = caseData.actions;
-            var contents = caseData.contents;
             
             zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/index.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(eventCase)), eventCase.title);
             zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/actions.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(actions)), util.format('%s - actions', eventCase.title));
-            zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/contents.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(contents)), util.format('%s - contents', eventCase.title));
           });
           
         });
