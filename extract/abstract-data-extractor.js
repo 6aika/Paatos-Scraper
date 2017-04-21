@@ -13,19 +13,7 @@
       this.options = options || {};
     }
     
-    extractOrganizations() {
-      throw new Error("Unimplemented");
-    }
-    
-    extractOrganizationEvents(organizationId, maxEvents, eventsAfter) {
-      throw new Error("Unimplemented");
-    }
-    
-    extractEventCases(organizationId, eventId) {
-      throw new Error("Unimplemented");
-    }
-    
-    extractActions(organizationId, eventId, caseId) {
+    extractData(options) {
       throw new Error("Unimplemented");
     }
     
