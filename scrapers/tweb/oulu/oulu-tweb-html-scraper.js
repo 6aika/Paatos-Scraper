@@ -77,8 +77,10 @@
      * Returned data is ordered in same order that it is in html page. 
      * 
      * @param {String} organizationId organizationId where to scrape events
+     * @param {Integer} maxEvents max events to return
+     * @param {Moment} eventsAfter return only events afer the moment
      */
-    extractOrganizationEvents(organizationId, maxEvents) {
+    extractOrganizationEvents(organizationId, maxEvents, eventsAfter) {
       return new Promise((resolve, reject) => {       
         var options = {
           "url": util.format("http://%s%s", this.options.host, this.options.eventsPath),
@@ -101,15 +103,18 @@
               var linkHref = link.attr('href');
               var idMatch = /(.*bid=)([0-9]*)(.*)/.exec(linkHref); 
               var name =  $(row).find('td:nth-of-type(2)').text();
-              var dateTime = moment(dateText, 'D.M.YYYY HH:mm', true).toISOString();
+              var eventStart = moment(dateText, 'D.M.YYYY HH:mm', true);
+              var eventEnd = moment(dateText, 'D.M.YYYY HH:mm', true);
               var id = idMatch[2];
               
-              events.push({
-                "sourceId": id,
-                "name": name,
-                "startDate": dateTime,
-                "endDate": dateTime
-              });
+              if (!eventsAfter || eventsAfter.isBefore(eventStart)) {
+                events.push({
+                  "sourceId": id,
+                  "name": name,
+                  "startDate": eventStart.toISOString(),
+                  "endDate": eventEnd.toISOString()
+                });
+              }
             });
             
             if (maxEvents) {

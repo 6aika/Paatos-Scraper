@@ -25,9 +25,9 @@
         .extractOrganizations();
     }
     
-    extractOrganizationEvents(organizationId, maxEvents) {
+    extractOrganizationEvents(organizationId, maxEvents, eventsAfter) {
       return new OuluTwebHtmlScraper(this.options)
-        .extractOrganizationEvents(organizationId, maxEvents);       
+        .extractOrganizationEvents(organizationId, maxEvents, eventsAfter);       
     }
     
     extractEventCases(organizationId, eventId) {

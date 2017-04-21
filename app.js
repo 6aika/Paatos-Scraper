@@ -9,7 +9,8 @@
   const Promise = require('bluebird'); 
   const options = require(__dirname + '/app/options');
   const winston = require('winston');
-
+  const moment = require('moment');
+  
   if (!options.isOk()) {
     options.printUsage();
     process.exitCode = 1;
@@ -21,7 +22,8 @@
   var organizationId = options.getOption("organization-id");
   var maxEvents = options.getOption("max-events");
   var errorLog = options.getOption("error-log");
-  
+  var eventsAfter = options.getOption("events-after") ? moment(options.getOption("events-after"), "YYYY-MM-DD", true) : null;
+
   if (errorLog) {
     winston.add(winston.transports.File, { filename: errorLog });
     winston.remove(winston.transports.Console);
@@ -42,7 +44,7 @@
         if ((!organizationId) || (organizationId === organization.sourceId)) {
           resultBuilder.addOrganization(organization);
           organizationIds.push(organization.sourceId);
-          eventPromises.push(extractor.extractOrganizationEvents(organization.sourceId, maxEvents));
+          eventPromises.push(extractor.extractOrganizationEvents(organization.sourceId, maxEvents, eventsAfter));
         }
       });
       

@@ -17,7 +17,7 @@
       throw new Error("Unimplemented");
     }
     
-    extractOrganizationEvents(organizationId) {
+    extractOrganizationEvents(organizationId, maxEvents, eventsAfter) {
       throw new Error("Unimplemented");
     }
     
