@@ -43,6 +43,15 @@
       };
     }
     
+    getOrganizationEventCase(organizationId, eventId, caseId) {
+      return this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].case;
+    }
+    
+    setOrganizationEventCase(organizationId, eventId, caseId, eventCase) {
+      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].case = eventCase;
+      console.log(this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].case);
+    }
+    
     setOrganizationCaseActions(organizationId, eventId, caseId, actions) {
       this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].actions = actions;
     }

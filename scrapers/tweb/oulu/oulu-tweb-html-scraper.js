@@ -162,12 +162,12 @@
               var idMatch = /(.*docid=)([0-9]*)(.*)/.exec(linkHref);
               
               var id = idMatch[2];
-              var registerId = $(row).find('.data_pykala').text();
+              var articleNumber = $(row).find('.data_pykala').text();
               var title = normalize(link.text());
               
               cases.push({
                 "sourceId": id,  
-                "registerId": registerId,
+                "articleNumber": articleNumber,
                 "title": title,
                 "function": null,
                 "geometries": null
@@ -231,9 +231,9 @@
                 "actionId": null,
                 "number": index,
                 "public": true,
-                "confidentiality_reason": null,
-                "content-type": headers['content-type'],
-                "content-length": headers['content-length']
+                "confidentialityReason": null,
+                "contentType": headers['content-type'],
+                "contentLength": headers['content-length']
               });
             });
             

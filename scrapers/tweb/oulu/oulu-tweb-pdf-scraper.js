@@ -171,7 +171,7 @@
             }
 
             if (unscrapableContents) {    
-              winston.log('warn', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
+              winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
             }
 
             resolve(result);

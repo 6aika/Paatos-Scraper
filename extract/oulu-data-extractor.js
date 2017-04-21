@@ -9,6 +9,7 @@
   const request = require('request');
   const _ = require('lodash');
   const moment = require('moment');
+  const winston = require('winston');
   const AbstractDataExtractor = require(__dirname + '/abstract-data-extractor');
   const OuluTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
   const OuluTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-html-scraper');
@@ -104,11 +105,30 @@
                         let caseId = caseIds[i];
                         let actions = caseActions[i];
                         let attachments = caseAttachments[i];
-
+                        let eventCase = resultBuilder.getOrganizationEventCase(caseOrganizationId, caseEventId, caseId);
+                        
+                        let articleNumber = eventCase['articleNumber'];
+                        let caseRegisterId = this.resolveRegisterId(actions);
+                        if (!caseRegisterId) {
+                          winston.log('warn', util.format('Could not resolve registerId for Oulu TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
+                        }
+                        
+                        actions.push({
+                          "title": "articleNumber",
+                          "order": actions.length,
+                          "content": util.format("%d", articleNumber)
+                        });
+                        
+                        delete eventCase.articleNumber;
+                        
+                        resultBuilder.setOrganizationEventCase(caseOrganizationId, caseEventId, caseId, Object.assign(eventCase, {
+                          "registerId": caseRegisterId
+                        }));
+ 
                         resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
                         resultBuilder.setOrganizationCaseAttachments(caseOrganizationId, caseEventId, caseId, attachments);
                       }
-
+                      
                       console.log("Building zip file...");
 
                       resultBuilder.buildZip(options.getOption('output-zip'));
@@ -156,6 +176,16 @@
     
     extractAttachments(organizationId, eventId, caseId) {
       return this._htmlScraper.extractOrganizationEventCaseActionAttachments(organizationId, eventId, caseId);
+    }
+    
+    resolveRegisterId(actions) {
+      for (let i = 0; i < actions.length; i++) {
+        if (actions[i].title === "Dno") {
+          return actions[i].content;
+        }
+      }
+      
+      return null;
     }
     
   }
