@@ -24,12 +24,14 @@
     "cheerio": "^0.22.0",
     "command-line-args": "^4.0.2",
     "command-line-usage": "^4.0.0",
+    "content-disposition": "^0.5.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "normalize-space": "^1.0.2",
     "npm": "^4.4.4",
     "pdf2json": "^1.1.7",
     "request": "^2.81.0",
+    "sync-request": "^4.0.2",
     "winston": "^2.3.1"
   },
   "devDependencies": {

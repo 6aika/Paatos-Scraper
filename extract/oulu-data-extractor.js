@@ -7,6 +7,7 @@
   const fs = require('fs');
   const util = require('util');
   const request = require('request');
+  const _ = require('lodash');
   const AbstractDataExtractor = require(__dirname + '/abstract-data-extractor');
   const OuluTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
   const OuluTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-html-scraper');
@@ -38,6 +39,11 @@
     extractActions(organizationId, eventId, caseId) {
       return new OuluTwebPdfScraper(this.options)
         .extractActions(organizationId, eventId, caseId);
+    }
+    
+    extractAttachments(organizationId, eventId, caseId) {
+      return new OuluTwebHtmlScraper(this.options)
+        .extractOrganizationEventCaseActionAttachments(organizationId, eventId, caseId);
     }
     
   }

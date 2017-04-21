@@ -28,6 +28,7 @@
         "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
         "eventsPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
         "eventPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm",
+        "eventCaseAttachmentsPath": "/ktwebbin/dbisa.dll/ktwebscr/epjattn_tweb.htm",
         "encoding": "binary",
         "requestInterval": 10
       }, options || {});
@@ -174,6 +175,69 @@
             });
  
             resolve(cases);
+          })
+          .catch(reject);
+  
+      });
+    }
+    
+    /**
+     * Returns a promise for organization event case attachments.
+     * 
+     * Returned data is ordered in same order that it is in html page. 
+     * 
+     * @param {String} organizationId organizationId 
+     * @param {String} eventId eventId
+     * @param {String} caseId caseId
+     */
+    extractOrganizationEventCaseActionAttachments(organizationId, eventId, caseId) {
+      return new Promise((resolve, reject) => {       
+        var options = {
+          "url": util.format("http://%s%s?%s", this.options.host, this.options.eventCaseAttachmentsPath, caseId),
+          "method": "GET",
+          "encoding": this.options.encoding,
+          requestInterval: this.options.requestInterval
+        };
+        
+        this.getParsedHtml(options)
+          .then(($) => {
+            var attachments = [];
+            var rows = $('table.list tr[class*="data"]');
+                    
+            rows.each((index, row) => {
+              let link = $(row).find('td.data a');
+              let linkHref = link.attr('href');
+              let idMatch = /(.*docid=)([0-9]*)(.*)/.exec(linkHref);
+              let id = idMatch[2];
+              var url = util.format("http://%s%s", this.options.host, linkHref);
+              let name = normalize(link.text());
+              let headers = this.getHeaders(url);
+              let contentDisposition = headers['content-disposition'] ? this.parseContentDisposition(headers['content-disposition']) : null;
+              let filename = null;
+              
+              if (contentDisposition && contentDisposition.parameters) {
+                filename = contentDisposition.parameters.filename;
+              }
+              
+              if (!filename) {
+                filename = id;
+              }
+            
+              attachments.push({
+                "sourceId": id,
+                "name": name,
+                "filename": filename,
+                "url": url,
+                "actionId": null,
+                "number": index,
+                "public": true,
+                "confidentiality_reason": null,
+                "content-type": headers['content-type'],
+                "content-length": headers['content-length']
+              });
+            });
+            
+            resolve(attachments);
           })
           .catch(reject);
   

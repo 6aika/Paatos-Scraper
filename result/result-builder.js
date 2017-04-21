@@ -47,29 +47,31 @@
       this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].actions = actions;
     }
     
-    setOrganizationCaseContents(organizationId, eventId, caseId, contents) {
-      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].contents = contents;
+    setOrganizationCaseAttachments(organizationId, eventId, caseId, attachments) {
+      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].attachments = attachments;
     }
     
     buildZip(outputFile) {
       var zip = new AdmZip();
       
       _.forEach(this.organizationDatas, (organizationData, organizationId) => {
-        var organization = organizationData.organization;
-        var eventDatas = organizationData.eventDatas; 
+        let organization = organizationData.organization;
+        let eventDatas = organizationData.eventDatas; 
         zip.addFile(util.format("/organizations/%s/index.json", organizationId), new Buffer(JSON.stringify(organization)), organization.name);
         
         _.forEach(eventDatas, (eventData, eventId) => {
-          var event = eventData.event;
-          var caseDatas = eventData.caseDatas;
+          let event = eventData.event;
+          let caseDatas = eventData.caseDatas;
           zip.addFile(util.format("/organizations/%s/events/%s/index.json", organizationId, eventId), new Buffer(JSON.stringify(event)), event.name);
       
           _.forEach(caseDatas, (caseData, caseId) => {
-            var eventCase = caseData.case;
-            var actions = caseData.actions;
+            let eventCase = caseData.case;
+            let actions = caseData.actions;
+            let attachments = caseData.attachments;
             
             zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/index.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(eventCase)), eventCase.title);
             zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/actions.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(actions)), util.format('%s - actions', eventCase.title));
+            zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/attachments.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(attachments)), util.format('%s - attachments', eventCase.title));
           });
           
         });

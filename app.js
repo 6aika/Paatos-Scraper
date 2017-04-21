@@ -75,6 +75,7 @@
               var caseOrganizationIds = [];
               var caseEventIds = [];
               var actionPromises = [];
+              var attachmentPromises = [];
               
               for (let eventIndex = 0; eventIndex < eventIds.length; eventIndex++) {
                 var eventId = eventIds[eventIndex];
@@ -87,19 +88,26 @@
                   caseOrganizationIds.push(eventOrganizationId);
                   caseEventIds.push(eventId);
                   actionPromises.push(extractor.extractActions(eventOrganizationId, eventId, cases[caseIndex].sourceId));
+                  attachmentPromises.push(extractor.extractAttachments(eventOrganizationId, eventId, cases[caseIndex].sourceId));
                 }
               }
               
               console.log("Extracting organization event case actions...");
               
-              Promise.all(actionPromises)
-                .then((caseActions) => {                  
-                  for (var i = 0; i < caseIds.length; i++) {
-                    var caseOrganizationId = caseOrganizationIds[i];
-                    var caseEventId = caseEventIds[i];
-                    var caseId = caseIds[i];
-                    var actions = caseActions[i];
+              Promise.all([Promise.all(actionPromises), Promise.all(attachmentPromises)])
+                .then((data) => {                  
+                  let caseActions = data[0];
+                  let caseAttachments = data[1];
+          
+                  for (let i = 0; i < caseIds.length; i++) {
+                    let caseOrganizationId = caseOrganizationIds[i];
+                    let caseEventId = caseEventIds[i];
+                    let caseId = caseIds[i];
+                    let actions = caseActions[i];
+                    let attachments = caseAttachments[i];
+                    
                     resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
+                    resultBuilder.setOrganizationCaseAttachments(caseOrganizationId, caseEventId, caseId, attachments);
                   }
                   
                   console.log("Building zip file...");
