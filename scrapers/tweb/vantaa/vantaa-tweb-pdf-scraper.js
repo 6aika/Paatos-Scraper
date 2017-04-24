@@ -45,26 +45,46 @@
             let y = this.options.contentTop;
             let index = 0;
             let result = [];
-            
-            if ((index = this.appendSummary(index, contentTexts, result)) === -1) {
-              winston.log('warn', util.format('Could not extract summary from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
-              return resolve(result);
+            let dnoIndex = this.findIndex(contentTexts, '^(VD\/){0,1}[0-9]{1,}\/[0-9.]*\/[0-9]{4}$');
+            let draftsmenIndex = this.findIndex(contentTexts, '^[A-Z-\/]{1,}$');
+            let contentsIndex = this.findIndex(contentTexts, util.format('^.*%s § %s$', date.format("D.M.YYYY"), articleNumber));
+            let hasSummary = (dnoIndex === null || dnoIndex > 0) && contentsIndex > 0;
+                    
+            if (contentsIndex > 0) { 
+              if (hasSummary) {
+                if ((index = this.appendSummary(index, contentTexts, result)) === -1) {
+                  winston.log('warn', util.format('Could not extract summary from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  index = 0; 
+                }
+              }
+
+              if (dnoIndex !== null) {
+                if ((index = this.appendDno(dnoIndex, contentTexts, result)) === -1) {
+                  winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  index = 0;
+                }
+              } else {
+                winston.log('warn', util.format('Could not find Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+              }
+
+              if (draftsmenIndex !== null) {
+                if ((index = this.appendDraftsmen(draftsmenIndex, contentTexts, result)) === -1) {
+                  winston.log('warn', util.format('Could not extract draftsmen from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  index = 0;
+                }
+              }
+
+              if (index < contentsIndex) {
+                if ((index = this.appendIntroduction(index, contentTexts, result, date, articleNumber)) === -1) {
+                  winston.log('warn', util.format('Could not extract introduction from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  index = 0;
+                }
+              }
+            } else {
+              winston.log('warn', util.format('Could not extract any header data from TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
             }
             
-            if ((index = this.appendDno(index, contentTexts, result)) === -1) {
-              winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
-              return resolve(result);
-            }
-            
-            if ((index = this.appendMysteryCode(index, contentTexts, result)) === -1) {
-              winston.log('warn', util.format('Could not extract mystery code from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
-              return resolve(result);
-            }
-            
-            if ((index = this.appendIntroduction(index, contentTexts, result, date, articleNumber)) === -1) {
-              winston.log('warn', util.format('Could not extract introduction from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
-              return resolve(result);
-            }
+            index = contentsIndex + 1;
             
             while (index < contentTexts.length) {
               let extractedTitle = this.extractContentTitle(index, contentTexts);
@@ -102,8 +122,8 @@
      return this.appendLine("Dno", index, contentTexts, result);
     }
     
-    appendMysteryCode(index, contentTexts, result) {
-     return this.appendParagraph("MysteryCode", index, contentTexts, result);     
+    appendDraftsmen(index, contentTexts, result) {
+     return this.appendParagraph("Valmistelijat", index, contentTexts, result);     
     }
     
     appendIntroduction(index, contentTexts, result, date, articleNumber) {
@@ -235,6 +255,16 @@
         }
         
         index++;
+      }
+      
+      return null;
+    }
+    
+    findIndex(contentTexts, regex) {
+      for (let i = 0; i < contentTexts.length; i++) {
+        if (contentTexts[i].text.match(regex)) {
+          return i;
+        }
       }
       
       return null;
