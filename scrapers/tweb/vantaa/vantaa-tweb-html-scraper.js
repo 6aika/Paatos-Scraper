@@ -10,17 +10,21 @@
   const normalize = require('normalize-space');
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
   
+  process.on('unhandledRejection', function(error, promise) {
+    console.error("UNHANDLED REJECTION", error.stack);
+  });
+  
   /**
-   * Oulu TWeb specific implementation of Html scraper
+   * Vantaa TWeb specific implementation of Html scraper
    */
-  class OuluTwebHtmlScraper extends AbstractTwebHtmlScraper {
+  class VantaaTwebHtmlScraper extends AbstractTwebHtmlScraper {
     
     constructor(options) {
       super();
       
       this.options = Object.assign({
-        "host": "asiakirjat.ouka.fi",
-        "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm",
+        "host": "paatokset.vantaa.fi",
+        "searchFormPath": "/ktwebbin/dbisa.dll/ktwebscr/epj_tek_tweb.htm",
         "eventsPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
         "eventPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm",
         "eventCaseAttachmentsPath": "/ktwebbin/dbisa.dll/ktwebscr/epjattn_tweb.htm",
@@ -53,16 +57,15 @@
           .then(($) => {
             var cases = [];
             var rows = $('table.list tr[class*="data"]').filter((index, row) => {
-              return !!$(row).find('.data_pykala').text();
+              return !!$(row).find('td:nth-of-type(1)').text() && !!$(row).find('td:nth-of-type(3) a').attr('href');
             });
-                    
+            
             rows.each((index, row) => {
-              var link = $(row).find('td.data:nth-of-type(2) a');
+              var link = $(row).find('td:nth-of-type(3) a');
               var linkHref = link.attr('href');
               var idMatch = /(.*docid=)([0-9]*)(.*)/.exec(linkHref);
-              
               var id = idMatch[2];
-              var articleNumber = $(row).find('.data_pykala').text();
+              var articleNumber = $(row).find('td:nth-of-type(1)').text();
               var title = normalize(link.text());
               
               cases.push({
@@ -73,7 +76,7 @@
                 "geometries": null
               });
             });
- 
+            
             resolve(cases);
           })
           .catch(reject);
@@ -83,6 +86,6 @@
     
   }
   
-  module.exports = OuluTwebHtmlScraper;
+  module.exports = VantaaTwebHtmlScraper;
            
 }).call(this);
