@@ -13,7 +13,11 @@
       this.options = options || {};
     }
     
-    extractData(options) {
+    extractOrganizations() {
+      throw new Error("Unimplemented");  
+    }
+    
+    extractOrganizationData(options) {
       throw new Error("Unimplemented");
     }
     

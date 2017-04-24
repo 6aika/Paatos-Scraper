@@ -18,6 +18,7 @@
     constructor() {
       this.definitions = [
         { name: 'source', alias: 's', type: String },
+        { name: "print-organizations", type: Boolean },
         { name: 'output-zip', alias: 'z', type: String },
         { name: 'organization-id', alias: 'o', type: String },
         { name: 'max-events', type: Number },
@@ -25,8 +26,6 @@
         { name: "error-log", type: String },
         { name: 'help', alias: 'h', type: Boolean }
       ];
-      
-      this.required = ['source', 'output-zip', 'organization-id'];
       
       try {
         this.options = commandLineArgs(this.definitions);
@@ -44,8 +43,16 @@
         return 'help';
       }
       
-      for (var i = 0; i < this.required.length; i++) {
-        var requiredOption = this.required[i];
+      let required;
+      
+      if (this.options['print-organizations']) {
+        required = ['source'];
+      } else {
+        required = ['source', 'output-zip', 'organization-id'];  
+      }
+      
+      for (var i = 0; i < required.length; i++) {
+        var requiredOption = required[i];
         if (!this.options[requiredOption]) {
           return util.format("Missing required option: %s", requiredOption);
         }
@@ -93,6 +100,9 @@
           name: 'source',
           typeLabel: '[underline]{source}',
           description: util.format('The source where to retrieve the date. Supported sources are: %s', sources.join(','))
+        }, {
+          name: 'print-organizations',
+          description: 'Print organizations and exit without extracting data'
         }, {
           name: 'output-zip',
           typeLabel: '[underline]{output zip file}',

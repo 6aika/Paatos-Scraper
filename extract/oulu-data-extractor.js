@@ -27,7 +27,11 @@
       this._pdfScraper = new OuluTwebPdfScraper(this.options);
     }
     
-    extractData(options) {
+    extractOrganizations() {
+      return this.extractOrganizations();
+    }
+  
+    extractOrganizationData(options) {
       const resultBuilder = new ResultBuilder();      
       const organizationId = options.getOption("organization-id");
       const maxEvents = options.getOption("max-events");
