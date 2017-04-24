@@ -4,6 +4,7 @@
 (function() {
   'use strict';
 
+  const util = require('util'); 
   const AbstractPdfScraper = require(__dirname + '/../abstract-pdf-scraper');
 
   /**
@@ -15,6 +16,9 @@
       super(options);
     }
     
+    getPdfUrl(organizationId, eventId, caseId) {
+      return util.format("http://%s%s?doctype=3&docid=%s", this.options.host, this.options.pdfPath, caseId);
+    }
   }
   
   module.exports = AbstractTWebPdfScraper;

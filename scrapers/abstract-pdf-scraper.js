@@ -3,6 +3,7 @@
 (function() {
   'use strict';
 
+  const _ = require('lodash');
   const fs = require('fs');
   const request = require('request');
   const PDFParser = require("pdf2json");
@@ -59,6 +60,30 @@
           this.nextInQueue();
         }
       });
+    }
+    
+    removeMultipleSpaces(text) {
+      return text.replace(/  +/g, ' ');
+    }
+    
+    /**
+     * Merges words splitted to multiple lines by - into single words
+     * @param {type} texts texts
+     * @returns {unresolved} merged texts
+     */
+    mergeHyphenatedTexts(texts) {
+      var i = texts.length - 1;
+      while (i > 0) {
+        var text = _.trim(texts[i - 1]);
+        if (_.endsWith(text, '-')) {
+          texts[i - 1] = _.trim(text.substring(0, text.length - 1)) + texts[i];
+          texts.splice(i, 1);
+        }
+        
+        i--;
+      }
+      
+      return texts;
     }
     
   }

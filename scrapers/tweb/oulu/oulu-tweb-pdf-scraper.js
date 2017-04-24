@@ -9,32 +9,11 @@
   const winston = require('winston');
   const Promise = require('bluebird'); 
   const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraper');
-  
+  const PositionedText = require(__dirname + '/../../positioned-text');
+
   process.on('unhandledRejection', function(error, promise) {
     console.error("UNHANDLED REJECTION", error.stack);
   });
-  
-  class PositionedText {
-    
-    constructor(text, type, x, y, width, pageOffsetY, pageHeight) {
-      this.text = text;
-      this.type = type;
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.pageOffsetY = pageOffsetY;
-      this.pageHeight = pageHeight;
-    }
-    
-    static get VALUE() {
-      return 'VALUE';
-    }
-    
-    static get CAPTION() {
-      return 'CAPTION';
-    }
-    
-  }
   
   /**
    * Oulu TWeb specific implementation of Pdf scraper
@@ -161,6 +140,8 @@
                   winston.log('warn', util.format('Missing case content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
                 }
                 
+                
+                
                 result.push({
                   order: blockIndex,
                   title: blockCaption,
@@ -261,8 +242,43 @@
       });
     }
     
-    getPdfUrl(organizationId, eventId, caseId) {
-      return util.format("http://%s%s?doctype=3&docid=%s", this.options.host, this.options.pdfPath, caseId);
+    /**
+     * Extracts text fragments from the pdf data as PositionedText instances
+     * 
+     * @param {Object} pdfData pdfData
+     * @returns {Array} text fragments extracted from the pdf data
+     */
+    extractTexts (pdfData) {
+      var result = [];
+      var pageOffsetY = 0;
+
+      var pdfPages = pdfData.formImage.Pages;
+      for (var pageIndex = 0; pageIndex < pdfPages.length; pageIndex++) {
+        var pdfPage = pdfPages[pageIndex]; 
+        var pdfTexts = pdfPage.Texts;     
+        
+        for (var textIndex = 0; textIndex < pdfTexts.length; textIndex++) {
+          var pdfText = pdfTexts[textIndex];
+          var x = pdfText.x;
+          var y = pdfText.y;
+          if ((y >= this._offset.contentTop) && (x >= this._offset.captionX) && (pdfText.R.length)) {
+            if (pdfText.R.length === 1) {
+              var text = decodeURIComponent(pdfText.R[0].T);
+              var type = x >= this._offset.valueX ? PositionedText.VALUE : PositionedText.CAPTION;
+              let fontSize = pdfText.R[0].TS[1] * (1 / 72);
+              let bold = pdfText.R[0].TS[2] === 1;
+              let italic = pdfText.R[0].TS[3] === 1;
+              result.push(new PositionedText(text, type, x, y + pageOffsetY, pdfText.w, fontSize, pageOffsetY, pdfPage.Height, bold, italic));
+            } else {
+              console.error('Unexpected count of pdfText.R', pdfText.R);
+            }
+          }
+        }
+        
+        pageOffsetY += pdfPage.Height;
+      }
+      
+      return result;
     }
     
     /**
@@ -299,42 +315,6 @@
     }
     
     /**
-     * Extracts text fragments from the pdf data as PositionedText instances
-     * 
-     * @param {Object} pdfData pdfData
-     * @returns {Array} text fragments extracted from the pdf data
-     */
-    extractTexts (pdfData) {
-      var result = [];
-      var pageOffsetY = 0;
-
-      var pdfPages = pdfData.formImage.Pages;
-      for (var pageIndex = 0; pageIndex < pdfPages.length; pageIndex++) {
-        var pdfPage = pdfPages[pageIndex]; 
-        var pdfTexts = pdfPage.Texts;     
-        
-        for (var textIndex = 0; textIndex < pdfTexts.length; textIndex++) {
-          var pdfText = pdfTexts[textIndex];
-          var x = pdfText.x;
-          var y = pdfText.y;
-          if ((y >= this._offset.contentTop) && (x >= this._offset.captionX) && (pdfText.R.length)) {
-            if (pdfText.R.length === 1) {
-              var text = decodeURIComponent(pdfText.R[0].T);
-              var type = x >= this._offset.valueX ? PositionedText.VALUE : PositionedText.CAPTION;
-              result.push(new PositionedText(text, type, x, y + pageOffsetY, pdfText.w, pageOffsetY, pdfPage.Height));
-            } else {
-              console.error('Unexpected count of pdfText.R', pdfText.R);
-            }
-          }
-        }
-        
-        pageOffsetY += pdfPage.Height;
-      }
-      
-      return result;
-    }
-    
-    /**
      * Merges continuous text blocks as single text blocks (i.e. text blocks
      * that are close enought one another but are saved as different blocks 
      * within the PDF-file). 
@@ -354,30 +334,6 @@
           }
           
           i--;
-        }
-        
-        i--;
-      }
-      
-      return texts;
-    }
-    
-    removeMultipleSpaces(text) {
-      return text.replace(/  +/g, ' ');
-    }
-    
-    /**
-     * Merges words splitted to multiple lines by - into single words
-     * @param {type} texts texts
-     * @returns {unresolved} merged texts
-     */
-    mergeHyphenatedTexts(texts) {
-      var i = texts.length - 1;
-      while (i > 0) {
-        var text = _.trim(texts[i - 1]);
-        if (_.endsWith(text, '-')) {
-          texts[i - 1] = _.trim(text.substring(0, text.length - 1)) + texts[i];
-          texts.splice(i, 1);
         }
         
         i--;
