@@ -1,0 +1,234 @@
+[
+  {
+    "sourceId": "102686.000000",
+    "name": "Ammattiosaamisen näyttöjen toimielin",
+    "classification": "toimielin",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "54995.000000",
+    "name": "Aviapoliksen aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55005.000000",
+    "name": "Hakunilan aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55015.000000",
+    "name": "Kaupunginhallitus",
+    "classification": "hallitus",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55038.000000",
+    "name": "Kaupunginvaltuusto",
+    "classification": "valtuusto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55010.000000",
+    "name": "Kaupunkisuunnittelulautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55066.000000",
+    "name": "Keski-Uudenmaan pelastustoimen liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55043.000000",
+    "name": "Keskusvaalilautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55023.000000",
+    "name": "Kivistön aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55028.000000",
+    "name": "Koivukylän aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55033.000000",
+    "name": "Korson aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55048.000000",
+    "name": "Myyrmäen aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55057.000000",
+    "name": "Nuorisovaltuusto",
+    "classification": "valtuusto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "54537.000000",
+    "name": "Opetuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55071.000000",
+    "name": "Rakennuslupajaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55217.000000",
+    "name": "Sosiaali- ja terveyslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55000.000000",
+    "name": "Stadsfullmäktige",
+    "classification": null,
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55212.000000",
+    "name": "Svenska kommittén",
+    "classification": null,
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55228.000000",
+    "name": "Tarkastuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55252.000000",
+    "name": "Tekninen lautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55257.000000",
+    "name": "Tikkurilan aluetoimikunta",
+    "classification": "toimikunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55076.000000",
+    "name": "Undervisningsnämndens svenskspråkiga sektion",
+    "classification": null,
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "108790.000000",
+    "name": "Vammaisneuvosto",
+    "classification": "neuvosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "108783.000000",
+    "name": "Vanhusneuvosto",
+    "classification": "neuvosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "127175.000000",
+    "name": "Vantaan Suun terveydenhuollon liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55262.000000",
+    "name": "Vantaan Työterveys liikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55267.000000",
+    "name": "Vapaa-ajan lautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55272.000000",
+    "name": "Yleisjaosto",
+    "classification": "jaosto",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  },
+  {
+    "sourceId": "55277.000000",
+    "name": "Ympäristölautakunta",
+    "classification": "lautakunta",
+    "dissolution_date":  null,
+    "founding_date":  null,
+    "parent":  null
+  }
+]
