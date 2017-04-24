@@ -10,10 +10,6 @@
   const normalize = require('normalize-space');
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
   
-  process.on('unhandledRejection', function(error, promise) {
-    console.error("UNHANDLED REJECTION", error.stack);
-  });
-  
   /**
    * Vantaa TWeb specific implementation of Html scraper
    */

@@ -12,20 +12,20 @@
   const winston = require('winston');
   const Promise = require('bluebird'); 
   const AbstractDataExtractor = require(__dirname + '/abstract-data-extractor');
-  const OuluTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
-  const OuluTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-html-scraper');
+  const VantaaTwebPdfScraper = require(__dirname + '/../scrapers/tweb/vantaa/vantaa-tweb-pdf-scraper');
+  const VantaaTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/vantaa/vantaa-tweb-html-scraper');
   const ResultBuilder = require(__dirname + '/../result/result-builder');
 
   /**
-   * Oulu implementation for data extractor
+   * Vantaa implementation for data extractor
    */
-  class OuluDataExtractor extends AbstractDataExtractor {
+  class VantaaDataExtractor extends AbstractDataExtractor {
     
     constructor(options) {
       super(options);
       
-      this._htmlScraper = new OuluTwebHtmlScraper(this.options);
-      this._pdfScraper = new OuluTwebPdfScraper(this.options);
+      this._htmlScraper = new VantaaTwebHtmlScraper(this.options);
+      this._pdfScraper = new VantaaTwebPdfScraper(this.options);
     }
     
     extractOrganizations() {
@@ -92,7 +92,11 @@
                       caseIds.push(cases[caseIndex].sourceId);
                       caseOrganizationIds.push(eventOrganizationId);
                       caseEventIds.push(eventId);
-                      actionPromises.push(this.extractActions(eventOrganizationId, eventId, cases[caseIndex].sourceId));
+                      
+                      let date = moment(resultBuilder.getOrganizationEvent(eventOrganizationId, eventId).startDate);
+                      let articleNumber = cases[caseIndex]['articleNumber'];
+                      
+                      actionPromises.push(this.extractActions(eventOrganizationId, eventId, cases[caseIndex].sourceId, date, articleNumber));
                       attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, cases[caseIndex].sourceId));
                     }
                   }
@@ -115,7 +119,7 @@
                         let articleNumber = eventCase['articleNumber'];
                         let caseRegisterId = this.resolveRegisterId(actions);
                         if (!caseRegisterId) {
-                          winston.log('warn', util.format('Could not resolve registerId for Oulu TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
+                          winston.log('warn', util.format('Could not resolve registerId for Vantaa TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
                         }
                         
                         actions.push({
@@ -175,12 +179,12 @@
       return this._htmlScraper.extractOrganizationEventCases(eventId);
     }
     
-    extractActions(organizationId, eventId, caseId) {
-      return this._pdfScraper.extractActions(organizationId, eventId, caseId);
+    extractActions(organizationId, eventId, caseId, date, articleNumber) {
+      return this._pdfScraper.extractActions(organizationId, eventId, caseId, date, articleNumber);
     }
     
     extractAttachments(organizationId, eventId, caseId) {
-      return this._htmlScraper.extractOrganizationEventCaseActionAttachments(organizationId, eventId, caseId);
+      return this._htmlScraper.extractOrganizationEventCaseActionAttachments(organizationId, eventId);
     }
     
     resolveRegisterId(actions) {
@@ -195,6 +199,6 @@
     
   }
   
-  module.exports = OuluDataExtractor;
+  module.exports = VantaaDataExtractor;
            
 }).call(this);

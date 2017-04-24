@@ -3,7 +3,11 @@
 
 (function() {
   'use strict';
-
+  
+  process.on('unhandledRejection', function(error, promise) {
+    console.error("UNHANDLED REJECTION", error.stack);
+  });
+  
   /**
    * Abstract base class for scrapers
    */

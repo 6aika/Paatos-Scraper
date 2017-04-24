@@ -5,6 +5,7 @@
   'use strict';
 
   const OuluDataExtractor = require(__dirname + '/oulu-data-extractor'); 
+  const VantaaDataExtractor = require(__dirname + '/vantaa-data-extractor'); 
 
   /**
    * Factory class creating data extractors
@@ -16,7 +17,7 @@
     }
     
     static getSources() {
-      return ['oulu'];
+      return ['oulu', 'vantaa'];
     }
     
     static createDataExtractor(source, options) {
@@ -24,6 +25,9 @@
         case 'oulu':
           return new OuluDataExtractor(options);
         break;
+        case 'vantaa':
+          return new VantaaDataExtractor(options);
+        break;        
       }
     }
     

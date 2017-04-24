@@ -11,10 +11,6 @@
   const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraper');
   const PositionedText = require(__dirname + '/../../positioned-text');
   
-  process.on('unhandledRejection', function(error, promise) {
-    console.error("UNHANDLED REJECTION", error.stack);
-  });
-  
   /**
    * Vantaa TWeb specific implementation of Pdf scraper
    */

@@ -43,6 +43,10 @@
       };
     }
     
+    getOrganizationEvent(organizationId, eventId) {
+      return this.organizationDatas[organizationId].eventDatas[eventId].event;
+    }
+    
     getOrganizationEventCase(organizationId, eventId, caseId) {
       return this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].case;
     }
