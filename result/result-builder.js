@@ -63,6 +63,10 @@
       this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].attachments = attachments;
     }
     
+    removeOrganizationCase(organizationId, eventId, caseId) {
+      delete this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId];
+    }
+    
     buildZip(outputFile) {
       var zip = new AdmZip();
       

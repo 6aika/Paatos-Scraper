@@ -15,7 +15,7 @@
   const VantaaTwebPdfScraper = require(__dirname + '/../scrapers/tweb/vantaa/vantaa-tweb-pdf-scraper');
   const VantaaTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/vantaa/vantaa-tweb-html-scraper');
   const ResultBuilder = require(__dirname + '/../result/result-builder');
-
+  
   /**
    * Vantaa implementation for data extractor
    */
@@ -107,7 +107,7 @@
                     .then((data) => {                  
                       let caseActions = data[0];
                       let caseAttachments = data[1];
-
+                      
                       for (let i = 0; i < caseIds.length; i++) {
                         let caseOrganizationId = caseOrganizationIds[i];
                         let caseEventId = caseEventIds[i];
@@ -121,28 +121,30 @@
                         let functionId = this.resolveFunctionId(actions);
                         
                         if (!caseRegisterId) {
-                          winston.log('warn', util.format('Could not resolve registerId for Vantaa TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
-                        }
-                        
-                        if (!functionId) {
+                          winston.log('warn', util.format('Could not resolve registerId for Vantaa TWeb PDF (%s, %s, %s). Skipping', caseOrganizationId, caseEventId, caseId));
+                        } else if (!functionId) {
                           winston.log('warn', util.format('Could not resolve functionId for Vantaa TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
                         }
                         
-                        actions.push({
-                          "title": "articleNumber",
-                          "order": actions.length,
-                          "content": util.format("%d", articleNumber)
-                        });
+                        if (caseRegisterId) {
+                          actions.push({
+                            "title": "articleNumber",
+                            "order": actions.length,
+                            "content": util.format("%d", articleNumber)
+                          });
+
+                          delete eventCase.articleNumber;
                         
-                        delete eventCase.articleNumber;
-                        
-                        resultBuilder.setOrganizationEventCase(caseOrganizationId, caseEventId, caseId, Object.assign(eventCase, {
-                          "registerId": caseRegisterId,
-                          "functionId": functionId
-                        }));
- 
-                        resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
-                        resultBuilder.setOrganizationCaseAttachments(caseOrganizationId, caseEventId, caseId, attachments);
+                          resultBuilder.setOrganizationEventCase(caseOrganizationId, caseEventId, caseId, Object.assign(eventCase, {
+                            "registerId": caseRegisterId,
+                            "functionId": functionId
+                          }));
+
+                          resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
+                          resultBuilder.setOrganizationCaseAttachments(caseOrganizationId, caseEventId, caseId, attachments);
+                        } else {
+                          resultBuilder.removeOrganizationCase(caseOrganizationId, caseEventId, caseId);
+                        }
                       }
                       
                       console.log("Building zip file...");
