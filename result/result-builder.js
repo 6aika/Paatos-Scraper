@@ -84,7 +84,7 @@
         zip.addFile(util.format("/organizations/%s/index.json", organizationId), new Buffer(JSON.stringify(organization)), organization.name);
         
         _.forEach(caseDatas, (caseData, caseId) => {
-          cases.push(caseData);
+          cases.push(caseData.case);
         });
         zip.addFile(util.format("/organizations/%s/cases.json", organizationId), new Buffer(JSON.stringify(cases)), organization.name);
         
