@@ -126,12 +126,12 @@
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
-     * @param {String} caseId caseId
+     * @param {String} actionId actionId
      */
-    extractOrganizationEventCaseActionAttachments(organizationId, eventId, caseId) {
+    extractOrganizationEventActionAttachments(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {       
         var options = {
-          "url": util.format("http://%s%s?%s", this.options.host, this.options.eventCaseAttachmentsPath, caseId),
+          "url": util.format("http://%s%s?%s", this.options.host, this.options.eventCaseAttachmentsPath, actionId),
           "method": "GET",
           "encoding": this.options.encoding,
           requestInterval: this.options.requestInterval
@@ -166,7 +166,7 @@
                 "name": name,
                 "filename": filename,
                 "url": url,
-                "actionId": null,
+                "actionId": actionId,
                 "number": index,
                 "public": true,
                 "confidentialityReason": null,

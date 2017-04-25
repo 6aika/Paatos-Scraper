@@ -57,7 +57,7 @@
 
           Promise.all(eventPromises)
             .then((organizationEvents) => {
-              var casePromises = [];
+              var contentPromises = [];
               var eventIds = [];
               var eventOrganizationIds = [];
 
@@ -68,77 +68,77 @@
                   var eventId = organizationEvents[i][eventIndex].sourceId;
                   eventIds.push(eventId);
                   eventOrganizationIds.push(organizationId);
-                  casePromises.push(this.extractEventCases(organizationId, eventId));
+                  contentPromises.push(this.extractEventActions(organizationId, eventId));
                 }
               }
 
-              console.log("Extracting organization event cases...");
+              console.log("Extracting organization event actions...");
 
-              Promise.all(casePromises)
-                .then((eventCases) => {
-                  var caseIds = [];
-                  var caseOrganizationIds = [];
-                  var caseEventIds = [];
-                  var actionPromises = [];
+              Promise.all(contentPromises)
+                .then((eventActions) => {
+                  var actionIds = [];
+                  var actionOrganizationIds = [];
+                  var actionEventIds = [];
+                  var contentPromises = [];
                   var attachmentPromises = [];
 
                   for (let eventIndex = 0; eventIndex < eventIds.length; eventIndex++) {
                     var eventId = eventIds[eventIndex];
                     var eventOrganizationId = eventOrganizationIds[eventIndex];
-                    var cases = eventCases[eventIndex];
+                    var actions = eventActions[eventIndex];
 
-                    for (let caseIndex = 0; caseIndex < cases.length; caseIndex++) {
-                      resultBuilder.addOrganizationEventCase(eventOrganizationId, eventId, cases[caseIndex]);
-                      caseIds.push(cases[caseIndex].sourceId);
-                      caseOrganizationIds.push(eventOrganizationId);
-                      caseEventIds.push(eventId);
-                      actionPromises.push(this.extractActions(eventOrganizationId, eventId, cases[caseIndex].sourceId));
-                      attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, cases[caseIndex].sourceId));
+                    for (let actionIndex = 0; actionIndex < actions.length; actionIndex++) {
+                      resultBuilder.addOrganizationEventAction(eventOrganizationId, eventId, actions[actionIndex]);
+                      actionIds.push(actions[actionIndex].sourceId);
+                      actionOrganizationIds.push(eventOrganizationId);
+                      actionEventIds.push(eventId);
+                      contentPromises.push(this.extractActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
+                      attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                     }
                   }
 
-                  console.log("Extracting organization event case actions...");
+                  console.log("Extracting organization event action contents...");
 
-                  Promise.all([Promise.all(actionPromises), Promise.all(attachmentPromises)])
+                  Promise.all([Promise.all(contentPromises), Promise.all(attachmentPromises)])
                     .then((data) => {                  
-                      let caseActions = data[0];
-                      let caseAttachments = data[1];
+                      let actionContents = data[0];
+                      let actionAttachments = data[1];
 
-                      for (let i = 0; i < caseIds.length; i++) {
-                        let caseOrganizationId = caseOrganizationIds[i];
-                        let caseEventId = caseEventIds[i];
-                        let caseId = caseIds[i];
-                        let actions = caseActions[i];
-                        let attachments = caseAttachments[i];
-                        let eventCase = resultBuilder.getOrganizationEventCase(caseOrganizationId, caseEventId, caseId);
-                        
-                        let articleNumber = eventCase['articleNumber'];
-                        let caseRegisterId = this.resolveRegisterId(actions);
-                        let caseFunctionId = this.resolveFunctionId(actions);
+                      for (let i = 0; i < actionIds.length; i++) {
+                        let actionOrganizationId = actionOrganizationIds[i];
+                        let actionEventId = actionEventIds[i];
+                        let actionId = actionIds[i];
+                        let contents = actionContents[i];
+                        let attachments = actionAttachments[i];
+                        let eventAction = resultBuilder.getOrganizationEventAction(actionOrganizationId, actionEventId, actionId);
+
+                        let caseRegisterId = this.resolveRegisterId(contents);
+                        let caseFunctionId = this.resolveFunctionId(contents);
                         
                         if (!caseRegisterId) {
-                          winston.log('warn', util.format('Could not resolve registerId for Oulu TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
+                          winston.log('warn', util.format('Could not resolve registerId for Oulu TWeb PDF (%s, %s, %s)', actionOrganizationId, actionEventId, actionId));
                         }
                         
                         if (!caseFunctionId) {
-                          winston.log('warn', util.format('Could not resolve functionId for Oulu TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
+                          winston.log('warn', util.format('Could not resolve functionId for Oulu TWeb PDF (%s, %s, %s)', actionOrganizationId, actionEventId, actionId));
                         }
                         
-                        actions.push({
-                          "title": "articleNumber",
-                          "order": actions.length,
-                          "content": util.format("%d", articleNumber)
-                        });
-                        
-                        delete eventCase.articleNumber;
-                        
-                        resultBuilder.setOrganizationEventCase(caseOrganizationId, caseEventId, caseId, Object.assign(eventCase, {
-                          "registerId": caseRegisterId,
-                          "functionId": caseFunctionId
+                        resultBuilder.setOrganizationEventAction(actionOrganizationId, actionEventId, actionId, Object.assign(eventAction, {
+                          "caseId": caseRegisterId
                         }));
  
-                        resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
-                        resultBuilder.setOrganizationCaseAttachments(caseOrganizationId, caseEventId, caseId, attachments);
+                        if (caseRegisterId && caseFunctionId) {
+                          resultBuilder.addOrganizationCase(actionOrganizationId, {
+                            "registerId": caseRegisterId,
+                            "functionId": caseFunctionId,
+                            "sourceId": caseRegisterId,
+                            "geometries": [],
+                            "title": resultBuilder.getOrganizationEventAction(actionOrganizationId, actionEventId, actionId).title
+                          });
+                        }
+ 
+                        resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, this.filterContents(contents));
+                        resultBuilder.setOrganizationActionAttachments(actionOrganizationId, actionEventId, actionId, attachments);
                       }
                       
                       console.log("Building zip file...");
@@ -178,36 +178,42 @@
       return this._htmlScraper.extractOrganizationEvents(organizationId, maxEvents, eventsAfter);       
     }
     
-    extractEventCases(organizationId, eventId) {
-      return this._htmlScraper.extractOrganizationEventCases(eventId);
+    extractEventActions(organizationId, eventId) {
+      return this._htmlScraper.extractOrganizationEventActions(eventId);
     }
     
-    extractActions(organizationId, eventId, caseId) {
-      return this._pdfScraper.extractActions(organizationId, eventId, caseId);
+    extractActionContents(organizationId, eventId, actionId) {
+      return this._pdfScraper.extractActionContents(organizationId, eventId, actionId);
     }
     
-    extractAttachments(organizationId, eventId, caseId) {
-      return this._htmlScraper.extractOrganizationEventCaseActionAttachments(organizationId, eventId, caseId);
+    extractAttachments(organizationId, eventId, actionId) {
+      return this._htmlScraper.extractOrganizationEventActionAttachments(organizationId, eventId, actionId);
     }
     
-    resolveRegisterId(actions) {
-      for (let i = 0; i < actions.length; i++) {
-        if (actions[i].title === "Dno") {
-          return actions[i].content;
+    resolveRegisterId(contents) {
+      for (let i = 0; i < contents.length; i++) {
+        if (contents[i].title === "Dno") {
+          return contents[i].content;
         }
       }
       
       return null;
     }
     
-    resolveFunctionId(actions) {
-      for (let i = 0; i < actions.length; i++) {
-        if (actions[i].title === "functionId") {
-          return actions[i].content;
+    resolveFunctionId(contents) {
+      for (let i = 0; i < contents.length; i++) {
+        if (contents[i].title === "functionId") {
+          return contents[i].content;
         }
       }
       
       return null;
+    }
+    
+    filterContents(contents) {
+      return _.filter(contents, (content) => { 
+        return content.title !== 'Dno' && content.title !== 'functionId'; 
+      });
     }
     
   }

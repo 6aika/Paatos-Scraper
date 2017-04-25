@@ -37,7 +37,7 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractActions(organizationId, eventId, caseId, date, articleNumber) {
+    extractActionContents(organizationId, eventId, caseId, date, articleNumber) {
       return new Promise((resolve, reject) => {
         this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
           .then((pdfData) => {
@@ -63,18 +63,18 @@
                   winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
                   index = 0;
                 } else {
-                  let dnoValue = this.getActionValue(result, 'Dno');
+                  let dnoValue = this.getActionContentValue(result, 'Dno');
                   if (dnoValue) {
                     if (!dnoValue.startsWith('VD/')) {
                       dnoValue = util.format('VD/%s', dnoValue);
-                      this.setActionValue(result, 'Dno', dnoValue);
+                      this.setActionContentValue(result, 'Dno', dnoValue);
                     }
                     
                     let functionId = this.parseFunctionId(dnoValue);
                     if (!functionId) {
                       winston.log('warn', util.format('Invalid Dno %s in Vantaa TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
                     } else {
-                      this.setActionValue(result, 'functionId', functionId);
+                      this.setActionContentValue(result, 'functionId', functionId);
                     }
                   }
                 }

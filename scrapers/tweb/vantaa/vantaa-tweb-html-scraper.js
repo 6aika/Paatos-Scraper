@@ -36,7 +36,7 @@
      * 
      * @param {String} eventId eventId where to scrape cases
      */
-    extractOrganizationEventCases(eventId) {
+    extractOrganizationEventActions(eventId) {
       return new Promise((resolve, reject) => {       
         var options = {
           "url": util.format("http://%s%s", this.options.host, this.options.eventPath),
@@ -51,7 +51,7 @@
         
         this.getParsedHtml(options)
           .then(($) => {
-            var cases = [];
+            var actions = [];
             var rows = $('table.list tr[class*="data"]').filter((index, row) => {
               return !!$(row).find('td:nth-of-type(1)').text() && !!$(row).find('td:nth-of-type(3) a').attr('href');
             });
@@ -64,16 +64,16 @@
               var articleNumber = $(row).find('td:nth-of-type(1)').text();
               var title = normalize(link.text());
               
-              cases.push({
+              actions.push({
                 "sourceId": id,  
                 "articleNumber": articleNumber,
                 "title": title,
-                "functionId": null,
-                "geometries": null
+                "ordering": index,
+                "eventId": eventId
               });
             });
             
-            resolve(cases);
+            resolve(actions);
           })
           .catch(reject);
   

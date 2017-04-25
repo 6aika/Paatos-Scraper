@@ -26,26 +26,26 @@
       return null;
     }      
     
-    getActionValue(actions, title) {
-      for (var i = 0; i < actions.length; i++) {
-        if (actions[i].title === title) {
-          return actions[i].content;
+    getActionContentValue(actionContents, title) {
+      for (var i = 0; i < actionContents.length; i++) {
+        if (actionContents[i].title === title) {
+          return actionContents[i].content;
         } 
       }
       
       return null;
     }
     
-    setActionValue(actions, title, content) {
-      for (var i = 0; i < actions.length; i++) {
-        if (actions[i].title === title) {
-          actions[i].content = content;
+    setActionContentValue(actionContents, title, content) {
+      for (var i = 0; i < actionContents.length; i++) {
+        if (actionContents[i].title === title) {
+          actionContents[i].content = content;
           return;
         } 
       }
       
-      actions.push({
-        order: actions.length,
+      actionContents.push({
+        order: actionContents.length,
         title: title,
         content: content 
       });

@@ -50,7 +50,7 @@
         .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?+bid=130013')
         .replyWithFile(200, __dirname + '/data/vantaa_tweb_kaupunginhallitus_20_3_2017.html');
       
-      return expect(Promise.resolve(vantaaDataExtractor.extractEventCases("55015.000000", "130013")))
+      return expect(Promise.resolve(vantaaDataExtractor.extractEventActions("55015.000000", "130013")))
         .to.eventually.eql(vantaaKaupunginhallitus170320_asiat);
     });
     
@@ -59,7 +59,7 @@
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=510975521')
         .replyWithFile(200, __dirname + '/data/510975521.pdf');
       
-      return expect(Promise.resolve(vantaaDataExtractor.extractActions("55015.000000", "130013", "510975521", moment("2017-03-20T14:00:00.000Z"), "10")))
+      return expect(Promise.resolve(vantaaDataExtractor.extractActionContents("55015.000000", "130013", "510975521", moment("2017-03-20T14:00:00.000Z"), "10")))
         .to.eventually.eql(vantaaKaupunginhallitus17032010_toimenpiteet);
     });
     

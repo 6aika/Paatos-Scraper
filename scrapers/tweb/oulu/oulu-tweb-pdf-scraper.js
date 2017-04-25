@@ -59,7 +59,7 @@
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractActions(organizationId, eventId, caseId) {
+    extractActionContents(organizationId, eventId, caseId) {
       return new Promise((resolve, reject) => {
       
         this.scrapePdf(organizationId, eventId, caseId)
@@ -133,11 +133,11 @@
               
               if (blockValue || blockCaption) {
                 if (!blockCaption) {
-                  winston.log('warn', util.format('Missing case title (with content %s) on Oulu TWeb PDF (%s)', blockValue, this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Missing content title (with content %s) on Oulu TWeb PDF (%s)', blockValue, this.getPdfUrl(organizationId, eventId, caseId)));
                 }
                 
                 if (!blockValue) {
-                  winston.log('warn', util.format('Missing case content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Missing content content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
                 }
                 
                 result.push({
@@ -153,13 +153,13 @@
               winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
             }
             
-            let dnoValue = this.getActionValue(result, 'Dno');
+            let dnoValue = this.getActionContentValue(result, 'Dno');
             if (dnoValue) {
               let functionId = this.parseFunctionId(dnoValue);
               if (!functionId) {
                 winston.log('warn', util.format('Invalid Dno %s in Oulu TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
               } else {
-                this.setActionValue(result, 'functionId', functionId);
+                this.setActionContentValue(result, 'functionId', functionId);
               }
             }
 

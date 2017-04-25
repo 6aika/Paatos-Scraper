@@ -31,13 +31,13 @@
     }
     
     /**
-     * Returns a promise for organization event cases.
+     * Returns a promise for organization event actions.
      * 
      * Returned data is ordered in same order that it is in html page. 
      * 
-     * @param {String} eventId eventId where to scrape cases
+     * @param {String} eventId eventId where to scrape actions
      */
-    extractOrganizationEventCases(eventId) {
+    extractOrganizationEventActions(eventId) {
       return new Promise((resolve, reject) => {       
         var options = {
           "url": util.format("http://%s%s", this.options.host, this.options.eventPath),
@@ -52,7 +52,7 @@
         
         this.getParsedHtml(options)
           .then(($) => {
-            var cases = [];
+            var actions = [];
             var rows = $('table.list tr[class*="data"]').filter((index, row) => {
               return !!$(row).find('.data_pykala').text();
             });
@@ -66,16 +66,16 @@
               var articleNumber = $(row).find('.data_pykala').text();
               var title = normalize(link.text());
               
-              cases.push({
+              actions.push({
                 "sourceId": id,  
                 "articleNumber": articleNumber,
                 "title": title,
-                "functionId": null,
-                "geometries": null
+                "ordering": index,
+                "eventId": eventId
               });
             });
  
-            resolve(cases);
+            resolve(actions);
           })
           .catch(reject);
   

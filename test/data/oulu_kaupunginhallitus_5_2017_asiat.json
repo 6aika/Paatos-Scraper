@@ -1,79 +1,93 @@
-[{
-  "sourceId": "632581",  
-  "articleNumber": "72",
-  "title": "Oulun kaupungin tilinpäätös 2016",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632583",  
-  "articleNumber": "73",
-  "title": "Oulun kaupungin talouden seuranta 1.1.-28.2.2017",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632585",  
-  "articleNumber": "74",
-  "title": "Omavelkaisen takauksen myöntäminen Oulun kaupungin ja PPSHP:n yhteisen tuotantokeittiöyhtiön investointiin",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632587",  
-  "articleNumber": "75",
-  "title": "Oulun kaupungin toiminnallisen tasa-arvon ja yhdenvertaisuussuunnitelman raportointi v. 2015-16",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632589",  
-  "articleNumber": "76",
-  "title": "Oulun kaupungin esitys väliaikaishallinnon valmistelutoimielimeen nimettävästä varsinaisesta ja varajäsenestä",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632591",  
-  "articleNumber": "77",
-  "title": "Viinivaara-hankkeen lupahakemus",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "642429",  
-  "articleNumber": "78",
-  "title": "Oulun seudun asumistutkimus 2016",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632595",  
-  "articleNumber": "79",
-  "title": "Marraskuun 2016 - helmikuun 2017 valtuustoaloitteet sekä aikaisemmat, käsittelemättömät valtuustoaloitteet",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632597",  
-  "articleNumber": "80",
-  "title": "Joulukuun 2016 - maaliskuun 2017 kuntalaisaloitteet sekä aikaisemmat, käsittelemättömät kuntalaisaloitteet",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632601",  
-  "articleNumber": "81",
-  "title": "Takalaanilan kaupunginosan korttelin 3 tonttia nro 12 sekä katu-, puisto- ja lähivirkistysaluetta koskeva asemakaavan muutos (Takalaanilantie) 564-2250",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "632603",  
-  "articleNumber": "82",
-  "title": "Lauta-, johto- ja toimikuntien sekä viranhaltijoiden päätökset",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "634553",  
-  "articleNumber": "83",
-  "title": "Ilmoitus sidonnaisuuksista",
-  "functionId": null,
-  "geometries": null
-}, {
-  "sourceId": "635397",  
-  "articleNumber": "84",
-  "title": "Muutoksia kuntavaalien vaalitoimielinten kokoonpanoihin",
-  "functionId": null,
-  "geometries": null
-}]
+[
+   {
+      "articleNumber":"72",
+      "eventId":"12867",
+      "ordering":0,
+      "sourceId":"632581",
+      "title":"Oulun kaupungin tilinpäätös 2016"
+   },
+   {
+      "articleNumber":"73",
+      "eventId":"12867",
+      "ordering":1,
+      "sourceId":"632583",
+      "title":"Oulun kaupungin talouden seuranta 1.1.-28.2.2017"
+   },
+   {
+      "articleNumber":"74",
+      "eventId":"12867",
+      "ordering":2,
+      "sourceId":"632585",
+      "title":"Omavelkaisen takauksen myöntäminen Oulun kaupungin ja PPSHP:n yhteisen tuotantokeittiöyhtiön investointiin"
+   },
+   {
+      "articleNumber":"75",
+      "eventId":"12867",
+      "ordering":3,
+      "sourceId":"632587",
+      "title":"Oulun kaupungin toiminnallisen tasa-arvon ja yhdenvertaisuussuunnitelman raportointi v. 2015-16"
+   },
+   {
+      "articleNumber":"76",
+      "eventId":"12867",
+      "ordering":4,
+      "sourceId":"632589",
+      "title":"Oulun kaupungin esitys väliaikaishallinnon valmistelutoimielimeen nimettävästä varsinaisesta ja varajäsenestä"
+   },
+   {
+      "articleNumber":"77",
+      "eventId":"12867",
+      "ordering":5,
+      "sourceId":"632591",
+      "title":"Viinivaara-hankkeen lupahakemus"
+   },
+   {
+      "articleNumber":"78",
+      "eventId":"12867",
+      "ordering":6,
+      "sourceId":"642429",
+      "title":"Oulun seudun asumistutkimus 2016"
+   },
+   {
+      "articleNumber":"79",
+      "eventId":"12867",
+      "ordering":7,
+      "sourceId":"632595",
+      "title":"Marraskuun 2016 - helmikuun 2017 valtuustoaloitteet sekä aikaisemmat, käsittelemättömät valtuustoaloitteet"
+   },
+   {
+      "articleNumber":"80",
+      "eventId":"12867",
+      "ordering":8,
+      "sourceId":"632597",
+      "title":"Joulukuun 2016 - maaliskuun 2017 kuntalaisaloitteet sekä aikaisemmat, käsittelemättömät kuntalaisaloitteet"
+   },
+   {
+      "articleNumber":"81",
+      "eventId":"12867",
+      "ordering":9,
+      "sourceId":"632601",
+      "title":"Takalaanilan kaupunginosan korttelin 3 tonttia nro 12 sekä katu-, puisto- ja lähivirkistysaluetta koskeva asemakaavan muutos (Takalaanilantie) 564-2250"
+   },
+   {
+      "articleNumber":"82",
+      "eventId":"12867",
+      "ordering":10,
+      "sourceId":"632603",
+      "title":"Lauta-, johto- ja toimikuntien sekä viranhaltijoiden päätökset"
+   },
+   {
+      "articleNumber":"83",
+      "eventId":"12867",
+      "ordering":11,
+      "sourceId":"634553",
+      "title":"Ilmoitus sidonnaisuuksista"
+   },
+   {
+      "articleNumber":"84",
+      "eventId":"12867",
+      "ordering":12,
+      "sourceId":"635397",
+      "title":"Muutoksia kuntavaalien vaalitoimielinten kokoonpanoihin"
+   }
+]

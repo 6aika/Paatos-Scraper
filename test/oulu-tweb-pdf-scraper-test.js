@@ -25,7 +25,7 @@
         "host": "localhost"
       });
     
-      return expect(Promise.resolve(smokeTestScraper.extractActions("123", "123", "395959398")))
+      return expect(Promise.resolve(smokeTestScraper.extractActionContents("123", "123", "395959398")))
         .to.eventually.eql(actions395959398);
     });
   });

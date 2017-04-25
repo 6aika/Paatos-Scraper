@@ -20,6 +20,7 @@
     addOrganization(organization) {
       this.organizationDatas[organization.sourceId] = {
         eventDatas: {},
+        caseDatas: {},
         organization: organization
       };
     }
@@ -28,17 +29,22 @@
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
         this.organizationDatas[organizationId].eventDatas[event.sourceId] = {
-          caseDatas: {},
+          actionDatas: {},
           event: event   
         };
       }
     }
+
+    addOrganizationCase(organizationId, organizationCase) {
+      this.organizationDatas[organizationId].caseDatas[organizationCase.sourceId] = {
+        case: organizationCase   
+      };
+    }
     
-    addOrganizationEventCase(organizationId, eventId, eventCase) {
-      var caseId = eventCase.sourceId;
-      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId] = {
-        'case': eventCase,
-        'actions': [],
+    addOrganizationEventAction(organizationId, eventId, eventAction) {
+      var actionId = eventAction.sourceId;
+      this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId] = {
+        'action': eventAction,
         'contents': []
       };
     }
@@ -47,24 +53,24 @@
       return this.organizationDatas[organizationId].eventDatas[eventId].event;
     }
     
-    getOrganizationEventCase(organizationId, eventId, caseId) {
-      return this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].case;
+    getOrganizationEventAction(organizationId, eventId, actionId) {
+      return this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId].action;
     }
     
-    setOrganizationEventCase(organizationId, eventId, caseId, eventCase) {
-      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].case = eventCase;
+    setOrganizationEventAction(organizationId, eventId, actionId, eventAction) {
+      this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId].action = eventAction;
     }
     
-    setOrganizationCaseActions(organizationId, eventId, caseId, actions) {
-      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].actions = actions;
+    setOrganizationActionContents(organizationId, eventId, actionId, contents) {
+      this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId].contents = contents;
     }
     
-    setOrganizationCaseAttachments(organizationId, eventId, caseId, attachments) {
-      this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId].attachments = attachments;
+    setOrganizationActionAttachments(organizationId, eventId, actionId, attachments) {
+      this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId].attachments = attachments;
     }
     
-    removeOrganizationCase(organizationId, eventId, caseId) {
-      delete this.organizationDatas[organizationId].eventDatas[eventId].caseDatas[caseId];
+    removeOrganizationAction(organizationId, eventId, actionId) {
+      delete this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId];
     }
     
     buildZip(outputFile) {
@@ -72,22 +78,29 @@
       
       _.forEach(this.organizationDatas, (organizationData, organizationId) => {
         let organization = organizationData.organization;
-        let eventDatas = organizationData.eventDatas; 
+        let eventDatas = organizationData.eventDatas;
+        let caseDatas = organizationData.caseDatas;
+        let cases = [];
         zip.addFile(util.format("/organizations/%s/index.json", organizationId), new Buffer(JSON.stringify(organization)), organization.name);
+        
+        _.forEach(caseDatas, (caseData, caseId) => {
+          cases.push(caseData);
+        });
+        zip.addFile(util.format("/organizations/%s/cases.json", organizationId), new Buffer(JSON.stringify(cases)), organization.name);
         
         _.forEach(eventDatas, (eventData, eventId) => {
           let event = eventData.event;
-          let caseDatas = eventData.caseDatas;
+          let actionDatas = eventData.actionDatas;
           zip.addFile(util.format("/organizations/%s/events/%s/index.json", organizationId, eventId), new Buffer(JSON.stringify(event)), event.name);
       
-          _.forEach(caseDatas, (caseData, caseId) => {
-            let eventCase = caseData.case;
-            let actions = caseData.actions;
-            let attachments = caseData.attachments;
+          _.forEach(actionDatas, (actionData, actionId) => {
+            let eventAction = actionData.action;
+            let contents = actionData.contents;
+            let attachments = actionData.attachments;
             
-            zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/index.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(eventCase)), eventCase.title);
-            zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/actions.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(actions)), util.format('%s - actions', eventCase.title));
-            zip.addFile(util.format("/organizations/%s/events/%s/cases/%s/attachments.json", organizationId, eventId, caseId), new Buffer(JSON.stringify(attachments)), util.format('%s - attachments', eventCase.title));
+            zip.addFile(util.format("/organizations/%s/events/%s/actions/%s/index.json", organizationId, eventId, actionId), new Buffer(JSON.stringify(eventAction)), eventAction.title);
+            zip.addFile(util.format("/organizations/%s/events/%s/actions/%s/contents.json", organizationId, eventId, actionId), new Buffer(JSON.stringify(contents)), util.format('%s - actions', eventAction.title));
+            zip.addFile(util.format("/organizations/%s/events/%s/actions/%s/attachments.json", organizationId, eventId, actionId), new Buffer(JSON.stringify(attachments)), util.format('%s - attachments', eventAction.title));
           });
           
         });

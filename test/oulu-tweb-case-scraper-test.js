@@ -21,12 +21,12 @@
       "host": "localhost"
     });
     
-    it('Test events scraping', () => {
+    it('Test event actions scraping', () => {
       nock('http://localhost')
         .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?+bid=12867')
         .replyWithFile(200, __dirname + '/data/oulu_tweb_kaupunginhallitus_5_2017.html');
       
-      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventCases("12867")))
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActions("12867")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_asiat);
     });
     

@@ -26,7 +26,7 @@
         .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?+bid=130013')
         .replyWithFile(200, __dirname + '/data/vantaa_tweb_kaupunginhallitus_20_3_2017.html');
       
-      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventCases("130013")))
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActions("130013")))
         .to.eventually.eql(vantaaKaupunginhallitus_20_3_2017_asiat);
     });
     

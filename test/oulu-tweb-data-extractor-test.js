@@ -45,30 +45,30 @@
         .to.eventually.eql(ouluKaupunginhallitusKokoukset);
     });
     
-    it('Test cases extracting', () => {
+    it('Test actions extracting', () => {
       nock('http://localhost')
         .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?+bid=12867')
         .replyWithFile(200, __dirname + '/data/oulu_tweb_kaupunginhallitus_5_2017.html');
       
-      return expect(Promise.resolve(ouluDataExtractor.extractEventCases("690", "12867")))
+      return expect(Promise.resolve(ouluDataExtractor.extractEventActions("690", "12867")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_asiat);
     });
     
-    it('Test actions extracting', () => {
+    it('Test contents extracting', () => {
       nock('http://localhost')
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=35090068')
         .replyWithFile(200, __dirname + '/data/35090068.pdf');
       
-      return expect(Promise.resolve(ouluDataExtractor.extractActions("690", "12867", "35090068")))
+      return expect(Promise.resolve(ouluDataExtractor.extractActionContents("690", "12867", "35090068")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_toimenpiteet_73);
     });
     
-    it('Test actions extracting', () => {
+    it('Test contents extracting', () => {
       nock('http://localhost')
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=632581845351090')
         .replyWithFile(200, __dirname + '/data/632581845351090.pdf');
       
-      return expect(Promise.resolve(ouluDataExtractor.extractActions("690", "12867", "632581845351090")))
+      return expect(Promise.resolve(ouluDataExtractor.extractActionContents("690", "12867", "632581845351090")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_toimenpiteet_72);
     });
     
