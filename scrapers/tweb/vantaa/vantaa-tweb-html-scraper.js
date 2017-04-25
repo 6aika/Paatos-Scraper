@@ -68,7 +68,7 @@
                 "sourceId": id,  
                 "articleNumber": articleNumber,
                 "title": title,
-                "function": null,
+                "functionId": null,
                 "geometries": null
               });
             });

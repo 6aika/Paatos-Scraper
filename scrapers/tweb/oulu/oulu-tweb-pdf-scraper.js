@@ -140,8 +140,6 @@
                   winston.log('warn', util.format('Missing case content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
                 }
                 
-                
-                
                 result.push({
                   order: blockIndex,
                   title: blockCaption,
@@ -153,6 +151,16 @@
 
             if (unscrapableContents) {    
               winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
+            }
+            
+            let dnoValue = this.getActionValue(result, 'Dno');
+            if (dnoValue) {
+              let functionId = this.parseFunctionId(dnoValue);
+              if (!functionId) {
+                winston.log('warn', util.format('Invalid Dno %s in Oulu TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
+              } else {
+                this.setActionValue(result, 'functionId', functionId);
+              }
             }
 
             resolve(result);

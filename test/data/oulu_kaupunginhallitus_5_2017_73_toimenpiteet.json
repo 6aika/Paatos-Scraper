@@ -9,5 +9,6 @@
   {"order": 7, "title": "Päätösesitys", "content": "Merkitään tiedoksi."},
   {"order": 8, "title": "Päätös", "content": "Merkittiin tiedoksi."},
   {"order": 9, "title": "Valmistelijat", "content": "Konsernihallinto, konsernicontroller Jaana Niemelä puh. 044 703 9202, konsernicontroller Antti Ikonen puh. 044 703 1238, talouspäällikkö Armi Tauriainen puh. 044 703 1236 ja talousjohtaja Jukka Weisell puh. 040 038 3490" },
-  {"order": 10, "title": "Täytäntöönpanotiedot", "content": "Asia tiedoksi kaupunginvaltuustoon Ote: Oulun kaupungin hallintokunnat ja liikelaitokset Ei muutoksenhakuoikeutta"} 
+  {"order": 10, "title": "Täytäntöönpanotiedot", "content": "Asia tiedoksi kaupunginvaltuustoon Ote: Oulun kaupungin hallintokunnat ja liikelaitokset Ei muutoksenhakuoikeutta"},
+  {"order": 11, "title": "functionId", "content": "02 02 02"} 
 ]     

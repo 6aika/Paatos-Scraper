@@ -118,8 +118,14 @@
                         
                         let articleNumber = eventCase['articleNumber'];
                         let caseRegisterId = this.resolveRegisterId(actions);
+                        let functionId = this.resolveFunctionId(actions);
+                        
                         if (!caseRegisterId) {
                           winston.log('warn', util.format('Could not resolve registerId for Vantaa TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
+                        }
+                        
+                        if (!functionId) {
+                          winston.log('warn', util.format('Could not resolve functionId for Vantaa TWeb PDF (%s, %s, %s)', caseOrganizationId, caseEventId, caseId));
                         }
                         
                         actions.push({
@@ -131,7 +137,8 @@
                         delete eventCase.articleNumber;
                         
                         resultBuilder.setOrganizationEventCase(caseOrganizationId, caseEventId, caseId, Object.assign(eventCase, {
-                          "registerId": caseRegisterId
+                          "registerId": caseRegisterId,
+                          "functionId": functionId
                         }));
  
                         resultBuilder.setOrganizationCaseActions(caseOrganizationId, caseEventId, caseId, actions);
@@ -190,6 +197,16 @@
     resolveRegisterId(actions) {
       for (let i = 0; i < actions.length; i++) {
         if (actions[i].title === "Dno") {
+          return actions[i].content;
+        }
+      }
+      
+      return null;
+    }
+    
+    resolveFunctionId(actions) {
+      for (let i = 0; i < actions.length; i++) {
+        if (actions[i].title === "functionId") {
           return actions[i].content;
         }
       }

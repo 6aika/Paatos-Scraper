@@ -62,6 +62,21 @@
                 if ((index = this.appendDno(dnoIndex, contentTexts, result)) === -1) {
                   winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
                   index = 0;
+                } else {
+                  let dnoValue = this.getActionValue(result, 'Dno');
+                  if (dnoValue) {
+                    if (!dnoValue.startsWith('VD/')) {
+                      dnoValue = util.format('VD/%s', dnoValue);
+                      this.setActionValue(result, 'Dno', dnoValue);
+                    }
+                    
+                    let functionId = this.parseFunctionId(dnoValue);
+                    if (!functionId) {
+                      winston.log('warn', util.format('Invalid Dno %s in Vantaa TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
+                    } else {
+                      this.setActionValue(result, 'functionId', functionId);
+                    }
+                  }
                 }
               } else {
                 winston.log('warn', util.format('Could not find Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));

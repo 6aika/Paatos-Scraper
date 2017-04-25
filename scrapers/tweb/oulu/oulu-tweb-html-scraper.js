@@ -8,6 +8,7 @@
   const util = require('util');
   const moment = require('moment');
   const normalize = require('normalize-space');
+  const Promise = require('bluebird'); 
   const AbstractTwebHtmlScraper = require(__dirname + '/../abstract-tweb-html-scraper');
   
   /**
@@ -69,7 +70,7 @@
                 "sourceId": id,  
                 "articleNumber": articleNumber,
                 "title": title,
-                "function": null,
+                "functionId": null,
                 "geometries": null
               });
             });

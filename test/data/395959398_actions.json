@@ -6,5 +6,6 @@
   {"order": 4, "title": "Liitteet", "content": "-" },
   {"order": 5, "title": "Oheismateriaali", "content": "-" },
   {"order": 6, "title": "Kaupunginhallituksen päätösehdotus", "content": "Kaupunginvaltuusto tekee Suomen itsenäisyyden satavuotisjuhlavuoden kunniaksi juhlapäätöksen, että Oulun kaupunki hakee Euroopan kulttuuripääkaupungin asemaa vuodeksi 2026.\n\nHankkeelle laaditaan toiminta- ja taloussuunnitelma, joka käsitellään myöhemmin." },
-  {"order": 7, "title": "Päätös", "content": "Kaupunginhallituksen päätösehdotus hyväksyttiin." }
+  {"order": 7, "title": "Päätös", "content": "Kaupunginhallituksen päätösehdotus hyväksyttiin." },
+  {"order": 8, "title": "functionId", "content": "12 00 02"} 
 ]

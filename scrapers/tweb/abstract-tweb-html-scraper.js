@@ -34,7 +34,7 @@
           encoding: this.options.encoding,
           requestInterval: this.options.requestInterval
         };
-        
+  
         this.getParsedHtml(options)
           .then(($) => {
             var select = $('form[name="form1"] select[name="kirjaamo"]').first();

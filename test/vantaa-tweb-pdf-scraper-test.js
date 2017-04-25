@@ -21,7 +21,7 @@
       nock('http://localhost')
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=510975521')
         .replyWithFile(200, __dirname + '/data/510975521.pdf');
-      
+
       var smokeTestScraper = new VantaaTwebPdfScraper({
         "host": "localhost"
       });

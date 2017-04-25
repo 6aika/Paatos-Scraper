@@ -18,7 +18,7 @@
   const vantaaKaupunginhallitus170320_asiat = require(__dirname + '/data/vantaa_kaupunginhallitus_20_3_2017_asiat');
   const vantaaKaupunginhallitus17032010_toimenpiteet = require(__dirname + '/data/vantaa_kaupunginhallitus_3_20_2017_10_toimenpiteet');
     
-  describe('Vantaa Tweb Pdf Scraper tests', () => {
+  describe('Vantaa Tweb data extractor tests', () => {
     
     var vantaaDataExtractor = DataExtractorFactory.createDataExtractor("vantaa", {
       "host": "localhost"
@@ -26,7 +26,7 @@
     
     it('Test organizations extracting', () => {
       nock('http://localhost')
-        .get('/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm')
+        .get('/ktwebbin/dbisa.dll/ktwebscr/epj_tek_tweb.htm')
         .replyWithFile(200, __dirname + '/data/vantaa_tweb_haku.html');
       
       return expect(Promise.resolve(vantaaDataExtractor.extractOrganizations()))

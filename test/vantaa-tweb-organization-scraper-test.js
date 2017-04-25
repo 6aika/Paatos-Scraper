@@ -8,6 +8,7 @@
   const nock = require('nock');
   const expect = chai.expect;
   const assert = chai.assert;
+  const Promise = require('bluebird'); 
   
   chai.use(require('chai-as-promised'));
   
@@ -17,11 +18,11 @@
 
   describe('Vantaa Tweb Html Organization Scraper tests', () => {
     
-    var htmlTestScraper = new VantaaTwebHtmlScraper({
-      "host": "localhost"
-    })
-    
     it('Test organizations scraping', () => {
+      let htmlTestScraper = new VantaaTwebHtmlScraper({
+        "host": "localhost"
+      });
+    
       nock('http://localhost')
         .get('/ktwebbin/dbisa.dll/ktwebscr/epj_tek_tweb.htm')
         .replyWithFile(200, __dirname + '/data/vantaa_tweb_haku.html');
