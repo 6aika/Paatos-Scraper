@@ -24,8 +24,7 @@
         "eventsPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_kokl_tweb.htm",
         "eventPath": "/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm",
         "eventCaseAttachmentsPath": "/ktwebbin/dbisa.dll/ktwebscr/epjattn_tweb.htm",
-        "encoding": "binary",
-        "requestInterval": 10
+        "encoding": "binary"
       }, options || {});
     }
     
@@ -45,8 +44,8 @@
           "qs": {
             "+bid": eventId 
           },
-          qsStringifyOptions: { encode: false },
-          requestInterval: this.options.requestInterval
+          "qsStringifyOptions": { encode: false },
+          "htmlDownloadInterval": this.options.htmlDownloadInterval
         };
         
         this.getParsedHtml(options)

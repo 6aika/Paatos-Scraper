@@ -43,7 +43,7 @@
            queuedRequest.callback.call(this, error, response, body);
            setTimeout(() => {             
              this.nextRequest();
-           }, queuedRequest.options.requestInterval || 0);
+           }, queuedRequest.options.htmlDownloadInterval || 10);
         });
       } else {
         queueRunning = false;

@@ -25,7 +25,11 @@
     winston.remove(winston.transports.Console);
   }
   
-  let extractorOptions = {};
+  let extractorOptions = {
+    pdfDownloadInterval: options.getOption('pdf-download-interval') || 100,
+    htmlDownloadInterval: options.getOption('html-download-interval') || 10
+  };
+  
   let extractor = DataExtractorFactory.createDataExtractor(options.getOption('source'), extractorOptions);
   
   if (options.getOption('print-organizations')) {

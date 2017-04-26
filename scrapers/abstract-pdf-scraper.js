@@ -34,9 +34,9 @@
           queued.callback.call(this, null, pdfData);
           setTimeout(() => {             
             this.nextInQueue();
-           }, this.options.downloadInterval || 100);
+           }, this.options.pdfDownloadInterval || 100);
         });
-        
+
         request(queued.url).pipe(pdfParser);
       } else {
         queueRunning = false;

@@ -22,6 +22,8 @@
         { name: 'output-zip', alias: 'z', type: String },
         { name: 'organization-id', alias: 'o', type: String },
         { name: 'max-events', type: Number },
+        { name: 'pdf-download-interval', type: Number },
+        { name: 'html-download-interval', type: Number },
         { name: 'events-after', type: String },
         { name: "error-log", type: String },
         { name: 'help', alias: 'h', type: Boolean }
@@ -113,6 +115,12 @@
         }, {
           name: 'max-events',
           description: 'Limit number of events'
+        }, {
+          name: 'pdf-download-interval',
+          description: 'Interval between downloading PDF-files in milliseconds. Defaults to 100ms'
+        }, {
+          name: 'html-download-interval',
+          description: 'Interval between downloading HTML-pages in milliseconds. Defaults to 10ms'
         }, {
           name: 'events-after',
           description: 'Extract only events after specified date. Date should be formatted in following format: YYYY-MM-DD'

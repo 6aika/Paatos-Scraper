@@ -32,7 +32,7 @@
         var options = {
           url: util.format("http://%s%s", this.options.host, this.options.searchFormPath),
           encoding: this.options.encoding,
-          requestInterval: this.options.requestInterval
+          htmlDownloadInterval: this.options.htmlDownloadInterval
         };
   
         this.getParsedHtml(options)
@@ -81,7 +81,7 @@
             'kirjaamo': organizationId,
             'oper': 'where'
           },
-          requestInterval: this.options.requestInterval
+          htmlDownloadInterval: this.options.htmlDownloadInterval
         };
         
         this.getParsedHtml(options)
@@ -134,7 +134,7 @@
           "url": util.format("http://%s%s?%s", this.options.host, this.options.eventCaseAttachmentsPath, actionId),
           "method": "GET",
           "encoding": this.options.encoding,
-          requestInterval: this.options.requestInterval
+          "htmlDownloadInterval": this.options.htmlDownloadInterval
         };
         
         this.getParsedHtml(options)
