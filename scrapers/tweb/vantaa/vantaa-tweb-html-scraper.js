@@ -80,6 +80,15 @@
       });
     }
     
+    getEventName(name, startDate, endDate) {
+      var colonIndex = name.indexOf(':');
+      if (colonIndex > -1 && startDate) {
+        return util.format("%s %s", name.substring(0, colonIndex), startDate.format('D.M.YYYY'));
+      }
+      
+      return name;  
+    }
+    
   }
   
   module.exports = VantaaTwebHtmlScraper;

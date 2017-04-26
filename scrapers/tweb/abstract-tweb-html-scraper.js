@@ -89,14 +89,14 @@
             var events = [];
     
             $('table.list tr[class*="data"]').each((index, row) => {
-              var link = $(row).find('td:nth-of-type(1) a');
-              var dateText = link.text();
-              var linkHref = link.attr('href');
-              var idMatch = /(.*bid=)([0-9]*)(.*)/.exec(linkHref); 
-              var name =  $(row).find('td:nth-of-type(2)').text();
-              var eventStart = moment(dateText, 'D.M.YYYY HH:mm', true);
-              var eventEnd = moment(dateText, 'D.M.YYYY HH:mm', true);
-              var id = idMatch[2];
+              let link = $(row).find('td:nth-of-type(1) a');
+              let dateText = link.text();
+              let linkHref = link.attr('href');
+              let idMatch = /(.*bid=)([0-9]*)(.*)/.exec(linkHref); 
+              let eventStart = moment(dateText, 'D.M.YYYY HH:mm', true);
+              let eventEnd = moment(dateText, 'D.M.YYYY HH:mm', true);
+              let name = this.getEventName($(row).find('td:nth-of-type(2)').text(), eventStart, eventEnd);
+              let id = idMatch[2];
               
               if (!eventsAfter || eventsAfter.isBefore(eventStart)) {
                 events.push({
@@ -180,6 +180,18 @@
           .catch(reject);
   
       });
+    }
+    
+    /**
+     * Returns event's name.
+     * 
+     * @param {type} name original name in html page
+     * @param {type} startDate event's start date
+     * @param {type} endDate event's end datte
+     * @returns {String} event's name
+     */
+    getEventName(name, startDate, endDate) {
+      return name;  
     }
     
     /**
