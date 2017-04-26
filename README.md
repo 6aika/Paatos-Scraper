@@ -30,6 +30,7 @@ Before running the application you must install dependecies.
 - `npm install`
 
 ### Example
+Please note that Node version should be at least 6. See [installation instructions](https://nodejs.org/en/download/package-manager/) for details.
 
 Extracts latest event from Oulu's Kaupunginhallitus decision data
 
