@@ -151,6 +151,22 @@
     }
     
     /**
+     * Returns a promise for scraped data out of the PDF-file.
+     * 
+     * @param {String} organizationId organizationId 
+     * @param {String} eventId eventId
+     * @param {String} actionId actionId
+     * 
+     * Returned data is ordered in same order that it is in the PDF-document. 
+     */
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
+      return new Promise((resolve, reject) => {
+        let contents = [];
+        resolve(contents);
+      });
+    }
+    
+    /**
      * Extracts events for a year
      * 
      * @param {String} organizationId organizationId where to scrape events
