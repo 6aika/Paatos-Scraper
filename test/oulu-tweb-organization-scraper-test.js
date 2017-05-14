@@ -4,6 +4,7 @@
 (function() {
   'use strict';
   
+  const Promise = require('bluebird');
   const chai = require('chai');
   const nock = require('nock');
   const expect = chai.expect;
@@ -13,7 +14,7 @@
   
   const OuluTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-html-scraper');
 
-  const ouluToimielimet = require(__dirname + '/data/oulu_toimielimet');
+  const ouluToimielimet = require(__dirname + '/data/oulu/oulu_toimielimet');
 
   describe('Oulu Tweb Html Organization Scraper tests', () => {
     
@@ -24,7 +25,7 @@
     it('Test organizations scraping', () => {
       nock('http://localhost')
         .get('/ktwebbin/dbisa.dll/ktwebscr/pk_tek_tweb.htm')
-        .replyWithFile(200, __dirname + '/data/oulu_tweb_haku.html');
+        .replyWithFile(200, __dirname + '/data/oulu/oulu_tweb_haku.html');
       
       return expect(Promise.resolve(htmlTestScraper.extractOrganizations()))
         .to.eventually.eql(ouluToimielimet);

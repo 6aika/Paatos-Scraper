@@ -6,6 +6,7 @@
   
   const chai = require('chai');
   const nock = require('nock');
+  const Promise = require('bluebird');
   const expect = chai.expect;
   const assert = chai.assert;
   
@@ -13,7 +14,7 @@
   
   const VantaaTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/vantaa/vantaa-tweb-html-scraper');
 
-  const vantaaKaupunginhallitus_20_3_2017_asiat = require(__dirname + '/data/vantaa_kaupunginhallitus_20_3_2017_asiat');
+  const vantaaKaupunginhallitus_20_3_2017_asiat = require(__dirname + '/data/vantaa/vantaa_kaupunginhallitus_20_3_2017_asiat');
 
   describe('Vantaa Tweb Html Events Scraper tests', () => {
     
@@ -24,7 +25,7 @@
     it('Test events scraping', () => {
       nock('http://localhost')
         .get('/ktwebbin/dbisa.dll/ktwebscr/pk_asil_tweb.htm?+bid=130013')
-        .replyWithFile(200, __dirname + '/data/vantaa_tweb_kaupunginhallitus_20_3_2017.html');
+        .replyWithFile(200, __dirname + '/data/vantaa/vantaa_tweb_kaupunginhallitus_20_3_2017.html');
       
       return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActions("130013")))
         .to.eventually.eql(vantaaKaupunginhallitus_20_3_2017_asiat);

@@ -4,6 +4,7 @@
 (function() {
   'use strict';
   
+  const Promise = require('bluebird');
   const fs = require('fs');
   const nock = require('nock');
   const chai = require('chai');
@@ -13,13 +14,13 @@
   chai.use(require('chai-as-promised'));
   
   const OuluTwebPdfScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-pdf-scraper');
-  const actions395959398 = require(__dirname + '/data/395959398_actions.json');
+  const actions395959398 = require(__dirname + '/data/oulu/395959398_actions.json');
 
   describe('Oulu Tweb Pdf Scraper tests', () => {
     it('Smoke test for field captions extraction', () => {
       nock('http://localhost')
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=395959398')
-        .replyWithFile(200, __dirname + '/data/395959398.pdf');
+        .replyWithFile(200, __dirname + '/data/oulu/395959398.pdf');
       
       var smokeTestScraper = new OuluTwebPdfScraper({
         "host": "localhost"
