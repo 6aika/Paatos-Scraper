@@ -67,6 +67,20 @@
     }
     
     /**
+     * Returns a promise for organization event actions.
+     * 
+     * Returned data is ordered in same order that it is in html page. 
+     * 
+     * @param {String} organizationoId organizationId where to scrape actions
+     * @param {String} eventId eventId where to scrape actions
+     */
+    extractOrganizationEventActions(organizationoId, eventId) {
+      return new Promise((resolve, reject) => {       
+        resolve([]);
+      });
+    }
+    
+    /**
      * Extracts events for a year
      * 
      * @param {String} organizationId organizationId where to scrape events
