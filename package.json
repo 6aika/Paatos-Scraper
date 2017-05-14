@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "nyc --reporter=lcov -- mocha",
-    "coverage": "cat ./coverage/lcov.info | coveralls"
+    "coverage": "cat ./coverage/lcov.info | coveralls",
+    "test-turku": "nyc --reporter=lcov -- mocha --grep 'Turku'"
   },
   "repository": {
     "type": "git",
