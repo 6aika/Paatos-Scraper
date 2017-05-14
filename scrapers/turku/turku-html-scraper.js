@@ -71,12 +71,82 @@
      * 
      * Returned data is ordered in same order that it is in html page. 
      * 
-     * @param {String} organizationoId organizationId where to scrape actions
+     * @param {String} organizationId organizationId where to scrape actions
      * @param {String} eventId eventId where to scrape actions
      */
-    extractOrganizationEventActions(organizationoId, eventId) {
-      return new Promise((resolve, reject) => {       
-        resolve([]);
+    extractOrganizationEventActions(organizationId, eventId) {
+      return new Promise((resolve, reject) => {
+        const eventIdParts = eventId.split('-'); 
+        if (eventIdParts.length !== 2) {
+          reject(util.format('Invalid eventId %s', eventId));
+          return;
+        }
+        
+        const options = {
+          url: util.format("http://%s/%s/%s/%s/welcome.htm", this.options.host, organizationId, eventIdParts[0], eventIdParts[1]),
+          htmlDownloadInterval: this.options.htmlDownloadInterval
+        };
+          
+        let actions = [];
+
+        this.getParsedHtml(options)
+          .then(($) => {
+            const rows = $('table tr').filter((index, row) => {
+              return $(row).find('a').length === 1; 
+            });
+
+            rows.each((index, row) => {
+              const title = normalize($(row).find('td:last-of-type').text());
+              if (!title) {
+                winston.log('warn', util.format('Could not read title from event %s', eventId));
+                return;
+              }
+           
+              const link = $(row).find('a');
+              if (!link.length) {
+                winston.log('warn', util.format('Could not find link from event %s', eventId));
+                return;
+              }
+              
+              const linkHref = $(link).attr('href');
+              const linkText = $(link).text();
+              const idMatch = /(.*\/)(.*)(\.htm)/.exec(linkHref);
+              
+              if (idMatch.length !== 4) {
+                winston.log('warn', util.format('Unexpected link href %s in event %s', linkHref, eventId));
+                return;
+              }
+              
+              const id = idMatch[2];
+              if (!id) {
+                winston.log('warn', util.format('Invalid id read from href %s in event %s', linkHref, eventId));
+                return;
+              }
+              
+              if (!linkText.endsWith(' §')) {
+                winston.log('warn', util.format('Unexpected link text %s in event %s', linkText, eventId));
+                return;
+              }
+              
+              const articleNumber = linkText.substring(0, linkText.length - 2);
+              if (!articleNumber) {
+                winston.log('warn', util.format('Invalid articleNumber read from link text %s in event %s', linkText, eventId));
+                return;
+              }
+              
+              actions.push({
+                "sourceId": id,  
+                "articleNumber": articleNumber,
+                "title": title,
+                "ordering": index,
+                "eventId": eventId
+              });
+              
+            });
+            
+            resolve(actions);
+          })
+          .catch(reject);
       });
     }
     
@@ -135,7 +205,7 @@
               
               if (!eventsAfter || eventsAfter.isBefore(eventStart)) {
                 events.push({
-                  "sourceId": id,
+                  "sourceId": util.format("%d-%s", year, id),
                   "name": name,
                   "startDate": eventStart.format(),
                   "endDate": eventStart.format()
