@@ -161,8 +161,114 @@
      */
     extractOrganizationEventActionContents(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
+        const eventIdParts = eventId.split('-'); 
+        if (eventIdParts.length !== 2) {
+          reject(util.format('Invalid eventId %s', eventId));
+          return;
+        }
+        
+        const options = {
+          url: util.format("http://%s/%s/%s/%s/%s.htm", this.options.host, organizationId, eventIdParts[0], eventIdParts[1], actionId),
+          htmlDownloadInterval: this.options.htmlDownloadInterval
+        };
+          
         let contents = [];
-        resolve(contents);
+
+        this.getParsedHtml(options)
+          .then(($) => {
+            let order = 0;
+            
+            const dnoText = $('p:first-of-type').text();
+            if (!dnoText) {
+              winston.log('warn', util.format('Could not read dno from event %s action %s', eventId, actionId));
+              return;
+            }
+            
+            const dnoMatch = /([0-9]{1,}-[0-9]{4})(\ \([0-9]{1,}\)){0,1}/.exec(dnoText);
+            const dno = dnoMatch.length > 0 ? dnoMatch[1] : null;
+            
+            if (!dno) {
+              winston.log('warn', util.format('Unexpected dno from event %s action %s', eventId, actionId));
+              return;
+            }
+            
+            contents.push({
+              order: order++,
+              title: 'Dno',
+              content: dno 
+            });
+            
+            let ingress = $('.ing').last();
+            if (ingress.length) {
+              contents.push({
+                order: order++,
+                title: 'Tiivistelmä',
+                content: normalize(ingress.text())
+              });
+            }
+            
+            if ($('.XSDoc').length === 0) {
+              winston.log('warn', util.format('Could not find any contents from event %s action %s', eventId, actionId));
+            } else {
+              let title = 'Esittelyteksti';
+              let contentTexts = { };
+              
+              $('.XSDoc p').each((index, p) => {
+                const titleElement = $(p).find('.ehdotuspaatos');
+                if (titleElement.length) {
+                  title = titleElement.text(); 
+                  titleElement.remove();
+                }
+                
+                if (!contentTexts[title]) {
+                  contentTexts[title] = [];
+                }
+                
+                contentTexts[title].push(normalize($(p).text()));
+              });
+              
+              _.forEach(contentTexts, (contentText, title) => {
+                contents.push({
+                  order: order++,
+                  title: title,
+                  content: contentText.join('\n\n')
+                });
+              });
+            }
+            
+            if ($('.jakelu').length) {
+              let type = '';
+              let nodes = [];
+              let texts = [];
+              
+              _.forEach($('.jakelu')[0].childNodes, (node) => {
+                if (node.nodeType === 3) {
+                  nodes.push(node);
+                } else {
+                  const element = node;
+                  if ($(element).is('.jaktyyppi')) {
+                    type = $(element).text();
+                  } else if ($(node).prop("tagName") === 'BR') {
+                    const text = _.map(nodes, (node) => {
+                      return normalize($(node).text());
+                    }).join('');
+
+                    texts.push(type ? util.format("%s (%s)", text, type) : text);
+                    nodes = [];
+                  }
+                }
+              });
+              
+              contents.push({
+                order: order++,
+                title: 'Jakelu',
+                content: texts.join(', ')
+              });
+            }
+            
+            resolve(contents);
+          })
+          .catch(reject);
       });
     }
     

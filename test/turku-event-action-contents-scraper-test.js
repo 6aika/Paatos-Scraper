@@ -14,7 +14,7 @@
   
   chai.use(require('chai-as-promised'));
   
-  const turkukh20170205asiat = require(__dirname + '/data/turku/turku_kh_2017-02-05-asiat');
+  const turkukh20170205190toimenpiteet = require(__dirname + '/data/turku/turku_kh_2017-02-05-190-toimenpiteet');
   
   describe('Turku Html Events Scraper tests', () => {
     const TurkuHtmlScraper = require(__dirname + '/../scrapers/turku/turku-html-scraper');
@@ -29,7 +29,7 @@
       });
     
       return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("kh", "2017-0502011x", "3540796")))
-        .to.eventually.eql(turkukh20170205asiat);
+        .to.eventually.eql(turkukh20170205190toimenpiteet);
     });
   });
   
