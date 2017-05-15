@@ -177,7 +177,7 @@
         this.getParsedHtml(options)
           .then(($) => {
             let order = 0;
-            
+
             const dnoText = $('p:first-of-type').text();
             if (!dnoText) {
               winston.log('warn', util.format('Could not read dno from event %s action %s', eventId, actionId));
@@ -207,19 +207,23 @@
               });
             }
             
-            if ($('.XSDoc').length === 0) {
+            const notify = this.extractOrganizationEventActionContentsNotify($);
+            const xsDocs = this.extractOrganizationEventActionContentsXSDocs($);
+            
+            if (xsDocs.length === 0) {
               winston.log('warn', util.format('Could not find any contents from event %s action %s', eventId, actionId));
             } else {
               let title = 'Esittelyteksti';
               let contentTexts = { };
               
-              $('.XSDoc p').each((index, p) => {
+              $(xsDocs).find('.liiteoheis').remove();
+
+              $(xsDocs).find('p').each((index, p) => {
                 const titleElement = $(p).find('.ehdotuspaatos');
                 if (titleElement.length) {
                   title = titleElement.text(); 
                   titleElement.remove();
                 }
-                
                 if (!contentTexts[title]) {
                   contentTexts[title] = [];
                 }
@@ -236,33 +240,11 @@
               });
             }
             
-            if ($('.jakelu').length) {
-              let type = '';
-              let nodes = [];
-              let texts = [];
-              
-              _.forEach($('.jakelu')[0].childNodes, (node) => {
-                if (node.nodeType === 3) {
-                  nodes.push(node);
-                } else {
-                  const element = node;
-                  if ($(element).is('.jaktyyppi')) {
-                    type = $(element).text();
-                  } else if ($(node).prop("tagName") === 'BR') {
-                    const text = _.map(nodes, (node) => {
-                      return normalize($(node).text());
-                    }).join('');
-
-                    texts.push(type ? util.format("%s (%s)", text, type) : text);
-                    nodes = [];
-                  }
-                }
-              });
-              
+            if (notify) {
               contents.push({
                 order: order++,
                 title: 'Jakelu',
-                content: texts.join(', ')
+                content: notify
               });
             }
             
@@ -270,6 +252,64 @@
           })
           .catch(reject);
       });
+    }
+    
+    extractOrganizationEventActionContentsXSDocs($) {
+      const resultElements = [];
+      const children = $('body').children();
+      let i = children.length;
+      
+      while (i >= 0) {
+        i--;
+        
+        if ($(children[i]).is("#divTiedote")) {
+          break;
+        }
+      }
+      
+      while (i >= 0) {
+        if ($(children[i]).is(".XSDoc")) {
+          resultElements.unshift(children[i]);
+        }
+        
+        if ($(children[i]).prop("tagName") === 'P') {
+          break;
+        }
+        
+        i--;
+      }
+      
+      return $(resultElements);
+    }
+    
+    extractOrganizationEventActionContentsNotify($) {
+      if ($('.jakelu').length) {
+        let type = '';
+        let nodes = [];
+        let texts = [];
+
+        _.forEach($('.jakelu')[0].childNodes, (node) => {
+          if (node.nodeType === 3) {
+            nodes.push(node);
+          } else {
+            const element = node;
+            if ($(element).is('.jaktyyppi')) {
+              type = $(element).text();
+            } else if ($(node).prop("tagName") === 'BR') {
+              const text = _.map(nodes, (node) => {
+                return normalize($(node).text());
+              }).join('');
+
+              texts.push(type ? util.format("%s (%s)", text, type) : text);
+              nodes = [];
+            }
+          }
+        });
+        
+        return texts.join(', ');
+      }
+      
+      return null;
     }
     
     /**
