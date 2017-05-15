@@ -185,7 +185,7 @@
             }
             
             const dnoMatch = /([0-9]{1,}-[0-9]{4})(\ \([0-9]{1,}\)){0,1}/.exec(dnoText);
-            const dno = dnoMatch.length > 0 ? dnoMatch[1] : null;
+            const dno = dnoMatch.length > 0 ? dnoMatch[0] : null;
             
             if (!dno) {
               winston.log('warn', util.format('Unexpected dno from event %s action %s', eventId, actionId));
