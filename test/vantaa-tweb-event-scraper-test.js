@@ -4,6 +4,7 @@
 (function() {
   'use strict';
   
+  const Promise = require('bluebird');
   const chai = require('chai');
   const nock = require('nock');
   const expect = chai.expect;
@@ -13,7 +14,7 @@
   
   const VantaaTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/vantaa/vantaa-tweb-html-scraper');
 
-  const vantaaKaupunginhallitusKokoukset = require(__dirname + '/data/vantaa_kaupunginhallitus_kokoukset');
+  const vantaaKaupunginhallitusKokoukset = require(__dirname + '/data/vantaa/vantaa_kaupunginhallitus_kokoukset');
   
   describe('Vantaa Tweb Html Events Scraper tests', () => {
     
@@ -27,7 +28,7 @@
           'kirjaamo': '55015.000000',
           'oper': 'where'
         })
-        .replyWithFile(200, __dirname + '/data/vantaa_tweb_kaupunginhallitus_kokoukset.html');
+        .replyWithFile(200, __dirname + '/data/vantaa/vantaa_tweb_kaupunginhallitus_kokoukset.html');
       
       return expect(Promise.resolve(htmlTestScraper.extractOrganizationEvents("55015.000000")))
         .to.eventually.eql(vantaaKaupunginhallitusKokoukset);

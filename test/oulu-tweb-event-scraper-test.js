@@ -4,6 +4,7 @@
 (function() {
   'use strict';
   
+  const Promise = require('bluebird');
   const chai = require('chai');
   const nock = require('nock');
   const expect = chai.expect;
@@ -13,7 +14,7 @@
   
   const OuluTwebHtmlScraper = require(__dirname + '/../scrapers/tweb/oulu/oulu-tweb-html-scraper');
 
-  const ouluKaupunginhallitusKokoukset = require(__dirname + '/data/oulu_kaupunginhallitus_kokoukset');
+  const ouluKaupunginhallitusKokoukset = require(__dirname + '/data/oulu/oulu_kaupunginhallitus_kokoukset');
   
   describe('Oulu Tweb Html Events Scraper tests', () => {
     
@@ -27,7 +28,7 @@
           'kirjaamo': '690',
           'oper': 'where'
         })
-        .replyWithFile(200, __dirname + '/data/oulu_tweb_kaupunginhallitus_kokoukset.html');
+        .replyWithFile(200, __dirname + '/data/oulu/oulu_tweb_kaupunginhallitus_kokoukset.html');
       
       return expect(Promise.resolve(htmlTestScraper.extractOrganizationEvents("690")))
         .to.eventually.eql(ouluKaupunginhallitusKokoukset);
