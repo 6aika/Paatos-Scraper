@@ -1,0 +1,157 @@
+[
+  {
+    "sourceId": "217669",
+    "name": "Kaupunginhallituksen elinkeino- ja kilpailukykyjaosto",
+    "classification": "jaosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "217673",
+    "name": "Kaupunginhallituksen konsernijaosto",
+    "classification": "jaosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "217674",
+    "name": "Kaupunginhallituksen tila- ja asuntojaosto",
+    "classification": "jaosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "217668",
+    "name": "Kaupunginhallitus",
+    "classification": "hallitus",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219380",
+    "name": "Kaupunkisuunnittelulautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219368",
+    "name": "Keskusvaalilautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219377",
+    "name": "Kulttuurilautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219378",
+    "name": "Liikunta- ja nuorisolautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219379",
+    "name": "Nämnden Svenska rum",
+    "classification": null,
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "218779",
+    "name": "Nuorisovaltuusto",
+    "classification": "valtuusto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219376",
+    "name": "Opetus- ja varhaiskasvatuslautakunnan varhaiskasvatusjaosto",
+    "classification": "jaosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219375",
+    "name": "Opetus- ja varhaiskasvatuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "214810",
+    "name": "Palveluliikelaitosten johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219382",
+    "name": "Pelastuslaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219366",
+    "name": "Rakennuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219374",
+    "name": "Sosiaali- ja terveyslautakunnan sosiaali- ja terveyspalvelujen jaosto",
+    "classification": "jaosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219373",
+    "name": "Sosiaali- ja terveyslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "200186",
+    "name": "Suomenkielinen varhaiskasvatus- ja opetuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219369",
+    "name": "Tarkastuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219381",
+    "name": "Tekninen lautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219364",
+    "name": "Valtuusto",
+    "classification": "valtuusto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }, {
+    "sourceId": "219372",
+    "name": "Ympäristölautakunta", 
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }
+]
