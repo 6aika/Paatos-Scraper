@@ -4,9 +4,12 @@
 (function() {
   'use strict';
 
+  const _ = require('lodash');
   const util = require('util');
   const winston = require('winston');
+  const moment = require('moment');
   const normalize = require('normalize-space');
+  const Promise = require('bluebird');
   
   const AbstractHtmlScraper = require(__dirname + '/../abstract-html-scraper');
   const organizationMapping = require(__dirname + '/organization-mapping');
@@ -100,7 +103,32 @@
      */
     extractOrganizationEvents(organizationId, maxEvents, eventsAfter) {
       return new Promise((resolve, reject) => {
-        resolve([]);
+        const pageLoads = [ this.extractOrganizationPageEvents(organizationId, eventsAfter) ];
+        
+        _.forEach(organizationMapping, (value, key) => {
+          if (value === organizationId) {
+             pageLoads.push(this.extractOrganizationPageEvents(key, eventsAfter));
+          }
+        });
+        
+        Promise.all(pageLoads)
+          .then((data) => {
+            let events = [];
+            for (let i = 0; i < data.length; i++) {
+              events = events.concat(data[i]);
+            }
+            
+            events.sort(function (event1, event2) {
+              return moment(event2.startDate).diff(moment(event1.startDate));
+            });
+            
+            if (maxEvents) {
+              events = events.splice(0, maxEvents);  
+            }
+            
+            resolve(events);
+          })
+          .catch(reject);
       });
     }
     
@@ -139,6 +167,73 @@
     extractOrganizationEventActionAttachments(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
         resolve([]);
+      });
+    }
+    
+    
+    /**
+     * Extracts events for a year
+     * 
+     * @param {String} organizationId organizationId where to scrape events
+     * @param {Moment} eventsAfter return only events afer the moment
+     * @returns {Promise}
+     */
+    extractOrganizationPageEvents(organizationId, eventsAfter) {
+      return new Promise((resolve, reject) => {
+        const options = {
+          url: util.format("http://%s/kokous/TELIN-%s.HTM", this.options.host, organizationId)
+        };
+          
+        let events = [];
+
+        this.getParsedHtml(options)
+          .then(($) => {
+            const rows = $('table.tbl tr').filter((index, row) => {
+              return !$(row).is('.trHea') && $(row).find('.tcHeaSepa').length === 0;
+            });
+
+            rows.each((index, row) => {
+              const dateStr = normalize($(row).find('td.tcDat:nth-of-type(1)').text());
+              const linkHref = $(row).find('td.tcDat:nth-of-type(2) a').attr('href');
+              const idMatch = /(.*kokous\/)(.*)(.HTM)/.exec(linkHref);
+              
+              if (!idMatch || idMatch.length !== 4) {
+                winston.log('warn', util.format('Could not read id from href %s', linkHref));
+                return;
+              }
+
+              const id = idMatch[2];
+              const eventStart = moment(dateStr, 'DD.MM.YYYY', 'fi', true);
+              
+              if (!id) {
+                winston.log('warn', util.format('Invalid id read from href %s', linkHref));
+                return;
+              }
+
+              if (!eventStart.isValid()) {
+                winston.log('warn', util.format('Could not parse date from name %s', name));
+                return;
+              }
+              
+              const organizationName = normalize($('label.h3').text().replace('Kokouslistat', ''));
+              if (!organizationName) {
+                winston.log('warn', util.format('Could not resolve organization name from event %s', id));
+                return;
+              }
+              
+              if (!eventsAfter || eventsAfter.isBefore(eventStart)) {
+                events.push({
+                  "sourceId": id,
+                  "name": util.format("%s - %s", organizationName, dateStr),
+                  "startDate": eventStart.format(),
+                  "endDate": eventStart.format()
+                });
+              }
+            });
+            
+            resolve(events);
+          })
+          .catch(reject);
       });
     }
     
