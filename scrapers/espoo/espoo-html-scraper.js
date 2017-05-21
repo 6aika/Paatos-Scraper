@@ -189,7 +189,9 @@
         this.getParsedHtml(options)
           .then(($) => {
             const rows = $('table.tbl tr').filter((index, row) => {
-              return !$(row).is('.trHea') && $(row).find('.tcHeaSepa').length === 0;
+              return !$(row).is('.trHea') && 
+                $(row).find('.tcHeaSepa').length === 0 &&
+                $(row).find('td a').length;
             });
 
             rows.each((index, row) => {
