@@ -194,37 +194,6 @@
       return name;  
     }
     
-    /**
-     * Guesses the classification from the organization's name
-     * 
-     * @param {String} name name of the organization
-     * @returns {String} classification
-     */
-    guessClassification(name) {
-      var lowerCaseName = name.toLowerCase();
-      var classifications = [
-        "johtokunta", 
-        "lautakunta", 
-        "toimikunta", 
-        "jaosto",
-        "hallitus", 
-        "valtuusto", 
-        "toimikunta",
-        "toimielin",
-        "neuvosto"
-      ];
-      
-      for (var i = 0; i < classifications.length; i++) {
-        if (lowerCaseName.includes(classifications[i])) {
-          return classifications[i];
-        }
-      }
-      
-      winston.log('warn', util.format('Could not guess classification for %s', name));
-       
-      return null;
-    }
-    
   }
   
   module.exports = AbstractTWebHtmlScraper;
