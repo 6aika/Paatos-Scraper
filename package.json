@@ -7,7 +7,8 @@
     "start": "node app.js",
     "test": "nyc --reporter=lcov -- mocha",
     "coverage": "cat ./coverage/lcov.info | coveralls",
-    "test-turku": "nyc --reporter=lcov -- mocha --grep 'Turku'"
+    "test-turku": "nyc --reporter=lcov -- mocha --grep 'Turku'",
+    "test-espoo": "nyc --reporter=lcov -- mocha --grep 'Espoo'"
   },
   "repository": {
     "type": "git",
