@@ -140,7 +140,69 @@
      */
     extractOrganizationEventActions(organizationId, eventId) {
       return new Promise((resolve, reject) => {
-        resolve([]);
+        const options = {
+          "url": util.format("http://%s/kokous/%s.HTM", this.options.host, eventId),
+          "encoding": this.options.encoding
+        };
+          
+        let actions = [];
+
+        this.getParsedHtml(options)
+          .then(($) => {
+            const table = $('body>p>table:first-of-type table').first();
+            
+            const rows = table.find('tr').filter((index, row) => {
+              return !$(row).is('.trHea') && 
+                $(row).find('.tcHeaSepa').length === 0 &&
+                $(row).find('td a').length;
+            });
+
+            rows.each((index, row) => {
+              const link = $(row).find('a');
+              if (!link.length) {
+                winston.log('warn', util.format('Could not find link from event %s', eventId));
+                return;
+              }
+              
+              const title = normalize(link.text());
+              if (!title) {
+                winston.log('warn', util.format('Could not read title from event %s', eventId));
+                return;
+              }
+              
+              const linkHref = $(link).attr('href');
+              const idMatch = /(.*kokous\/)(.*)(.HTM)/.exec(linkHref);
+              
+              if (!idMatch || idMatch.length !== 4) {
+                winston.log('warn', util.format('Unexpected link href %s in event %s', linkHref, eventId));
+                return;
+              }
+              
+              const id = idMatch[2];
+              if (!id) {
+                winston.log('warn', util.format('Invalid id read from href %s in event %s', linkHref, eventId));
+                return;
+              }
+              
+              const articleNumber = normalize($(row).find('td:first-of-type').text());
+              if (!articleNumber) {
+                winston.log('warn', util.format('Invalid articleNumber read from link text %s in event %s', linkText, eventId));
+                return;
+              }
+              
+              actions.push({
+                "sourceId": id,  
+                "articleNumber": articleNumber,
+                "title": title,
+                "ordering": index,
+                "eventId": eventId
+              });
+              
+            });
+            
+            resolve(actions);
+          })
+          .catch(reject);
       });
     }
     
@@ -181,7 +243,8 @@
     extractOrganizationPageEvents(organizationId, eventsAfter) {
       return new Promise((resolve, reject) => {
         const options = {
-          url: util.format("http://%s/kokous/TELIN-%s.HTM", this.options.host, organizationId)
+          "url": util.format("http://%s/kokous/TELIN-%s.HTM", this.options.host, organizationId),
+          "encoding": this.options.encoding
         };
           
         let events = [];
