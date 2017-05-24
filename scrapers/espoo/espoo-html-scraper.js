@@ -292,13 +292,14 @@
             });
             
             const introductionText = this.getExtractIntroductionText($);
-            
-            contents.push({
-              order: order++,
-              title: 'Esittelyteksti',
-              content: introductionText 
-            });
-            
+            if (introductionText) {
+              contents.push({
+                order: order++,
+                title: 'Esittelyteksti',
+                content: introductionText 
+              });
+            }
+          
             let title = null;
             let content = [];
             
