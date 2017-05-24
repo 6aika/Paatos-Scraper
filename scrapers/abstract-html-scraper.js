@@ -9,9 +9,11 @@
   const syncRequest = require('sync-request');
   const contentDisposition = require('content-disposition');
   const AbstractScraper = require('./abstract-scraper');
-
-  var queuedRequests = [];
-  var queueRunning = false;
+  const Entities = require('html-entities').AllHtmlEntities;
+  const entities = new Entities();
+  
+  let queuedRequests = [];
+  let queueRunning = false;
   
   class AbstractHtmlScraper extends AbstractScraper {
     
@@ -29,7 +31,11 @@
       return new Promise((resolve, reject) => {
         this.doRequest(options)
           .then((body) => {
-            resolve(cheerio.load(body));   
+            if (options.cleanWordHtml) {
+              resolve(cheerio.load(this.cleanWordHtml(body)));
+            } else {
+              resolve(cheerio.load(body));
+            }
           })
           .catch(reject);     
       });
@@ -99,6 +105,24 @@
           this.nextRequest();
         }
       });
+    }
+    
+    trimHtml(html) {
+      return html.replace(/>\s+</g,'><'); 
+    }
+    
+    decodeHtmlEntities(html) {
+      return entities.decode(html);
+    }
+    
+    cleanWordHtml(html) {
+      return this.normalizeQuotes(html);
+    }
+    
+    normalizeQuotes(text) {
+      return text
+        .replace(/[\u0092\u2019\u2018\u2019]/g, "'")
+        .replace(/[\u0094\u201C\u201D]/g, '"');
     }
     
   }

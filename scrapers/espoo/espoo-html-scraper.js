@@ -10,7 +10,6 @@
   const moment = require('moment');
   const normalize = require('normalize-space');
   const Promise = require('bluebird');
-  
   const AbstractHtmlScraper = require(__dirname + '/../abstract-html-scraper');
   const organizationMapping = require(__dirname + '/organization-mapping');
   
@@ -186,7 +185,7 @@
               
               const articleNumber = normalize($(row).find('td:first-of-type').text());
               if (!articleNumber) {
-                winston.log('warn', util.format('Invalid articleNumber read from link text %s in event %s', linkText, eventId));
+                winston.log('warn', util.format('Could not find articleNumber from event %s', eventId));
                 return;
               }
               
@@ -215,7 +214,136 @@
      */
     extractOrganizationEventActionContents(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
-        resolve([]);
+        const options = {
+          "url": util.format("http://%s/kokous/%s.HTM", this.options.host, actionId),
+          "encoding": this.options.encoding,
+          "cleanWordHtml": true
+        };
+          
+        const contents = [];
+
+        this.getParsedHtml(options)
+          .then(($) => {
+            let dno = '';
+            let functionId = '';
+            
+            let removeRest = false;
+            $('.WordSection1 p').each((index, p) => {
+              if (_.trim($(p).find('b').text()).toLowerCase() === 'päätöshistoria') {
+                removeRest = true;
+              }
+              
+              if (removeRest) {
+                $(p).remove();
+              }
+            });
+            
+            $('.WordSection1 p.MsoNormal[align="right"]').each((index, p) => {
+              const text = normalize($(p).text());
+              if (!dno) {
+                const dnoMatch = /[0-9]{1,}\/[0-9]{4}/.exec(text);
+                if (dnoMatch && dnoMatch.length === 1) {
+                  dno = dnoMatch[0];
+                  return;
+                }
+              }
+              
+              if (!functionId) {
+                const functionIdMatch = /^[0-9.]{1,}$/.exec(text);
+                if (functionIdMatch && functionIdMatch.length === 1) {
+                  functionId = functionIdMatch[0];
+                  return;
+                }
+              }
+              
+              if (!dno && !functionId) {
+                const dnoFunctionIdMatch = /([0-9]{1,})\/([0-9.]{1,})\/([0-9]{4})/.exec(text);
+                if (dnoFunctionIdMatch && dnoFunctionIdMatch.length === 1) {
+                  dno = dnoFunctionIdMatch[1];
+                  functionId = dnoFunctionIdMatch[3];
+                  return;
+                }
+              }
+            });
+            
+            if (!dno) {
+              winston.log('warn', util.format('Unexpected dno from event %s action %s', eventId, actionId));
+              return;
+            }
+            
+            if (!functionId) {
+              winston.log('warn', util.format('Unexpected functionId from event %s action %s', eventId, actionId));
+              return;
+            }
+            
+            functionId = functionId.replace(/\./g, ' ');
+            let order = 0;
+            
+            contents.push({
+              order: order++,
+              title: 'Dno',
+              content: dno 
+            });
+            
+            contents.push({
+              order: order++,
+              title: 'functionId',
+              content: functionId 
+            });
+            
+            const introductionText = this.getExtractIntroductionText($);
+            
+            contents.push({
+              order: order++,
+              title: 'Esittelyteksti',
+              content: introductionText 
+            });
+            
+            let title = null;
+            let content = [];
+            
+            $('.Sivuotsikko,.Sisennetty').each((index, contentElement) => {
+              const elementText = normalize($(contentElement).text());
+              if (elementText) {
+                const isTitle = $(contentElement).is('.Sivuotsikko') ||
+                  $(contentElement).css('text-indent') === '-117.0pt';
+
+                if (isTitle) {
+                  if (title) {
+                    contents.push({
+                      order: order++,
+                      title: title,
+                      content: this.elementsToHtml($, content)
+                    });
+                  }
+
+                  const titleElement = $(contentElement).clone();
+                  title = normalize(titleElement.find('b').remove().text());
+
+                  content = [];
+                  const text = normalize(titleElement.text());
+                  if (text) {
+                    content.push($('<p>').text(text));
+                  }
+                } else {
+                  if (elementText) {
+                    content.push(contentElement);
+                  }
+                }
+              }
+            });
+            
+            if (content.length) {
+              contents.push({
+                order: order++,
+                title: title,
+                content: this.elementsToHtml($, content)
+              });
+            }
+                
+            resolve(contents);
+          })
+          .catch(reject);
       });
     }
     
@@ -231,7 +359,6 @@
         resolve([]);
       });
     }
-    
     
     /**
      * Extracts events for a year
@@ -258,7 +385,7 @@
             });
 
             rows.each((index, row) => {
-              const dateStr = normalize($(row).find('td.tcDat:nth-of-type(1)').text());
+              const dateStr = _.trim($(row).find('td.tcDat:nth-of-type(1)').text());
               const linkHref = $(row).find('td.tcDat:nth-of-type(2) a').attr('href');
               const idMatch = /(.*kokous\/)(.*)(.HTM)/.exec(linkHref);
               
@@ -276,7 +403,7 @@
               }
 
               if (!eventStart.isValid()) {
-                winston.log('warn', util.format('Could not parse date from name %s', name));
+                winston.log('warn', util.format('Could not parse date from string %s', dateStr));
                 return;
               }
               
@@ -302,8 +429,83 @@
       });
     }
     
+    getExtractIntroductionText($) {
+      let start = false;
+      let end = false;
+      
+      const introductionElements = $('.WordSection1>*[class]')
+        .filter((index, child) => {
+          if (!start) {
+            if ($(child).find('strong').length) {
+              start = true;
+            }
+            
+            return false;
+          }
+
+          if (!end) {
+            if ($(child).is('.Sivuotsikko')) {
+              end = true;
+              return false;
+            }
+          } else {
+            return false;
+          }
+          
+          return !!normalize($(child).text());
+        });
+        
+      return this.elementsToHtml($, introductionElements);
+    }
+    
+    elementsToHtml($, elements) {
+      elements = this.replaceLists($, elements);
+      
+      const result = $('<pre>').append(elements);
+      
+      result.find('*')
+        .removeAttr('style')
+        .removeAttr('class')
+        .removeAttr('lang')
+        .removeAttr('valign');
+        
+      return normalize(this.decodeHtmlEntities(this.trimHtml(result.html())));
+    }
+    
+    replaceLists($, elements) {
+      for (let i = elements.length - 1; i >= 0; i--) {
+        if (this.isListItem($, elements[i])) {
+          const ul = $('<ul>');
+          
+          while (this.isListItem($, elements[i])) {
+            const element = $(elements.splice(i, 1));
+            
+            $('<li>')
+              .text(normalize(element.text()).substring(2))
+              .prependTo(ul);
+      
+            i--;
+          };
+          
+          elements.splice(i + 1, 0, ul);
+        }
+      }
+      
+      return elements;
+    }
+    
+    isListItem($, element) {
+      if ($(element).is('.Sisennetty')) {
+        return normalize($(element).text()).startsWith('- ');
+      }
+      
+      return false;
+    }
+    
   }
   
   module.exports = EspooHtmlScraper;
            
 }).call(this);
+
+
