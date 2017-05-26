@@ -3,9 +3,12 @@
 (function() {
   'use strict';
 
+  const _ = require('lodash');
   const fs = require('fs');
+  const util = require('util');
   const cheerio = require('cheerio');
   const request = require('request');
+  const normalize = require('normalize-space');
   const syncRequest = require('sync-request');
   const contentDisposition = require('content-disposition');
   const AbstractScraper = require('./abstract-scraper');
@@ -111,6 +114,22 @@
       return html.replace(/>\s+</g,'><'); 
     }
     
+    normalizeElementTexts($, elements) {
+      $(elements).find('*').contents().each((index, element) => {
+        const parentNode = element.parentNode;
+        const parentTag = parentNode ? parentNode.tagName.toUpperCase() : null;
+        if (element.nodeType === 3) {
+          if ('P' === parentTag) {
+            const firstChild = parentNode.firstChild === element;
+            const lastChild = parentNode.lastChild === element;
+            element.nodeValue = this.normalizeTextContent(element.nodeValue, !firstChild, !lastChild);
+          } else {
+            element.nodeValue = this.normalizeTextContent(element.nodeValue, true, true); 
+          }
+        }
+      });
+    }
+    
     decodeHtmlEntities(html) {
       return entities.decode(html);
     }
@@ -123,6 +142,16 @@
       return text
         .replace(/[\u0092\u2019\u2018\u2019]/g, "'")
         .replace(/[\u0094\u201C\u201D]/g, '"');
+    }
+    
+    normalizeTextContent(text, keepLeading, keepTrailing) {
+      if (text && text.length > 1) {
+        const leading = keepLeading && text[0] === ' ' ? ' ' : '';
+        const trailing = keepTrailing && text[text.length - 1] === ' ' ? ' ' : '';
+        return util.format('%s%s%s', leading, normalize(text), trailing);
+      }
+      
+      return text;
     }
     
   }

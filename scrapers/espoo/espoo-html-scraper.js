@@ -214,8 +214,9 @@
      */
     extractOrganizationEventActionContents(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
+        const url = util.format("http://%s/kokous/%s.HTM", this.options.host, actionId);        
         const options = {
-          "url": util.format("http://%s/kokous/%s.HTM", this.options.host, actionId),
+          "url": url,
           "encoding": this.options.encoding,
           "cleanWordHtml": true
         };
@@ -240,8 +241,9 @@
             
             $('.WordSection1 p.MsoNormal[align="right"]').each((index, p) => {
               const text = normalize($(p).text());
+
               if (!dno) {
-                const dnoMatch = /[0-9]{1,}\/[0-9]{4}/.exec(text);
+                const dnoMatch = /^[0-9]{1,}\/[0-9]{4}$/.exec(text);
                 if (dnoMatch && dnoMatch.length === 1) {
                   dno = dnoMatch[0];
                   return;
@@ -257,22 +259,22 @@
               }
               
               if (!dno && !functionId) {
-                const dnoFunctionIdMatch = /([0-9]{1,})\/([0-9.]{1,})\/([0-9]{4})/.exec(text);
-                if (dnoFunctionIdMatch && dnoFunctionIdMatch.length === 1) {
-                  dno = dnoFunctionIdMatch[1];
-                  functionId = dnoFunctionIdMatch[3];
+                const dnoFunctionIdMatch = /^([0-9]{1,})\/([0-9.]{1,})\/([0-9]{4})$/.exec(text);
+                if (dnoFunctionIdMatch && dnoFunctionIdMatch.length === 4) {
+                  dno = util.format('%s/%s', dnoFunctionIdMatch[1], dnoFunctionIdMatch[3]);
+                  functionId = dnoFunctionIdMatch[2];
                   return;
                 }
               }
             });
             
             if (!dno) {
-              winston.log('warn', util.format('Unexpected dno from event %s action %s', eventId, actionId));
+              winston.log('warn', util.format('Unexpected dno from event %s action %s (%s)', eventId, actionId, url));
               return;
             }
             
             if (!functionId) {
-              winston.log('warn', util.format('Unexpected functionId from event %s action %s', eventId, actionId));
+              winston.log('warn', util.format('Unexpected functionId from event %s action %s (%s)', eventId, actionId, url));
               return;
             }
             
@@ -291,12 +293,12 @@
               content: functionId 
             });
             
-            const introductionText = this.getExtractIntroductionText($);
-            if (introductionText) {
+            const draftsmenText = this.getExtractDraftsmenText($);
+            if (draftsmenText) {
               contents.push({
                 order: order++,
-                title: 'Esittelyteksti',
-                content: introductionText 
+                title: 'Valmistelijat / lisätiedot',
+                content: draftsmenText 
               });
             }
           
@@ -319,7 +321,7 @@
                   }
 
                   const titleElement = $(contentElement).clone();
-                  title = normalize(titleElement.find('b').remove().text());
+                  title = normalize(titleElement.find('b,strong').remove().text());
 
                   content = [];
                   const text = normalize(titleElement.text());
@@ -335,11 +337,15 @@
             });
             
             if (content.length) {
-              contents.push({
-                order: order++,
-                title: title,
-                content: this.elementsToHtml($, content)
-              });
+              if (title) {
+                contents.push({
+                  order: order++,
+                  title: title,
+                  content: this.elementsToHtml($, content)
+                });
+              } else {
+                winston.log('warn', util.format('Could not parse content title from event %s action %s (%s)', eventId, actionId, url));
+              }
             }
                 
             resolve(contents);
@@ -430,11 +436,11 @@
       });
     }
     
-    getExtractIntroductionText($) {
+    getExtractDraftsmenText($) {
       let start = false;
       let end = false;
       
-      const introductionElements = $('.WordSection1>*[class]')
+      const textElements = $('.WordSection1>*[class]')
         .filter((index, child) => {
           if (!start) {
             if ($(child).find('strong').length) {
@@ -456,7 +462,14 @@
           return !!normalize($(child).text());
         });
         
-      return this.elementsToHtml($, introductionElements);
+      if (textElements.length) {
+        if ($(textElements[0]).text().toLowerCase().indexOf('valmistelijat') !== -1) {
+          textElements.splice(0, 1);         
+          return this.elementsToHtml($, textElements);
+        }
+      }
+        
+      return null;
     }
     
     elementsToHtml($, elements) {
@@ -470,7 +483,9 @@
         .removeAttr('lang')
         .removeAttr('valign');
         
-      return normalize(this.decodeHtmlEntities(this.trimHtml(result.html())));
+      this.normalizeElementTexts($, result);
+        
+      return this.decodeHtmlEntities(this.trimHtml(result.html()));
     }
     
     replaceLists($, elements) {
