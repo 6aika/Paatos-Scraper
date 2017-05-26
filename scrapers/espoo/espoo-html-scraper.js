@@ -363,7 +363,62 @@
      */
     extractOrganizationEventActionAttachments(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
-        resolve([]);
+        const url = util.format("http://%s/kokous/%s.HTM", this.options.host, actionId);        
+        const options = {
+          "url": url,
+          "encoding": this.options.encoding
+        };
+          
+        this.getParsedHtml(options)
+          .then(($) => {
+            const attachments = [];
+    
+            $('p table.tcDat > tbody > tr > td:nth-of-type(3) > a').each((index, attachment) => {
+              const attachmentUrl = $(attachment).attr('href');
+              const name = normalize($(attachment).text()); 
+              const headers = this.getHeaders(attachmentUrl);
+              const contentDisposition = headers['content-disposition'] ? this.parseContentDisposition(headers['content-disposition']) : null;
+              
+              if (!attachmentUrl) {
+                winston.log('warn', util.format('Could not read attachment url from event %s action %s (%s)', eventId, actionId, url));
+                return;
+              }
+              
+              const lastUrlSlash = attachmentUrl.lastIndexOf('/');
+              const filename = lastUrlSlash !== -1 ? attachmentUrl.substring(lastUrlSlash + 1) : null;
+              const lastDotIndex = filename.lastIndexOf('.');
+              const id = lastDotIndex !== -1 ? filename.substring(0, lastDotIndex) : filename;
+                      
+              if (!id) {
+                winston.log('warn', util.format('Could not parse attachment id from event %s action %s (%s)', eventId, actionId, url));
+                return;
+              }
+              
+              if (contentDisposition && contentDisposition.parameters) {
+                filename = contentDisposition.parameters.filename;
+              }
+              
+              if (!filename) {
+                filename = id;
+              }
+            
+              attachments.push({
+                "sourceId": id,
+                "name": name,
+                "filename": filename,
+                "url": attachmentUrl,
+                "actionId": actionId,
+                "number": index,
+                "public": true,
+                "confidentialityReason": null,
+                "contentType": headers['content-type'],
+                "contentLength": headers['content-length']
+              });
+            });
+    
+            resolve(attachments);
+          })
+          .catch(reject);
       });
     }
     
