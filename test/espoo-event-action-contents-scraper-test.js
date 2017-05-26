@@ -14,7 +14,8 @@
   
   chai.use(require('chai-as-promised'));
   
-  const espooKhKokous170508 = require(__dirname + '/data/espoo/espoo_kh_kokous_170508');
+  const espooKh170508Contents127 = require(__dirname + '/data/espoo/espoo_kh_170508_contents_127');
+  const espooYl130117Contents5 = require(__dirname + '/data/espoo/espoo_yl_130117_contents_5');
   
   describe('Espoo Html Events Scraper tests', () => {
     it('Test event actions scraping', () => {
@@ -28,8 +29,23 @@
         "host": "localhost"
       });
     
-      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("kh", "2017406946", "2017406946-3")))
-        .to.eventually.eql(espooKhKokous170508);
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("217668", "2017406946", "2017406946-3")))
+        .to.eventually.eql(espooKh170508Contents127);
+    });
+    
+    it('Test event actions scraping from 2013 format', () => {
+      const EspooHtmlScraper = require(__dirname + '/../scrapers/espoo/espoo-html-scraper');
+
+      nock('http://localhost')
+        .get('/kokous/2013262303-5.HTM')
+        .replyWithFile(200, __dirname + '/data/espoo/2013262303-5.HTM');
+
+      const htmlTestScraper = new EspooHtmlScraper({
+        "host": "localhost"
+      });
+    
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("200747", "2013262303", "2013262303-5")))
+        .to.eventually.eql(espooYl130117Contents5);
     });
   });
   
