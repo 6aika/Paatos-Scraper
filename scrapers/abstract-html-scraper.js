@@ -66,13 +66,28 @@
      * @param {String} url url
      * @returns {Object} headesr
      */
-    getHeaders(url) {
-      var response = syncRequest('HEAD', url);
+    getHeadersSync(url) {
+      const response = syncRequest('HEAD', url);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response.headers;    
       } else {
         return null;
       }
+    }
+    
+    getHeaders(url, callback) {
+      const options = {
+        method: 'HEAD',
+        url: url
+      };
+      
+      request(options, (error, response, body) => {
+        if (error) {
+          callback(error); 
+        } else {
+          callback(null, response.headers); 
+        }
+      });
     }
     
     /**

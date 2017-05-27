@@ -149,7 +149,7 @@
               let id = idMatch[2];
               var url = util.format("http://%s%s", this.options.host, linkHref);
               let name = normalize(link.text());
-              let headers = this.getHeaders(url);
+              let headers = this.getHeadersSync(url);
               let contentDisposition = headers['content-disposition'] ? this.parseContentDisposition(headers['content-disposition']) : null;
               let filename = null;
               
