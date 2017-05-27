@@ -24,6 +24,20 @@
         .get('/kokous/2017406946-3.HTM')
         .replyWithFile(200, __dirname + '/data/espoo/2017406946-3.HTM');
 
+      nock('http://espoo04.hosting.documenta.fi')
+        .head('/kokous/2017406946-3-1.PDF')
+        .reply(200, 'DATA', {
+          'content-length': "375600",
+          'content-type': 'application/pdf'
+        });
+        
+      nock('http://espoo04.hosting.documenta.fi')
+        .head('/kokous/2017406946-3-2.PDF')
+        .reply(200, 'DATA', {
+          'content-length': "12088",
+          'content-type': 'application/pdf'
+        });
+
       const htmlTestScraper = new EspooHtmlScraper({
         "host": "localhost"
       });

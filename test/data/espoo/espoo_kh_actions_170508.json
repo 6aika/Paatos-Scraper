@@ -1,156 +1,142 @@
 [
   {
-    "sourceId":"2017406946-1",
-    "articleNumber":"125",
-    "title":"Kokouksen laillisuuden ja päätösvaltaisuuden toteaminen",
-    "ordering":0,
-    "eventId":"2017406946"
-  },
-  {
-    "sourceId":"2017406946-2",
-    "articleNumber":"126",
-    "title":"Pöytäkirjan tarkastajien valinta",
-    "ordering":1,
-    "eventId":"2017406946"
-  },
-  {
     "sourceId":"2017406946-3",
     "articleNumber":"127",
     "title":"Espoon kaupungin hallintosäännön hyväksyminen (Kv-asia) (Pöydälle 10.4.2017)",
-    "ordering":2,
+    "ordering":0,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-4",
     "articleNumber":"128",
     "title":"Lausunnon antaminen valtiovarainministeriölle ehdotuksesta valtioneuvoston asetukseksi kunnan ja maakunnan välisen vuokran määräytymisestä siirtymäkauden aikana",
-    "ordering":3,
+    "ordering":1,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-5",
     "articleNumber":"129",
     "title":"Vuoden 2017 maaliskuun kuukausiraportti",
-    "ordering":4,
+    "ordering":2,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-6",
     "articleNumber":"130",
     "title":"Valtuustoaloite valtuustolähetysten teknisen tason parantamisesta (Kv-asia)",
-    "ordering":5,
+    "ordering":3,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-7",
     "articleNumber":"131",
     "title":"Valtuuston 24.4.2017 päätösten laillisuusvalvonta",
-    "ordering":6,
+    "ordering":4,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-8",
     "articleNumber":"132",
     "title":"Paikkajakotoimikunnan kokoonpanon täydentäminen",
-    "ordering":7,
+    "ordering":5,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-9",
     "articleNumber":"133",
     "title":"Lasten ja nuorten hyvinvointisuunnitelman (2013-2016) raportointi (Kv-asia)",
-    "ordering":8,
+    "ordering":6,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-10",
     "articleNumber":"134",
     "title":"Valtuustokysymys 100 vuotta täyttäneiden muistamisesta kaupungin taholta (Kv-asia)",
-    "ordering":9,
+    "ordering":7,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-11",
     "articleNumber":"135",
     "title":"Vanhusneuvoston toimintasäännön muuttaminen",
-    "ordering":10,
+    "ordering":8,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-12",
     "articleNumber":"136",
     "title":"KulttuuriEspoo 2030 -ohjelman toimenpiteiden raportointi 2016 - 2017 (Kv-asia)",
-    "ordering":11,
+    "ordering":9,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-13",
     "articleNumber":"137",
     "title":"Kalajärvenkallio, asemakaavan ja asemakaavan muutoksen sekä maankäyttösopimusten sekä esisopimusten hyväksyminen, alue 720900, 85. Kaupunginosa Kalajärvi (osittain Kv-asia)",
-    "ordering":12,
+    "ordering":10,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-14",
     "articleNumber":"138",
     "title":"Siuntion ja Tuusulan kuntien liittyminen Helsingin seudun liikenne -kuntayhtymän jäseniksi ja tästä johtuvien HSL perussopimuksen muutosten hyväksyminen (Kv-asia)",
-    "ordering":13,
+    "ordering":11,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-15",
     "articleNumber":"139",
     "title":"Valtuustoaloite ilmaisista joukkoliikennematkoista koululuokkien retkille (Kv-asia)",
-    "ordering":14,
+    "ordering":12,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-16",
     "articleNumber":"140",
     "title":"Valtuustokysymys maksuttomista julkisen liikenteen matkoista koulujen retkille (Kv-asia)",
-    "ordering":15,
+    "ordering":13,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-17",
     "articleNumber":"141",
     "title":"Tapiolan Keskustavalvomo Oy:n osakejakaumamuutoksen hyväksyminen",
-    "ordering":16,
+    "ordering":14,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-18",
     "articleNumber":"142",
     "title":"Sopimuksen hyväksyminen Otaniemessä Miestentiellä sijaitsevan korttelin 10035 tontin 2 esirakentamistöistä",
-    "ordering":17,
+    "ordering":15,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-19",
     "articleNumber":"143",
     "title":"Lausunnon antaminen Helsingin hallinto-oikeudelle Finnoon osayleiskaavan hyväksymistä koskevasta valituksesta",
-    "ordering":18,
+    "ordering":16,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-20",
     "articleNumber":"144",
     "title":"Suurpelto I maankäyttösopimuksen korvauksen maksua sekä alueiden luovutusta koskevan esisopimuksen hyväksyminen",
-    "ordering":19,
+    "ordering":17,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-21",
     "articleNumber":"145",
     "title":"Lautakuntien ja jaostojen sekä viranhaltijoiden päätökset",
-    "ordering":20,
+    "ordering":18,
     "eventId":"2017406946"
   },
   {
     "sourceId":"2017406946-22",
     "articleNumber":"146",
     "title":"Päätökset ja kirjelmät sekä kokouksessa kuultavat selostukset",
-    "ordering":21,
+    "ordering":19,
     "eventId":"2017406946"
   }
 ]
