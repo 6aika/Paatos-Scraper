@@ -139,8 +139,10 @@
      */
     extractOrganizationEventActions(organizationId, eventId) {
       return new Promise((resolve, reject) => {
+        const url = util.format("http://%s/kokous/%s.HTM", this.options.host, eventId);
+        
         const options = {
-          "url": util.format("http://%s/kokous/%s.HTM", this.options.host, eventId),
+          "url": url,
           "encoding": this.options.encoding
         };
           
@@ -149,43 +151,45 @@
         this.getParsedHtml(options)
           .then(($) => {
             const table = $('body>p>table:first-of-type table').first();
-            
+            const skipTitles = ['Kokouksen laillisuuden ja päätösvaltaisuuden toteaminen', 'Pöytäkirjan tarkastajien valinta'];
+
             const rows = table.find('tr').filter((index, row) => {
               return !$(row).is('.trHea') && 
                 $(row).find('.tcHeaSepa').length === 0 &&
-                $(row).find('td a').length;
+                $(row).find('td a').length &&
+                skipTitles.indexOf($(row).find('td a').text()) === -1;
             });
 
             rows.each((index, row) => {
               const link = $(row).find('a');
               if (!link.length) {
-                winston.log('warn', util.format('Could not find link from event %s', eventId));
+                winston.log('warn', util.format('Could not find link from event %s (%s)', eventId, url));
                 return;
               }
               
               const title = normalize(link.text());
               if (!title) {
-                winston.log('warn', util.format('Could not read title from event %s', eventId));
+                winston.log('warn', util.format('Could not read title from event %s (%s)', eventId, url));
                 return;
               }
               
               const linkHref = $(link).attr('href');
-              const idMatch = /(.*kokous\/)(.*)(.HTM)/.exec(linkHref);
+              const idMatch = /(.*kokous\/){0,1}(.*)(.HTM)/.exec(linkHref);
               
               if (!idMatch || idMatch.length !== 4) {
-                winston.log('warn', util.format('Unexpected link href %s in event %s', linkHref, eventId));
+                winston.log('warn', util.format('Unexpected link href %s in event %s (%s)', linkHref, eventId, url));
                 return;
               }
               
               const id = idMatch[2];
               if (!id) {
-                winston.log('warn', util.format('Invalid id read from href %s in event %s', linkHref, eventId));
+                winston.log('warn', util.format('Invalid id read from href %s in event %s (%s)', linkHref, eventId, url));
                 return;
               }
               
               const articleNumber = normalize($(row).find('td:first-of-type').text());
               if (!articleNumber) {
-                winston.log('warn', util.format('Could not find articleNumber from event %s', eventId));
+                winston.log('warn', util.format('Could not find articleNumber from event %s (%s)', eventId, url));
                 return;
               }
               
@@ -308,9 +312,11 @@
             $('.Sivuotsikko,.Sisennetty').each((index, contentElement) => {
               const elementText = normalize($(contentElement).text());
               if (elementText) {
-                const isTitle = $(contentElement).is('.Sivuotsikko') ||
-                  $(contentElement).css('text-indent') === '-117.0pt';
-
+                const isTitle = ($(contentElement).is('.Sivuotsikko') ||
+                  $(contentElement).css('text-indent') === '-117.0pt') && 
+                  ($(contentElement).css('text-indent') !== '0cm') && 
+                  (!/^[\s+]{30,}/.exec($(contentElement).text()));
+          
                 if (isTitle) {
                   if (title) {
                     contents.push({
@@ -321,7 +327,7 @@
                   }
 
                   const titleElement = $(contentElement).clone();
-                  title = normalize(titleElement.find('b,strong').remove().text());
+                  title = normalize(titleElement.find('b,strong').first().remove().text());
 
                   content = [];
                   const text = normalize(titleElement.text());
@@ -371,54 +377,66 @@
           
         this.getParsedHtml(options)
           .then(($) => {
-            const attachments = [];
+            const attachmentPromises = [];
     
             $('p table.tcDat > tbody > tr > td:nth-of-type(3) > a').each((index, attachment) => {
               const attachmentUrl = $(attachment).attr('href');
               const name = normalize($(attachment).text()); 
-              const headers = this.getHeaders(attachmentUrl);
-              const contentDisposition = headers['content-disposition'] ? this.parseContentDisposition(headers['content-disposition']) : null;
-              
-              if (!attachmentUrl) {
-                winston.log('warn', util.format('Could not read attachment url from event %s action %s (%s)', eventId, actionId, url));
-                return;
-              }
-              
-              const lastUrlSlash = attachmentUrl.lastIndexOf('/');
-              const filename = lastUrlSlash !== -1 ? attachmentUrl.substring(lastUrlSlash + 1) : null;
-              const lastDotIndex = filename.lastIndexOf('.');
-              const id = lastDotIndex !== -1 ? filename.substring(0, lastDotIndex) : filename;
-                      
-              if (!id) {
-                winston.log('warn', util.format('Could not parse attachment id from event %s action %s (%s)', eventId, actionId, url));
-                return;
-              }
-              
-              if (contentDisposition && contentDisposition.parameters) {
-                filename = contentDisposition.parameters.filename;
-              }
-              
-              if (!filename) {
-                filename = id;
-              }
-            
-              attachments.push({
-                "sourceId": id,
-                "name": name,
-                "filename": filename,
-                "url": attachmentUrl,
-                "actionId": actionId,
-                "number": index,
-                "public": true,
-                "confidentialityReason": null,
-                "contentType": headers['content-type'],
-                "contentLength": headers['content-length']
-              });
+              attachmentPromises.push(this.extractOrganizationEventActionAttachment(index, name, eventId, actionId, url, attachmentUrl));
             });
-    
-            resolve(attachments);
+            
+            Promise.all(attachmentPromises)
+              .then(resolve)
+              .catch(reject);
           })
           .catch(reject);
+      });
+    }
+    
+    extractOrganizationEventActionAttachment (index, name, eventId, actionId, url, attachmentUrl) {
+      return new Promise((resolve, reject) => {
+        this.getHeaders(attachmentUrl, (headersError, headers) => {
+          if (headersError) {
+            winston.log('warn', util.format('Could not read attachment headeres from event %s action %s, attachmentUrl %s (%s)', 
+              eventId, actionId, attachmentUrl, url));
+            reject();
+            return;
+          }
+
+          if (!attachmentUrl) {
+            winston.log('warn', util.format('Could not read attachment url from event %s action %s (%s)', eventId, actionId, url));
+            reject();
+            return;
+          }
+
+          const lastUrlSlash = attachmentUrl.lastIndexOf('/');
+          const filename = lastUrlSlash !== -1 ? attachmentUrl.substring(lastUrlSlash + 1) : null;
+          const lastDotIndex = filename.lastIndexOf('.');
+          const id = lastDotIndex !== -1 ? filename.substring(0, lastDotIndex) : filename;
+
+          if (!id) {
+            winston.log('warn', util.format('Could not parse attachment id from event %s action %s (%s)', eventId, actionId, url));
+            reject();
+            return;
+          }
+
+          if (!filename) {
+            filename = id;
+          }
+          
+          resolve({
+            "sourceId": id,
+            "name": name,
+            "filename": filename,
+            "url": attachmentUrl,
+            "actionId": actionId,
+            "number": index,
+            "public": true,
+            "confidentialityReason": null,
+            "contentType": headers['content-type'],
+            "contentLength": headers['content-length']
+          });  
+        });  
       });
     }
     
