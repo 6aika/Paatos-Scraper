@@ -272,30 +272,27 @@
               }
             });
             
+            let order = 0;
+            
             if (!dno) {
               winston.log('warn', util.format('Unexpected dno from event %s action %s (%s)', eventId, actionId, url));
-              return;
+            } else {
+              contents.push({
+                order: order++,
+                title: 'Dno',
+                content: dno 
+              });
             }
             
             if (!functionId) {
               winston.log('warn', util.format('Unexpected functionId from event %s action %s (%s)', eventId, actionId, url));
-              return;
+            } else {
+              contents.push({
+                order: order++,
+                title: 'functionId',
+                content: functionId.replace(/\./g, ' ') 
+              });
             }
-            
-            functionId = functionId.replace(/\./g, ' ');
-            let order = 0;
-            
-            contents.push({
-              order: order++,
-              title: 'Dno',
-              content: dno 
-            });
-            
-            contents.push({
-              order: order++,
-              title: 'functionId',
-              content: functionId 
-            });
             
             const draftsmenText = this.getExtractDraftsmenText($);
             if (draftsmenText) {
@@ -399,14 +396,12 @@
           if (headersError) {
             winston.log('warn', util.format('Could not read attachment headeres from event %s action %s, attachmentUrl %s (%s)', 
               eventId, actionId, attachmentUrl, url));
-            reject();
-            return;
+            return resolve(null);
           }
 
           if (!attachmentUrl) {
             winston.log('warn', util.format('Could not read attachment url from event %s action %s (%s)', eventId, actionId, url));
-            reject();
-            return;
+            return resolve(null);
           }
 
           const lastUrlSlash = attachmentUrl.lastIndexOf('/');
@@ -416,8 +411,7 @@
 
           if (!id) {
             winston.log('warn', util.format('Could not parse attachment id from event %s action %s (%s)', eventId, actionId, url));
-            reject();
-            return;
+            return resolve(null);
           }
 
           if (!filename) {
