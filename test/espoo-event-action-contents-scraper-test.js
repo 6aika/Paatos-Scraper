@@ -63,6 +63,40 @@
       return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("200747", "2013262303", "2013262303-5")))
         .to.eventually.eql(espooYl130117Contents5);
     });
+    
+    it('Test Dno scraping from 2017409886-26', () => {
+      const EspooHtmlScraper = require(__dirname + '/../scrapers/espoo/espoo-html-scraper');
+
+      nock('http://localhost')
+        .get('/kokous/2017409886-26.HTM')
+        .replyWithFile(200, __dirname + '/data/espoo/2017409886-26.HTM');
+
+      const htmlTestScraper = new EspooHtmlScraper({
+        "host": "localhost"
+      });
+    
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("200747", "2017409886", "2017409886-26")))
+        .to
+        .eventually
+        .deep.property('[0].content', "2751/2015");
+    });
+    
+    it('Test functionId scraping from 2017409886-26', () => {
+      const EspooHtmlScraper = require(__dirname + '/../scrapers/espoo/espoo-html-scraper');
+
+      nock('http://localhost')
+        .get('/kokous/2017409886-26.HTM')
+        .replyWithFile(200, __dirname + '/data/espoo/2017409886-26.HTM');
+
+      const htmlTestScraper = new EspooHtmlScraper({
+        "host": "localhost"
+      });
+    
+      return expect(Promise.resolve(htmlTestScraper.extractOrganizationEventActionContents("200747", "2017409886", "2017409886-26")))
+        .to
+        .eventually
+        .deep.property('[1].content', "10 02 03");
+    });
   });
   
 })();

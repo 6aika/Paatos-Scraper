@@ -247,30 +247,30 @@
               const text = normalize($(p).text());
 
               if (!dno) {
-                const dnoMatch = /^[0-9]{1,}\/[0-9]{4}$/.exec(text);
-                if (dnoMatch && dnoMatch.length === 1) {
-                  dno = dnoMatch[0];
-                  return;
-                }
+                dno = this.extractDno(text);
               }
               
               if (!functionId) {
-                const functionIdMatch = /^[0-9.]{1,}$/.exec(text);
-                if (functionIdMatch && functionIdMatch.length === 1) {
-                  functionId = functionIdMatch[0];
-                  return;
-                }
+                functionId = this.extractFunctionId(text);
               }
               
               if (!dno && !functionId) {
-                const dnoFunctionIdMatch = /^([0-9]{1,})\/([0-9.]{1,})\/([0-9]{4})$/.exec(text);
-                if (dnoFunctionIdMatch && dnoFunctionIdMatch.length === 4) {
-                  dno = util.format('%s/%s', dnoFunctionIdMatch[1], dnoFunctionIdMatch[3]);
-                  functionId = dnoFunctionIdMatch[2];
-                  return;
+                const dnoFunctionIdMatch = this.extractDnoAndFunctionId(text);
+                if (dnoFunctionIdMatch) {
+                  dno = dnoFunctionIdMatch.dno;
+                  functionId = dnoFunctionIdMatch.functionId;
                 }
               }
             });
+            
+            if (!dno && !functionId) {
+              const text = $('.WordSection1 p.MsoNormal').first().text().replace(/\s/g, '');
+              const dnoFunctionIdMatch = this.extractDnoAndFunctionId(text);
+              if (dnoFunctionIdMatch) {
+                dno = dnoFunctionIdMatch.dno;
+                functionId = dnoFunctionIdMatch.functionId;
+              }
+            }
             
             let order = 0;
             
@@ -355,6 +355,36 @@
           })
           .catch(reject);
       });
+    }
+    
+    extractDno (text) {
+      const dnoMatch = /^[0-9]{1,}\/[0-9]{4}$/.exec(text);
+      if (dnoMatch && dnoMatch.length === 1) {
+        return dnoMatch[0];
+      } 
+      
+      return null;
+    }
+    
+    extractFunctionId(text) {
+      const functionIdMatch = /^[0-9.]{1,}$/.exec(text);
+      if (functionIdMatch && functionIdMatch.length === 1) {
+        return functionIdMatch[0];
+      }
+      
+      return null;
+    }
+    
+    extractDnoAndFunctionId(text) {
+      const dnoFunctionIdMatch = /^([0-9]{1,})\/([0-9.]{1,})\/([0-9]{4})$/.exec(text);
+      if (dnoFunctionIdMatch && dnoFunctionIdMatch.length === 4) {
+        return {
+          dno: util.format('%s/%s', dnoFunctionIdMatch[1], dnoFunctionIdMatch[3]),
+          functionId: dnoFunctionIdMatch[2]
+        };
+      }
+      
+      return null;
     }
     
     /**
