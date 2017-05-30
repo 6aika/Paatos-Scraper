@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/6aika/Paatos-Scraper/badge.svg?branch=master)](https://coveralls.io/github/6aika/Paatos-Scraper?branch=master)
+[![Build Status](https://travis-ci.org/6aika/Paatos-Scraper.svg?branch=master)](https://travis-ci.org/6aika/Paatos-Scraper)
 # Paatos-Scraper
 Scraper to scrape decision data from web pages and PDF documents in Finland
 
