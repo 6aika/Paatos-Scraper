@@ -6,7 +6,8 @@
   
   const util = require('util');
   const _ = require('lodash');
-  const AdmZip = require('adm-zip');
+  const fs = require('fs');
+  const archiver = require('archiver');
   
   /**
    * Result builder
@@ -74,39 +75,53 @@
     }
     
     buildZip(outputFile) {
-      var zip = new AdmZip();
+      const output = fs.createWriteStream(outputFile);
+      const archive = archiver('zip', {
+          zlib: { level: 9 }
+      });
+      
+      output.on('close', () => {
+        console.log(archive.pointer() + ' total bytes');
+        console.log('archiver has been finalized and the output file descriptor has closed.');
+      });
+
+      archive.on('error', (err) => {
+        console.error("Error creating zip file", err);
+      });
+      
+      archive.pipe(output);
       
       _.forEach(this.organizationDatas, (organizationData, organizationId) => {
         let organization = organizationData.organization;
         let eventDatas = organizationData.eventDatas;
         let caseDatas = organizationData.caseDatas;
         let cases = [];
-        zip.addFile(util.format("/organizations/%s/index.json", organizationId), new Buffer(JSON.stringify(organization)), organization.name);
+        archive.append(JSON.stringify(organization), { name: util.format("/organizations/%s/index.json", organizationId) } );
         
         _.forEach(caseDatas, (caseData, caseId) => {
           cases.push(caseData.case);
         });
-        zip.addFile(util.format("/organizations/%s/cases.json", organizationId), new Buffer(JSON.stringify(cases)), organization.name);
+        archive.append(JSON.stringify(cases), { name: util.format("/organizations/%s/cases.json", organizationId) } );
         
         _.forEach(eventDatas, (eventData, eventId) => {
           let event = eventData.event;
           let actionDatas = eventData.actionDatas;
-          zip.addFile(util.format("/organizations/%s/events/%s/index.json", organizationId, eventId), new Buffer(JSON.stringify(event)), event.name);
+          archive.append(JSON.stringify(event), { name: util.format("/organizations/%s/events/%s/index.json", organizationId, eventId) } );
       
           _.forEach(actionDatas, (actionData, actionId) => {
             let eventAction = actionData.action;
             let contents = actionData.contents;
             let attachments = actionData.attachments;
             
-            zip.addFile(util.format("/organizations/%s/events/%s/actions/%s/index.json", organizationId, eventId, actionId), new Buffer(JSON.stringify(eventAction)), eventAction.title);
-            zip.addFile(util.format("/organizations/%s/events/%s/actions/%s/contents.json", organizationId, eventId, actionId), new Buffer(JSON.stringify(contents)), util.format('%s - actions', eventAction.title));
-            zip.addFile(util.format("/organizations/%s/events/%s/actions/%s/attachments.json", organizationId, eventId, actionId), new Buffer(JSON.stringify(attachments)), util.format('%s - attachments', eventAction.title));
+            archive.append(JSON.stringify(eventAction), { name: util.format("/organizations/%s/events/%s/actions/%s/index.json", organizationId, eventId, actionId) } );
+            archive.append(JSON.stringify(contents), { name: util.format("/organizations/%s/events/%s/actions/%s/contents.json", organizationId, eventId, actionId) } );
+            archive.append(JSON.stringify(attachments), { name: util.format("/organizations/%s/events/%s/actions/%s/attachments.json", organizationId, eventId, actionId) } );
           });
           
         });
       });
       
-       zip.writeZip(outputFile);
+      archive.finalize();
     }
     
   }
