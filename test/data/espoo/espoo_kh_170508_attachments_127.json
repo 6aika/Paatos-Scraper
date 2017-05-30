@@ -1,0 +1,25 @@
+[
+  {
+    "sourceId": "2017406946-3-1",
+    "name": "Espoon kaupungin hallintosääntö - Kokouksessa korjattu",
+    "filename": "2017406946-3-1.PDF",
+    "url": "http://espoo04.hosting.documenta.fi/kokous/2017406946-3-1.PDF",
+    "actionId": "2017406946-3",
+    "number": 0,
+    "public": true,
+    "confidentialityReason": null,
+    "contentType": "application/pdf",
+    "contentLength": "375600"
+  }, {
+    "sourceId": "2017406946-3-2",
+    "name": "Äänestyslistat § 127",
+    "filename": "2017406946-3-2.PDF",
+    "url": "http://espoo04.hosting.documenta.fi/kokous/2017406946-3-2.PDF",
+    "actionId": "2017406946-3",
+    "number": 1,
+    "public": true,
+    "confidentialityReason": null,
+    "contentType": "application/pdf",
+    "contentLength": "12088"
+  } 
+]

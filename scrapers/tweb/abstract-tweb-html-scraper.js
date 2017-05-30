@@ -149,7 +149,7 @@
               let id = idMatch[2];
               var url = util.format("http://%s%s", this.options.host, linkHref);
               let name = normalize(link.text());
-              let headers = this.getHeaders(url);
+              let headers = this.getHeadersSync(url);
               let contentDisposition = headers['content-disposition'] ? this.parseContentDisposition(headers['content-disposition']) : null;
               let filename = null;
               
@@ -192,37 +192,6 @@
      */
     getEventName(name, startDate, endDate) {
       return name;  
-    }
-    
-    /**
-     * Guesses the classification from the organization's name
-     * 
-     * @param {String} name name of the organization
-     * @returns {String} classification
-     */
-    guessClassification(name) {
-      var lowerCaseName = name.toLowerCase();
-      var classifications = [
-        "johtokunta", 
-        "lautakunta", 
-        "toimikunta", 
-        "jaosto",
-        "hallitus", 
-        "valtuusto", 
-        "toimikunta",
-        "toimielin",
-        "neuvosto"
-      ];
-      
-      for (var i = 0; i < classifications.length; i++) {
-        if (lowerCaseName.includes(classifications[i])) {
-          return classifications[i];
-        }
-      }
-      
-      winston.log('warn', util.format('Could not guess classification for %s', name));
-       
-      return null;
     }
     
   }

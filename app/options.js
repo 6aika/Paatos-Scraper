@@ -101,7 +101,7 @@
         optionList: [{
           name: 'source',
           typeLabel: '[underline]{source}',
-          description: util.format('The source where to retrieve the date. Supported sources are: %s', sources.join(','))
+          description: util.format('The source where to retrieve the date. Supported sources are: %s', sources.join(', '))
         }, {
           name: 'print-organizations',
           description: 'Print organizations and exit without extracting data'

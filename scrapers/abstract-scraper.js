@@ -4,6 +4,9 @@
 (function() {
   'use strict';
   
+  const winston = require('winston');
+  const util = require('util');
+
   process.on('unhandledRejection', function(error, promise) {
     console.error("UNHANDLED REJECTION", error.stack);
   });
@@ -49,6 +52,37 @@
         title: title,
         content: content 
       });
+    }
+    
+    /**
+     * Guesses the classification from the organization's name
+     * 
+     * @param {String} name name of the organization
+     * @returns {String} classification
+     */
+    guessClassification(name) {
+      const lowerCaseName = name.toLowerCase();
+      const classifications = [
+        "johtokunta", 
+        "lautakunta", 
+        "toimikunta", 
+        "jaosto",
+        "hallitus", 
+        "valtuusto", 
+        "toimikunta",
+        "toimielin",
+        "neuvosto"
+      ];
+      
+      for (let i = 0; i < classifications.length; i++) {
+        if (lowerCaseName.includes(classifications[i])) {
+          return classifications[i];
+        }
+      }
+      
+      winston.log('warn', util.format('Could not guess classification for %s', name));
+       
+      return null;
     }
   }
   
