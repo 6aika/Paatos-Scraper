@@ -4,17 +4,20 @@
 (function() {
   'use strict';
   
-  const syncRequest = require('sync-request');
+  const winston = require('winston');
+  const util = require('util');
   const contentDisposition = require('content-disposition');
   const request = require('request');
+  const syncRequest = require('sync-request');
   
   process.on('unhandledRejection', function(error, promise) {
     console.error("UNHANDLED REJECTION", error.stack);
   });
   
+  
   let queuedRequests = [];
   let queueRunning = false;
-
+  
   /**
    * Abstract base class for scrapers
    */
@@ -58,6 +61,37 @@
       });
     }
     
+    /**
+     * Guesses the classification from the organization's name
+     * 
+     * @param {String} name name of the organization
+     * @returns {String} classification
+     */
+    guessClassification(name) {
+      const lowerCaseName = name.toLowerCase();
+      const classifications = [
+        "johtokunta", 
+        "lautakunta", 
+        "toimikunta", 
+        "jaosto",
+        "hallitus", 
+        "valtuusto", 
+        "toimikunta",
+        "toimielin",
+        "neuvosto"
+      ];
+      
+      for (let i = 0; i < classifications.length; i++) {
+        if (lowerCaseName.includes(classifications[i])) {
+          return classifications[i];
+        }
+      }
+      
+      winston.log('warn', util.format('Could not guess classification for %s', name));
+       
+      return null;
+    }
+    
     nextRequest() {
       if (queuedRequests.length) {   
         queueRunning = true;
@@ -80,13 +114,28 @@
      * @param {String} url url
      * @returns {Object} headesr
      */
-    getHeaders(url) {
-      var response = syncRequest('HEAD', url);
+    getHeadersSync(url) {
+      const response = syncRequest('HEAD', url);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response.headers;    
       } else {
         return null;
       }
+    }
+    
+    getHeaders(url, callback) {
+      const options = {
+        method: 'HEAD',
+        url: url
+      };
+      
+      request(options, (error, response, body) => {
+        if (error) {
+          callback(error); 
+        } else {
+          callback(null, response.headers); 
+        }
+      });
     }
     
     /**
@@ -123,6 +172,7 @@
         }
       });
     }
+    
   }
   
   module.exports = AbstractScraper;

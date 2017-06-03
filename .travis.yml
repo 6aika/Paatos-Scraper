@@ -1,0 +1,6 @@
+language: node_js
+before_script:
+  - export TZ=Europe/Helsinki
+node_js:
+  - "6"
+script: npm run test-coverage

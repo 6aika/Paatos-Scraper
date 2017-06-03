@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/6aika/Paatos-Scraper/badge.svg?branch=master)](https://coveralls.io/github/6aika/Paatos-Scraper?branch=master)
+[![Build Status](https://travis-ci.org/6aika/Paatos-Scraper.svg?branch=master)](https://travis-ci.org/6aika/Paatos-Scraper)
 # Paatos-Scraper
 Scraper to scrape decision data from web pages and PDF documents in Finland
 
@@ -11,17 +13,20 @@ Scraper to scrape decision data from web pages and PDF documents in Finland
 
     Options
 
-      --source source                The source where to retrieve the date. Supported sources are: oulu,vantaa     
-      --print-organizations          Print organizations and exit without extracting data                          
-      --output-zip output zip file   The target zip-file where retrieved data will be stored                       
-      --organization-id              Organization id in source system format                                       
-      --max-events                   Limit number of events                                                        
-      --pdf-download-interval        Interval between downloading PDF-files in milliseconds. Defaults to 100ms     
-      --html-download-interval       Interval between downloading HTML-pages in milliseconds. Defaults to 10ms     
-      --events-after                 Extract only events after specified date. Date should be formatted in         
-                                     following format: YYYY-MM-DD                                                  
-      --error-log                    Path to error log file. By default errors are written into console.           
-      --help                         Print this usage guide.
+      --source source                The source where to retrieve the date. Supported sources are: oulu,   
+                                     vantaa, espoo                                                         
+      --print-organizations          Print organizations and exit without extracting data                  
+      --output-zip output zip file   The target zip-file where retrieved data will be stored               
+      --organization-id              Organization id in source system format                               
+      --max-events                   Limit number of events                                                
+      --pdf-download-interval        Interval between downloading PDF-files in milliseconds. Defaults to   
+                                     100ms                                                                 
+      --html-download-interval       Interval between downloading HTML-pages in milliseconds. Defaults to  
+                                     10ms                                                                  
+      --events-after                 Extract only events after specified date. Date should be formatted in 
+                                     following format: YYYY-MM-DD                                          
+      --error-log                    Path to error log file. By default errors are written into console.   
+      --help                         Print this usage guide. 
 
 ### Installing dependencies
 
