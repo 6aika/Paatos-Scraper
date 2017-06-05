@@ -94,11 +94,19 @@
                       "title": content.Subject,
                       "sourceId": content.ContentId,  
                       "articleNumber": articleNumber,
-                      "ordering": index,
+                      "ordering": null,
                       "eventId": eventId
                     });
                   }
                 });
+                
+                actions.sort(function (action1, action2) {
+                  return parseInt(action1.articleNumber) - parseInt(action2.articleNumber);
+                });
+                
+                for (let i = 0; i < actions.length; i++) {
+                  actions[i].ordering = i;
+                }
         
                 resolve(actions);
               });
@@ -514,34 +522,6 @@
             "value": value
           };
       }
-    }
-    
-    findOrganizationEventTocContent(eventId) {
-      return new Promise((resolve, reject) => {
-        const options = {
-          service: util.format('http://%s/api/opennc/v1/', this.options.host), 
-          resources: 'Contents()', 
-          format: 'json' 
-        };
-        
-        const filter = util.format('Classifications/any(f:f/NodeId eq %d) and Classifications/any(f:f/Type eq 43)', eventId);
-        
-        odata(options).filter(filter).get()
-          .then((response) => {
-            if (response.statusCode === 200) {
-              const body = JSON.parse(response.body);
-              if (body.value.length === 1) {
-                resolve(body.value[0]);
-              } else {
-                winston.log('warn', util.format('Unexpected toc content count %d in event %s', body.value.length, eventId));
-                resolve(null);
-              }
-            } else {
-              reject(response.statusMessage);
-            }
-          })
-          .catch(reject);
-      });
     }
     
     parseParticipantCouncilmen(value) {
