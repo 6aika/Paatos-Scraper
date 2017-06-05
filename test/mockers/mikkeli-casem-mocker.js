@@ -11,7 +11,7 @@
     
     constructor() {
       super({
-        baseUrl: 'http://localhost/api/opennc/v1',
+        baseUrl: 'http://localhost',
         baseDir: __dirname + '/../data/mikkeli/casem/'
       });
     }
@@ -31,6 +31,19 @@
       this.mockResponse('Contents(4022)/ExtendedProperties', 'contents_4022_extended_properties.json');
       
       this.mockFilteredResponse('Contents()', 'Classifications%2Fany(f%3Af%2FNodeId%20eq%2012381)', 'node_12381_contents.json');
+      
+      this.mockHeadRequest('/download/noname/%7B6f7c7c68-d5cb-4b39-aabc-d2fafb56815c%7D/57440', {
+        'Cache-Control': 'public, no-cache="Set-Cookie"',
+        'Content-Length': '304118',
+        'Content-Type': 'application/pdf',
+        'Last-Modified': 'Fri, 02 Jun 2017 08:03:11 GMT',
+        'Server': 'Microsoft-IIS/8.5',
+        'Set-Cookie': 'ASP.NET_SessionId=xxx; path=/; HttpOnly',
+        'Content-Disposition': 'image;filename="Liite kh Esitys Etelä-Savon maakuntavaltuuston ja -hallituksen kokoonpanoksi.pdf"',
+        'X-AspNet-Version': '4.0.30319',
+        'X-Powered-By': 'ASP.NET',
+        'Date': 'Mon, 05 Jun 2017 18:03:09 GMT'
+      })
     }
     
   }
