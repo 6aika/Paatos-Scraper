@@ -10,7 +10,8 @@
     "test-coverage": "nyc --reporter=lcov -- mocha && cat ./coverage/lcov.info | coveralls",
     "test-turku": "nyc --reporter=lcov -- mocha --grep 'Turku'",
     "test-espoo": "nyc --reporter=lcov -- mocha --grep 'Espoo'",
-    "test-tampere": "nyc --reporter=lcov -- mocha --grep 'Tampere'"
+    "test-tampere": "nyc --reporter=lcov -- mocha --grep 'Tampere'",
+    "test-mikkeli": "nyc --reporter=lcov -- mocha --grep 'Mikkeli'"
   },
   "repository": {
     "type": "git",
