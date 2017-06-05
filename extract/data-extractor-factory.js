@@ -6,7 +6,9 @@
 
   const OuluDataExtractor = require(__dirname + '/oulu-data-extractor'); 
   const VantaaDataExtractor = require(__dirname + '/vantaa-data-extractor'); 
-  const EspooDataExtractor = require(__dirname + '/espoo-data-extractor'); 
+  const EspooDataExtractor = require(__dirname + '/espoo-data-extractor');  
+  const TampereDataExtractor = require(__dirname + '/tampere-data-extractor'); 
+  const MikkeliDataExtractor = require(__dirname + '/mikkeli-data-extractor'); 
 
   /**
    * Factory class creating data extractors
@@ -18,20 +20,21 @@
     }
     
     static getSources() {
-      return ['oulu', 'vantaa','espoo'];
+      return ['oulu', 'vantaa','espoo','tampere','mikkeli'];
     }
     
     static createDataExtractor(source, options) {
       switch (source) {
         case 'oulu':
           return new OuluDataExtractor(options);
-        break;
         case 'vantaa':
           return new VantaaDataExtractor(options);
-        break;
         case 'espoo':
           return new EspooDataExtractor(options);
-        break;
+        case 'tampere':
+          return new TampereDataExtractor(options);
+        case 'mikkeli':
+          return new MikkeliDataExtractor(options);
       }
     }
     
