@@ -1,0 +1,154 @@
+[
+  {
+    "sourceId": "11217",
+    "name": "Kaupunginhallitus",
+    "classification": "hallitus",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11220",
+    "name": "Kaupunginvaltuusto",
+    "classification": "valtuusto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11223",
+    "name": "Mikkelin seudun ympäristölautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11227",
+    "name": "Etelä-Savon pelastuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11232",
+    "name": "Vesiliikelaitoksen johtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11238",
+    "name": "Teknisen lautakunnan jaosto",
+    "classification": "jaosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11245",
+    "name": "Mikkelin kaupungin sosiaali- ja terveystoimen tuotantolautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11251",
+    "name": "Ristiinan aluejohtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11254",
+    "name": "Suomenniemen aluejohtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11259",
+    "name": "Anttolan aluejohtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11262",
+    "name": "Maaseutu- ja tielautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11270",
+    "name": "Rakennuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11273",
+    "name": "Tekninen lautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11277",
+    "name": "Kasvatus- ja opetuslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11280",
+    "name": "Kulttuuri-, nuoriso- ja liikuntalautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11284",
+    "name": "Mikkelin seudun sosiaali- ja terveyslautakunta",
+    "classification": "lautakunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "11297",
+    "name": "Haukivuoren aluejohtokunta",
+    "classification": "johtokunta",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "12342",
+    "name": "Vammaisneuvosto",
+    "classification": "neuvosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  },
+  {
+    "sourceId": "12363",
+    "name": "Vanhusneuvosto",
+    "classification": "neuvosto",
+    "dissolution_date": null,
+    "founding_date": null,
+    "parent": null
+  }
+]
