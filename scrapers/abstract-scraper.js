@@ -123,18 +123,15 @@
       }
     }
     
-    getHeaders(url, callback) {
-      const options = {
-        method: 'HEAD',
-        url: url
-      };
-      
-      request(options, (error, response, body) => {
-        if (error) {
-          callback(error); 
-        } else {
-          callback(null, response.headers); 
-        }
+    getHeaders(options) {
+      return new Promise((resolve, reject) => {
+        request(Object.assign(options, { method: 'HEAD' }), (error, response, body) => {
+          if (error) {
+            reject(error); 
+          } else {
+            resolve(response.headers); 
+          }
+        });
       });
     }
     
@@ -171,6 +168,11 @@
           this.nextRequest();
         }
       });
+    }
+    
+    decodeString(string, fromEncoding) {
+      const buffer = new Buffer(string, fromEncoding);
+      return buffer.toString();
     }
     
   }

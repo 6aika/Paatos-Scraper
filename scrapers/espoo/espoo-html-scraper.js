@@ -422,45 +422,45 @@
     
     extractOrganizationEventActionAttachment (index, name, eventId, actionId, url, attachmentUrl) {
       return new Promise((resolve, reject) => {
-        this.getHeaders(attachmentUrl, (headersError, headers) => {
-          if (headersError) {
+        this.getHeaders({ url: attachmentUrl })
+          .then((headers) => {
+            if (!attachmentUrl) {
+              winston.log('warn', util.format('Could not read attachment url from event %s action %s (%s)', eventId, actionId, url));
+              return resolve(null);
+            }
+
+            const lastUrlSlash = attachmentUrl.lastIndexOf('/');
+            const filename = lastUrlSlash !== -1 ? attachmentUrl.substring(lastUrlSlash + 1) : null;
+            const lastDotIndex = filename.lastIndexOf('.');
+            const id = lastDotIndex !== -1 ? filename.substring(0, lastDotIndex) : filename;
+
+            if (!id) {
+              winston.log('warn', util.format('Could not parse attachment id from event %s action %s (%s)', eventId, actionId, url));
+              return resolve(null);
+            }
+
+            if (!filename) {
+              filename = id;
+            }
+
+            resolve({
+              "sourceId": id,
+              "name": name,
+              "filename": filename,
+              "url": attachmentUrl,
+              "actionId": actionId,
+              "number": index,
+              "public": true,
+              "confidentialityReason": null,
+              "contentType": headers['content-type'],
+              "contentLength": headers['content-length']
+            }); 
+          })
+          .catch((headersError) => {
             winston.log('warn', util.format('Could not read attachment headeres from event %s action %s, attachmentUrl %s (%s)', 
               eventId, actionId, attachmentUrl, url));
             return resolve(null);
-          }
-
-          if (!attachmentUrl) {
-            winston.log('warn', util.format('Could not read attachment url from event %s action %s (%s)', eventId, actionId, url));
-            return resolve(null);
-          }
-
-          const lastUrlSlash = attachmentUrl.lastIndexOf('/');
-          const filename = lastUrlSlash !== -1 ? attachmentUrl.substring(lastUrlSlash + 1) : null;
-          const lastDotIndex = filename.lastIndexOf('.');
-          const id = lastDotIndex !== -1 ? filename.substring(0, lastDotIndex) : filename;
-
-          if (!id) {
-            winston.log('warn', util.format('Could not parse attachment id from event %s action %s (%s)', eventId, actionId, url));
-            return resolve(null);
-          }
-
-          if (!filename) {
-            filename = id;
-          }
-          
-          resolve({
-            "sourceId": id,
-            "name": name,
-            "filename": filename,
-            "url": attachmentUrl,
-            "actionId": actionId,
-            "number": index,
-            "public": true,
-            "confidentialityReason": null,
-            "contentType": headers['content-type'],
-            "contentLength": headers['content-length']
-          });  
-        });  
+          });
       });
     }
     
