@@ -315,15 +315,26 @@
                     return;
                   }
               
-                  events.push({
-                    "sourceId": id,
-                    "name": name,
-                    "startDate": eventStart.format(),
-                    "endDate": eventStart.format()
-                  });
+                  if (!eventsAfter || eventsAfter.isBefore(eventStart)) {
+                    events.push({
+                      "sourceId": id,
+                      "name": name,
+                      "startDate": eventStart.format(),
+                      "endDate": eventStart.format()
+                    });
+                  }
                 });
                 
-                resolve(events);
+                events.sort(function (event1, event2) {
+                  return moment(event2.startDate).diff(moment(event1.startDate));
+                });
+                
+                if (maxEvents) {
+                  resolve(events.splice(0, maxEvents));
+                } else {
+                  resolve(events);
+                }
+
               })
               .catch(reject);
           })
@@ -357,7 +368,7 @@
       });
     }
     
-    listOrganizationEventNodes(rootNodeId, organizationId, eventsRootNode, maxEvents) {
+    listOrganizationEventNodes(rootNodeId, organizationId, eventsRootNode) {
       const options = {
         service: util.format('http://%s/api/opennc/v1/', this.options.host), 
         resources: util.format('Nodes(%d)/SubNodes(%d)/SubNodes(%d)/SubNodes()', rootNodeId, organizationId, eventsRootNode), 
@@ -366,15 +377,11 @@
       
       return new Promise((resolve, reject) => {
         let query = odata(options);
-        if (maxEvents) {
-          query = query.orderby('Date', 'desc').top(maxEvents);
-        }
-      
+        
         query.get()
           .then((response) => {
             if (response.statusCode === 200) {
-              const body = JSON.parse(response.body);
-              resolve(body.value);
+              resolve(JSON.parse(response.body).value);
             } else {
               reject(response.statusMessage);
             }
