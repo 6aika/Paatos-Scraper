@@ -474,6 +474,11 @@
             "title": "Dno",
             "value": value
           };
+        case "Correctioninstructions":
+          return {
+            "title": "Muutoksenhaku",
+            "value": value
+          };
         case "Disqualification": 
           return {
             "title": "Esteellisyys",

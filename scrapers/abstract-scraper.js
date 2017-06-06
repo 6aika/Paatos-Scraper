@@ -142,8 +142,8 @@
      * @returns {ContentDisposition} parsed content disposition object
      */
     parseContentDisposition(header) {
-      return contentDisposition.parse(header);
-    }
+        return contentDisposition.parse(header);
+      }
     
     /**
      * Returns Promise for request data
