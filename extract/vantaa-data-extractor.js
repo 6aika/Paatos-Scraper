@@ -96,7 +96,7 @@
                       let date = moment(resultBuilder.getOrganizationEvent(eventOrganizationId, eventId).startDate);
                       let articleNumber = actions[actionIndex]['articleNumber'];
                       
-                      contentPromises.push(this.extractActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId, date, articleNumber));
+                      contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId, date, articleNumber));
                       attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                     }
                   }
@@ -184,8 +184,8 @@
       return this._htmlScraper.extractOrganizationEventActions(eventId);
     }
     
-    extractActionContents(organizationId, eventId, actionId, date, articleNumber) {
-      return this._pdfScraper.extractActionContents(organizationId, eventId, actionId, date, articleNumber);
+    extractOrganizationEventActionContents(organizationId, eventId, actionId, date, articleNumber) {
+      return this._pdfScraper.extractOrganizationEventActionContents(organizationId, eventId, actionId, date, articleNumber);
     }
     
     extractAttachments(organizationId, eventId, actionId) {

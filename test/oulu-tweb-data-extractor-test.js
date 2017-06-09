@@ -60,7 +60,7 @@
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=35090068')
         .replyWithFile(200, __dirname + '/data/oulu/35090068.pdf');
       
-      return expect(Promise.resolve(ouluDataExtractor.extractActionContents("690", "12867", "35090068")))
+      return expect(Promise.resolve(ouluDataExtractor.extractOrganizationEventActionContents("690", "12867", "35090068")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_toimenpiteet_73);
     });
     
@@ -69,7 +69,7 @@
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=632581845351090')
         .replyWithFile(200, __dirname + '/data/oulu/632581845351090.pdf');
       
-      return expect(Promise.resolve(ouluDataExtractor.extractActionContents("690", "12867", "632581845351090")))
+      return expect(Promise.resolve(ouluDataExtractor.extractOrganizationEventActionContents("690", "12867", "632581845351090")))
         .to.eventually.eql(ouluKaupunginhallitus5_2017_toimenpiteet_72);
     });
     

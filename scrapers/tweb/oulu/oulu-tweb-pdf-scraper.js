@@ -55,14 +55,14 @@
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
-     * @param {String} caseId caseId
+     * @param {String} actionId actionId
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractActionContents(organizationId, eventId, caseId) {
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
       
-        this.scrapePdf(organizationId, eventId, caseId)
+        this.scrapePdf(organizationId, eventId, actionId)
           .then((scrapedData) => {
             const pdfTexts = scrapedData.pdfTexts;
             const ignoreZones = scrapedData.ignoreZones;
@@ -133,11 +133,11 @@
               
               if (blockValue || blockCaption) {
                 if (!blockCaption) {
-                  winston.log('warn', util.format('Missing content title (with content %s) on Oulu TWeb PDF (%s)', blockValue, this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Missing content title (with content %s) on Oulu TWeb PDF (%s)', blockValue, this.getPdfUrl(organizationId, eventId, actionId)));
                 }
                 
                 if (!blockValue) {
-                  winston.log('warn', util.format('Missing content content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Missing content content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, actionId)));
                 }
                 
                 result.push({
@@ -150,14 +150,14 @@
             }
 
             if (unscrapableContents) {    
-              winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
+              winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, actionId)));
             }
             
             let dnoValue = this.getActionContentValue(result, 'Dno');
             if (dnoValue) {
               let functionId = this.parseFunctionId(dnoValue);
               if (!functionId) {
-                winston.log('warn', util.format('Invalid Dno %s in Oulu TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
+                winston.log('warn', util.format('Invalid Dno %s in Oulu TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, actionId)));                      
               } else {
                 this.setActionContentValue(result, 'functionId', functionId);
               }
@@ -232,12 +232,12 @@
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
-     * @param {String} caseId caseId    
+     * @param {String} actionId actionId    
      * @returns {Array} An array of pdf text fragments
      */
-    scrapePdf(organizationId, eventId, caseId) {
+    scrapePdf(organizationId, eventId, actionId) {
       return new Promise((resolve, reject) => {
-        this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
+        this.getPdfData(this.getPdfUrl(organizationId, eventId, actionId))
           .then((pdfData) => {
             resolve({
               pdfTexts: this.extractTexts(pdfData),

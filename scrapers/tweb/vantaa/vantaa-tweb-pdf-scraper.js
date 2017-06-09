@@ -27,19 +27,19 @@
     }
     
     /**
-     * Returns a promise for scraped data out of the PDF-file.
+     * Returns a promise for organization event action contents.
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
-     * @param {String} caseId caseId
+     * @param {String} actionId actionId
      * @param {Moment} date of event
      * @param {String} articleNumber articleNumber of event
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
      */
-    extractActionContents(organizationId, eventId, caseId, date, articleNumber) {
+    extractOrganizationEventActionContents(organizationId, eventId, actionId, date, articleNumber) {
       return new Promise((resolve, reject) => {
-        this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
+        this.getPdfData(this.getPdfUrl(organizationId, eventId, actionId))
           .then((pdfData) => {
             const contentTexts = this.extractContentTexts(pdfData);
             let y = this.options.contentTop;
@@ -53,14 +53,14 @@
             if (contentsIndex > 0) { 
               if (hasSummary) {
                 if ((index = this.appendSummary(index, contentTexts, result)) === -1) {
-                  winston.log('warn', util.format('Could not extract summary from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract summary from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
                   index = 0; 
                 }
               }
 
               if (dnoIndex !== null) {
                 if ((index = this.appendDno(dnoIndex, contentTexts, result)) === -1) {
-                  winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
                   index = 0;
                 } else {
                   let dnoValue = this.getActionContentValue(result, 'Dno');
@@ -72,31 +72,31 @@
                     
                     let functionId = this.parseFunctionId(dnoValue);
                     if (!functionId) {
-                      winston.log('warn', util.format('Invalid Dno %s in Vantaa TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
+                      winston.log('warn', util.format('Invalid Dno %s in Vantaa TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, actionId)));                      
                     } else {
                       this.setActionContentValue(result, 'functionId', functionId);
                     }
                   }
                 }
               } else {
-                winston.log('warn', util.format('Could not find Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                winston.log('warn', util.format('Could not find Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
               }
 
               if (draftsmenIndex !== null) {
                 if ((index = this.appendDraftsmen(draftsmenIndex, contentTexts, result)) === -1) {
-                  winston.log('warn', util.format('Could not extract draftsmen from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract draftsmen from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
                   index = 0;
                 }
               }
 
               if (index < contentsIndex) {
                 if ((index = this.appendIntroduction(index, contentTexts, result, date, articleNumber)) === -1) {
-                  winston.log('warn', util.format('Could not extract introduction from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract introduction from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
                   index = 0;
                 }
               }
             } else {
-              winston.log('warn', util.format('Could not extract any header data from TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+              winston.log('warn', util.format('Could not extract any header data from TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
             }
             
             index = contentsIndex + 1;
@@ -104,7 +104,7 @@
             while (index < contentTexts.length) {
               let extractedTitle = this.extractContentTitle(index, contentTexts);
               if (!extractedTitle) {
-                winston.log('warn', util.format('Could not extract title from from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                winston.log('warn', util.format('Could not extract title from from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, actionId)));
                 return resolve(result);
               }
               
@@ -114,7 +114,7 @@
               if (title.endsWith(':')) {
                 title = title.substring(0, title.length - 1);
               } else {
-                winston.log('warn', util.format('Unrecognized content caption %s in Vantaa TWeb PDF %s', title, this.getPdfUrl(organizationId, eventId, caseId)));
+                winston.log('warn', util.format('Unrecognized content caption %s in Vantaa TWeb PDF %s', title, this.getPdfUrl(organizationId, eventId, actionId)));
               }
                
               if ((index = this.appendContentText(title, index, contentTexts, result)) === -1) {
