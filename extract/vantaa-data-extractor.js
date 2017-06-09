@@ -92,11 +92,7 @@
                       actionIds.push(actions[actionIndex].sourceId);
                       actionOrganizationIds.push(eventOrganizationId);
                       actionEventIds.push(eventId);
-                      
-                      let date = moment(resultBuilder.getOrganizationEvent(eventOrganizationId, eventId).startDate);
-                      let articleNumber = actions[actionIndex]['articleNumber'];
-                      
-                      contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId, date, articleNumber));
+                      contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                       attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                     }
                   }
@@ -184,8 +180,8 @@
       return this._htmlScraper.extractOrganizationEventActions(eventId);
     }
     
-    extractOrganizationEventActionContents(organizationId, eventId, actionId, date, articleNumber) {
-      return this._pdfScraper.extractOrganizationEventActionContents(organizationId, eventId, actionId, date, articleNumber);
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
+      return this._pdfScraper.extractOrganizationEventActionContents(organizationId, eventId, actionId);
     }
     
     extractAttachments(organizationId, eventId, actionId) {
