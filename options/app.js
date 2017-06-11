@@ -9,14 +9,15 @@
   const commandLineArgs = require('command-line-args');
   const getUsage = require('command-line-usage');
   const DataExtractorFactory = require(__dirname + '/../extract/data-extractor-factory');
+  const AbstractOptions = require(__dirname + '/abstract-options');
   
   /**
    * Command line options
    */
-  class Options {
+  class Options extends AbstractOptions {
     
     constructor() {
-      this.definitions = [
+      super([
         { name: 'source', alias: 's', type: String },
         { name: "print-organizations", type: Boolean },
         { name: 'output-zip', alias: 'z', type: String },
@@ -27,37 +28,21 @@
         { name: 'events-after', type: String },
         { name: "error-log", type: String },
         { name: 'help', alias: 'h', type: Boolean }
-      ];
-      
-      try {
-        this.options = commandLineArgs(this.definitions);
-      } catch (e) {
-        this.parseException = e;
+      ]);
+    }
+    
+    getRequired() {
+      if (this.options['print-organizations']) {
+        return ['source'];
+      } else {
+        return ['source', 'output-zip', 'organization-id'];  
       }
     }
     
     getError() {
-      if (this.parseException) {
-        return this.parseException.message;
-      }
-      
-      if (this.options['help']) {
-        return 'help';
-      }
-      
-      let required;
-      
-      if (this.options['print-organizations']) {
-        required = ['source'];
-      } else {
-        required = ['source', 'output-zip', 'organization-id'];  
-      }
-      
-      for (var i = 0; i < required.length; i++) {
-        var requiredOption = required[i];
-        if (!this.options[requiredOption]) {
-          return util.format("Missing required option: %s", requiredOption);
-        }
+      const superError = super.getError();
+      if (superError) {
+        return superError;
       }
       
       if (!DataExtractorFactory.getSources().includes(this.options['source'])) {
@@ -69,27 +54,11 @@
           return "events-after must be in YYYY-MM-DD format (e.g. 2017-01-01)"; 
         }
       }
-      
-      return null;
     }
     
-    isOk() {
-      return !this.getError();
-    }
-    
-    getOptions() {
-      return this.options;
-    }
-    
-    getOption(name, defaultValue) {
-      return this.options[name] || defaultValue;
-    }
-    
-    printUsage() {
-      var sources = DataExtractorFactory.getSources();
-      
-      var sections = [];
-      var error = this.getError();
+    getSections() {
+      const sections = [];
+      const sources = DataExtractorFactory.getSources();
       
       sections.push({
         header: 'Paatos-Scraper',
@@ -133,13 +102,7 @@
         }]
       });
       
-      if (error && error !== 'help') {
-        sections.push({
-          header: error
-        });
-      };
-      
-      console.log(getUsage(sections));
+      return sections;
     }
     
   }

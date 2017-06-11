@@ -60,7 +60,7 @@
         .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=510975521')
         .replyWithFile(200, __dirname + '/data/vantaa/510975521.pdf');
       
-      return expect(Promise.resolve(vantaaDataExtractor.extractActionContents("55015.000000", "130013", "510975521", moment("2017-03-20T14:00:00.000Z"), "10")))
+      return expect(Promise.resolve(vantaaDataExtractor.extractOrganizationEventActionContents("55015.000000", "130013", "510975521")))
         .to.eventually.eql(vantaaKaupunginhallitus17032010_toimenpiteet);
     });
     
