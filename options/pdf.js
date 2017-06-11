@@ -45,8 +45,8 @@
       const sources = DataExtractorFactory.getPdfSources();
       
       sections.push({
-        header: 'Paatos-Scraper',
-        content: 'Scraper to scrape decision data from web pages and PDF documents in Finland.'
+        header: 'PDF Paatos-Scraper',
+        content: 'Utility to scrape decision data from PDF-files.'
       });
       
       sections.push({      
@@ -58,7 +58,7 @@
         }, {
           name: 'pdf-url',
           typeLabel: '[underline]{pdf-url}',
-          description: 'The URL address of PDF file to be scraped'
+          description: 'The URL address of PDF file to be scraped. You can also use file:// -protocol to scrape local files (e.g. file:///some/file.pdf).'
         }, {
           name: 'error-log',
           description: 'Path to error log file. By default errors are written into console.'
