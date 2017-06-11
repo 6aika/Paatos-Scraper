@@ -7,7 +7,7 @@
   const util = require('util');
   const DataExtractorFactory = require(__dirname + '/extract/data-extractor-factory');
   const Promise = require('bluebird'); 
-  const options = require(__dirname + '/app/options');
+  const options = require(__dirname + '/options/app');
   const winston = require('winston');
   const moment = require('moment');
   

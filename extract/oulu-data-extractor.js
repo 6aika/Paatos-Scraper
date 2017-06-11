@@ -170,6 +170,25 @@
         });
     }
     
+    extractPdfEventActionContents(options) {
+      const pdfUrl = options.getOption('pdf-url');
+      const outputFile = options.getOption('output-file');
+      
+      return new Promise((resolve, reject) => {
+        this._pdfScraper.extractPdfEventActionContents(pdfUrl)
+          .then((contents) => {
+            fs.writeFile(outputFile, JSON.stringify(contents), (err) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve();
+              }
+            });
+          })
+          .catch(reject);
+      }); 
+    }
+    
     extractOrganizations() {
       return this._htmlScraper.extractOrganizations();
     }

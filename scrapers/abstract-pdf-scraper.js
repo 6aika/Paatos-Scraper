@@ -36,8 +36,13 @@
             this.nextInQueue();
            }, this.options.pdfDownloadInterval || 100);
         });
-
-        request(queued.url).pipe(pdfParser);
+        
+        if (queued.url.startsWith('file://')) {
+          fs.createReadStream(queued.url.substring(7)).pipe(pdfParser);
+        } else {
+          request(queued.url).pipe(pdfParser);
+        }
+        
       } else {
         queueRunning = false;
       }

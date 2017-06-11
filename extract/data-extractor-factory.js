@@ -21,6 +21,10 @@
       return ['oulu', 'vantaa','espoo'];
     }
     
+    static getPdfSources() {
+      return ['oulu', 'vantaa'];
+    }
+    
     static createDataExtractor(source, options) {
       switch (source) {
         case 'oulu':
