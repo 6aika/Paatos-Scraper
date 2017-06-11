@@ -8,7 +8,6 @@
   const fs = require('fs');
   const Promise = require('bluebird');
   const chai = require('chai');
-  const unzipper = require('unzipper');
   const rimraf = require('rimraf');
   const expect = chai.expect;
   const assert = chai.assert;

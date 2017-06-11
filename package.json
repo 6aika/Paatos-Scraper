@@ -36,6 +36,7 @@
     "npm": "^4.4.4",
     "pdf2json": "^1.1.7",
     "request": "^2.81.0",
+    "rimraf": "^2.6.1",
     "sync-request": "^4.0.2",
     "winston": "^2.3.1"
   },
