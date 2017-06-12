@@ -33,9 +33,9 @@ Project contains two applications: The main application (app.js) which can be us
 ### Example
 Please note that Node version should be at least 6. See [installation instructions](https://nodejs.org/en/download/package-manager/) for details.
 
-Extract decision data from a single PDF file from Vantaa    
+Extracts latest event from Oulu's Kaupunginhallitus decision data
 
-- `node pdf --source vantaa --pdf-url file://test/data/vantaa/510975521.pdf --output-file /tmp/out.json`
+- `node app.js --source oulu --organization-id 690 --max-events=1 --output-zip=/tmp/output.zip`
       
 ## Usage (pdf.js)
 
@@ -56,9 +56,9 @@ Extract decision data from a single PDF file from Vantaa
 ### Example
 Please note that Node version should be at least 6. See [installation instructions](https://nodejs.org/en/download/package-manager/) for details.
 
-Extracts latest event from Oulu's Kaupunginhallitus decision data
+Extract decision data from a single PDF file from Vantaa    
 
-- `node app.js --source oulu --organization-id 690 --max-events=1 --output-zip=/tmp/output.zip`
+- `node pdf --source vantaa --pdf-url file://test/data/vantaa/510975521.pdf --output-file /tmp/out.json`
 
 ### Installing dependencies
 
