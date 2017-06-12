@@ -27,7 +27,7 @@
         "host": "localhost"
       });
     
-      return expect(Promise.resolve(smokeTestScraper.extractActionContents("123", "123", "510975521", moment('2017-03-20', 'YYYY-MM-DD', true), '10')))
+      return expect(Promise.resolve(smokeTestScraper.extractOrganizationEventActionContents("123", "123", "510975521")))
         .to.eventually.eql(vantaaActions17032010);
     });
   });

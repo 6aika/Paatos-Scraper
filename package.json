@@ -39,6 +39,7 @@
     "odata-client": "^0.5.5",
     "pdf2json": "^1.1.7",
     "request": "^2.81.0",
+    "rimraf": "^2.6.1",
     "sync-request": "^4.0.2",
     "unzipper": "^0.8.8",
     "winston": "^2.3.1"

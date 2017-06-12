@@ -51,18 +51,28 @@
     }
     
     /**
-     * Returns a promise for captions scraped out of the PDF-file.
+     * Returns a promise for organization event action contents.
+     * 
+     * Returned data is ordered in same order that it is in the source system. 
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
-     * @param {String} caseId caseId
+     * @param {String} actionId actionId
+     */
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
+      return this.extractPdfEventActionContents(this.getPdfUrl(organizationId, eventId, actionId));
+    }
+    
+    /**
+     * Returns a promise for event action contents scraped out of the PDF-file.
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
+     * 
+     * @param {String} pdfUrl pdfUrl
      */
-    extractActionContents(organizationId, eventId, caseId) {
+    extractPdfEventActionContents(pdfUrl) {
       return new Promise((resolve, reject) => {
-      
-        this.scrapePdf(organizationId, eventId, caseId)
+        this.scrapePdf(pdfUrl)
           .then((scrapedData) => {
             const pdfTexts = scrapedData.pdfTexts;
             const ignoreZones = scrapedData.ignoreZones;
@@ -133,11 +143,11 @@
               
               if (blockValue || blockCaption) {
                 if (!blockCaption) {
-                  winston.log('warn', util.format('Missing content title (with content %s) on Oulu TWeb PDF (%s)', blockValue, this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Missing content title (with content %s) on Oulu TWeb PDF (%s)', blockValue, pdfUrl));
                 }
                 
                 if (!blockValue) {
-                  winston.log('warn', util.format('Missing content content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Missing content content (with title %s) on Oulu TWeb PDF (%s)', blockCaption, pdfUrl));
                 }
                 
                 result.push({
@@ -150,14 +160,14 @@
             }
 
             if (unscrapableContents) {    
-              winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', this.getPdfUrl(organizationId, eventId, caseId)));
+              winston.log('info', util.format('Detected unscrapable contents on Oulu TWeb PDF (%s)', pdfUrl));
             }
             
             let dnoValue = this.getActionContentValue(result, 'Dno');
             if (dnoValue) {
               let functionId = this.parseFunctionId(dnoValue);
               if (!functionId) {
-                winston.log('warn', util.format('Invalid Dno %s in Oulu TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
+                winston.log('warn', util.format('Invalid Dno %s in Oulu TWeb PDF %s', dnoValue, pdfUrl));                      
               } else {
                 this.setActionContentValue(result, 'functionId', functionId);
               }
@@ -230,14 +240,12 @@
     /**
      * Scrapes the PDF-document
      * 
-     * @param {String} organizationId organizationId 
-     * @param {String} eventId eventId
-     * @param {String} caseId caseId    
+     * @param {String} pdfUrl pdf url address
      * @returns {Array} An array of pdf text fragments
      */
-    scrapePdf(organizationId, eventId, caseId) {
+    scrapePdf(pdfUrl) {
       return new Promise((resolve, reject) => {
-        this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
+        this.getPdfData(pdfUrl)
           .then((pdfData) => {
             resolve({
               pdfTexts: this.extractTexts(pdfData),

@@ -93,7 +93,7 @@
                         actionIds.push(actions[actionIndex].sourceId);
                         actionOrganizationIds.push(eventOrganizationId);
                         actionEventIds.push(eventId);
-                        contentPromises.push(this.extractActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
+                        contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                         attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                       }
                     }
@@ -158,6 +158,25 @@
         });
     }
     
+    extractPdfEventActionContents(options) {
+      const pdfUrl = options.getOption('pdf-url');
+      const outputFile = options.getOption('output-file');
+      
+      return new Promise((resolve, reject) => {
+        this._pdfScraper.extractPdfEventActionContents(pdfUrl)
+          .then((contents) => {
+            fs.writeFile(outputFile, JSON.stringify(contents), (err) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve();
+              }
+            });
+          })
+          .catch(reject);
+      }); 
+    }
+    
     extractOrganizations() {
       return this._htmlScraper.extractOrganizations();
     }
@@ -170,8 +189,8 @@
       return this._htmlScraper.extractOrganizationEventActions(eventId);
     }
     
-    extractActionContents(organizationId, eventId, actionId) {
-      return this._pdfScraper.extractActionContents(organizationId, eventId, actionId);
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
+      return this._pdfScraper.extractOrganizationEventActionContents(organizationId, eventId, actionId);
     }
     
     extractAttachments(organizationId, eventId, actionId) {

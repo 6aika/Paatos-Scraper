@@ -17,7 +17,7 @@
   chai.use(require('chai-fs'));
   chai.use(require('chai-as-promised'));
   
-  const options = require(__dirname + '/../app/options');
+  const options = require(__dirname + '/../options/app');
   const TampereCasemMocker = require(__dirname + '/mockers/tampere-casem-mocker');
   const DataExtractorFactory = require(__dirname + '/../extract/data-extractor-factory');
   const mocker = new TampereCasemMocker();

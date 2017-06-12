@@ -7,6 +7,7 @@
   const _ = require('lodash');
   const util = require('util');
   const winston = require('winston');
+  const moment = require('moment');
   const Promise = require('bluebird'); 
   const AbstractTwebPdfScraper = require(__dirname + '/../abstract-tweb-pdf-scraper');
   const PositionedText = require(__dirname + '/../../positioned-text');
@@ -27,40 +28,83 @@
     }
     
     /**
-     * Returns a promise for scraped data out of the PDF-file.
+     * Returns a promise for organization event action contents.
+     * 
+     * Returned data is ordered in same order that it is in the source system. 
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
-     * @param {String} caseId caseId
-     * @param {Moment} date of event
-     * @param {String} articleNumber articleNumber of event
+     * @param {String} actionId actionId
+     */
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
+      return this.extractPdfEventActionContents(this.getPdfUrl(organizationId, eventId, actionId));
+    }
+    
+    /**
+     * Returns a promise for event action contents scraped out of the PDF-file.
      * 
      * Returned data is ordered in same order that it is in the PDF-document. 
+     * 
+     * @param {String} pdfUrl pdfUrl
      */
-    extractActionContents(organizationId, eventId, caseId, date, articleNumber) {
+    extractPdfEventActionContents(pdfUrl) {
       return new Promise((resolve, reject) => {
-        this.getPdfData(this.getPdfUrl(organizationId, eventId, caseId))
+        this.getPdfData(pdfUrl)
           .then((pdfData) => {
             const contentTexts = this.extractContentTexts(pdfData);
+            const titleIndex = this.findIndex(contentTexts, '^(.*\ )([0-9]{1,2}.[0-9]{1,2}.[0-9]{1,4})(\ \§\ )([0-9]{1,})$');
+            if (!titleIndex) {
+              winston.log('warn', util.format('Could not find title index from %s', pdfUrl));
+              resolve([]);
+              return;
+            }
+          
+            const title = contentTexts[titleIndex].text;
+            if (!title) {
+              winston.log('warn', util.format('Could not find title from %s', pdfUrl));
+              resolve([]);
+              return;
+            }
+            
+            const titleMatch = /^(.*\ )([0-9]{1,2}.[0-9]{1,2}.[0-9]{1,4})(\ \§\ )([0-9]{1,})$/.exec(title);
+            if (!titleMatch || titleMatch.length !== 5) {
+              winston.log('warn', util.format('Unexpected title format (%s) in %s', title, pdfUrl));
+              resolve([]);
+              return;
+            }
+            
+            const articleNumber = titleMatch[4];
+            const date = moment(titleMatch[2], 'D.M.YYYY', 'fi', true);
+            
+            if (!articleNumber) {
+              winston.log('warn', util.format('Invalid article number read from title %s', title));
+              return;
+            }
+
+            if (!date.isValid()) {
+              winston.log('warn', util.format('Could not parse date from title %s', title));
+              return;
+            }
+            
             let y = this.options.contentTop;
             let index = 0;
             let result = [];
             let dnoIndex = this.findIndex(contentTexts, '^(VD\/){0,1}[0-9]{1,}\/[0-9.]*\/[0-9]{4}$');
             let draftsmenIndex = this.findIndex(contentTexts, '^[A-Z-\/]{1,}$');
-            let contentsIndex = this.findIndex(contentTexts, util.format('^.*%s § %s$', date.format("D.M.YYYY"), articleNumber));
+            let contentsIndex = titleIndex;
             let hasSummary = (dnoIndex === null || dnoIndex > 0) && contentsIndex > 0;
                     
             if (contentsIndex > 0) { 
               if (hasSummary) {
                 if ((index = this.appendSummary(index, contentTexts, result)) === -1) {
-                  winston.log('warn', util.format('Could not extract summary from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract summary from Vantaa TWeb PDF %s', pdfUrl));
                   index = 0; 
                 }
               }
 
               if (dnoIndex !== null) {
                 if ((index = this.appendDno(dnoIndex, contentTexts, result)) === -1) {
-                  winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract Dno from Vantaa TWeb PDF %s', pdfUrl));
                   index = 0;
                 } else {
                   let dnoValue = this.getActionContentValue(result, 'Dno');
@@ -72,31 +116,31 @@
                     
                     let functionId = this.parseFunctionId(dnoValue);
                     if (!functionId) {
-                      winston.log('warn', util.format('Invalid Dno %s in Vantaa TWeb PDF %s', dnoValue, this.getPdfUrl(organizationId, eventId, caseId)));                      
+                      winston.log('warn', util.format('Invalid Dno %s in Vantaa TWeb PDF %s', dnoValue, pdfUrl));                      
                     } else {
                       this.setActionContentValue(result, 'functionId', functionId);
                     }
                   }
                 }
               } else {
-                winston.log('warn', util.format('Could not find Dno from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                winston.log('warn', util.format('Could not find Dno from Vantaa TWeb PDF %s', pdfUrl));
               }
 
               if (draftsmenIndex !== null) {
                 if ((index = this.appendDraftsmen(draftsmenIndex, contentTexts, result)) === -1) {
-                  winston.log('warn', util.format('Could not extract draftsmen from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract draftsmen from Vantaa TWeb PDF %s', pdfUrl));
                   index = 0;
                 }
               }
 
               if (index < contentsIndex) {
                 if ((index = this.appendIntroduction(index, contentTexts, result, date, articleNumber)) === -1) {
-                  winston.log('warn', util.format('Could not extract introduction from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                  winston.log('warn', util.format('Could not extract introduction from Vantaa TWeb PDF %s', pdfUrl));
                   index = 0;
                 }
               }
             } else {
-              winston.log('warn', util.format('Could not extract any header data from TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+              winston.log('warn', util.format('Could not extract any header data from TWeb PDF %s', pdfUrl));
             }
             
             index = contentsIndex + 1;
@@ -104,7 +148,7 @@
             while (index < contentTexts.length) {
               let extractedTitle = this.extractContentTitle(index, contentTexts);
               if (!extractedTitle) {
-                winston.log('warn', util.format('Could not extract title from from Vantaa TWeb PDF %s', this.getPdfUrl(organizationId, eventId, caseId)));
+                winston.log('warn', util.format('Could not extract title from from Vantaa TWeb PDF %s', pdfUrl));
                 return resolve(result);
               }
               
@@ -114,7 +158,7 @@
               if (title.endsWith(':')) {
                 title = title.substring(0, title.length - 1);
               } else {
-                winston.log('warn', util.format('Unrecognized content caption %s in Vantaa TWeb PDF %s', title, this.getPdfUrl(organizationId, eventId, caseId)));
+                winston.log('warn', util.format('Unrecognized content caption %s in Vantaa TWeb PDF %s', title, pdfUrl));
               }
                
               if ((index = this.appendContentText(title, index, contentTexts, result)) === -1) {

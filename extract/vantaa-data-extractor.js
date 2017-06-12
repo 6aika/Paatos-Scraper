@@ -93,11 +93,8 @@
                         actionIds.push(actions[actionIndex].sourceId);
                         actionOrganizationIds.push(eventOrganizationId);
                         actionEventIds.push(eventId);
-
-                        let date = moment(resultBuilder.getOrganizationEvent(eventOrganizationId, eventId).startDate);
-                        let articleNumber = actions[actionIndex]['articleNumber'];
-
-                        contentPromises.push(this.extractActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId, date, articleNumber));
+                        
+                        contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                         attachmentPromises.push(this.extractAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                       }
                     }
@@ -160,6 +157,25 @@
         });
     }
     
+    extractPdfEventActionContents(options) {
+      const pdfUrl = options.getOption('pdf-url');
+      const outputFile = options.getOption('output-file');
+      
+      return new Promise((resolve, reject) => {
+        this._pdfScraper.extractPdfEventActionContents(pdfUrl)
+          .then((contents) => {
+            fs.writeFile(outputFile, JSON.stringify(contents), (err) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve();
+              }
+            });
+          })
+          .catch(reject);
+      }); 
+    }
+    
     extractOrganizations() {
       return this._htmlScraper.extractOrganizations();
     }
@@ -170,6 +186,10 @@
     
     extractEventActions(organizationId, eventId) {
       return this._htmlScraper.extractOrganizationEventActions(eventId);
+    }
+    
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
+      return this._pdfScraper.extractOrganizationEventActionContents(organizationId, eventId, actionId);
     }
     
     extractActionContents(organizationId, eventId, actionId, date, articleNumber) {

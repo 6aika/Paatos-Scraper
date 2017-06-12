@@ -1,9 +1,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/6aika/Paatos-Scraper/badge.svg?branch=master)](https://coveralls.io/github/6aika/Paatos-Scraper?branch=master)
 [![Build Status](https://travis-ci.org/6aika/Paatos-Scraper.svg?branch=master)](https://travis-ci.org/6aika/Paatos-Scraper)
 # Paatos-Scraper
-Scraper to scrape decision data from web pages and PDF documents in Finland
+Scraper to scrape decision data from web pages and PDF documents in Finland. 
 
-## Usage
+Project contains two applications: The main application (app.js) which can be used to extract decision data into importable format from various sources and the PDF-extracting utility which can be used to scrape decision data from a PDF-file.
+
+## Usage (app.js)
 
 ### Options
 
@@ -27,19 +29,42 @@ Scraper to scrape decision data from web pages and PDF documents in Finland
                                      following format: YYYY-MM-DD                                          
       --error-log                    Path to error log file. By default errors are written into console.   
       --help                         Print this usage guide. 
+      
+### Example
+Please note that Node version should be at least 6. See [installation instructions](https://nodejs.org/en/download/package-manager/) for details.
 
-### Installing dependencies
+Extract decision data from a single PDF file from Vantaa    
 
-Before running the application you must install dependecies.
+- `node pdf --source vantaa --pdf-url file://test/data/vantaa/510975521.pdf --output-file /tmp/out.json`
+      
+## Usage (pdf.js)
 
-- `npm install`
-
+### Options
+      
+    PDF Paatos-Scraper
+    
+      Utility to scrape decision data from PDF-files. 
+    
+    Options
+    
+      --source source     The source where to retrieve the date. Supported sources are: oulu, vantaa    
+      --pdf-url pdf-url   The URL address of PDF file to be scraped. You can also use file:// -protocol 
+                          to scrape local files (e.g. file:///some/file.pdf).                           
+      --error-log         Path to error log file. By default errors are written into console.           
+      --help              Print this usage guide.
+      
 ### Example
 Please note that Node version should be at least 6. See [installation instructions](https://nodejs.org/en/download/package-manager/) for details.
 
 Extracts latest event from Oulu's Kaupunginhallitus decision data
 
 - `node app.js --source oulu --organization-id 690 --max-events=1 --output-zip=/tmp/output.zip`
+
+### Installing dependencies
+
+Before running the application you must install dependecies.
+
+- `npm install`
 
 ## Running tests
 
