@@ -1,0 +1,54 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Pöytäkirjan tarkastus",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "3",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Puheenjohtaja:</p>\n\n<p>Yhdyskuntalautakunta p&auml;&auml;tt&auml;&auml;</p>\n\n<p>valita t&auml;m&auml;n kokouksen p&ouml;yt&auml;kirjan tarkastajiksi j&auml;senet Anna-Kaarina Rantaviita-Tiainen ja Jaakko Stenh&auml;ll sek&auml; varalle Matti H&ouml;yss&auml;.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "P&auml;&auml;t&ouml;sehdotus hyv&auml;ksyttiin.",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

@@ -19,11 +19,26 @@
   const mikkeliKhKokoukset = require(__dirname + '/data/mikkeli/mikkeli_kh_kokoukset');
   const mikkeliKhKokouksetAfter17042017 = require(__dirname + '/data/mikkeli/mikkeli_kh_kokoukset_after_17042017');
   const mikkeliKhKokouksetMax3 = require(__dirname + '/data/mikkeli/mikkeli_kh_kokoukset_max3');
+  const mocker = new MikkeliCasemMocker();
   
   describe('Mikkeli Events Scraper tests', () => {
     
+    beforeEach((done) => {
+      mocker.mock();
+      done();
+    });
+      
+    afterEach((done) => {
+      mocker.cleanAll();
+      done();
+    });
+    
+    after((done) => {
+      mocker.cleanAll();
+      done();
+    });
+    
     it('Test events scraping', () => {
-      (new MikkeliCasemMocker()).mock();
 
       const testScraper = new MikkeliCasemScraper({
         "host": "localhost"
@@ -34,7 +49,6 @@
     });
     
     it('Test events scraping avents after', () => {
-      (new MikkeliCasemMocker()).mock();
 
       const testScraper = new MikkeliCasemScraper({
         "host": "localhost"
@@ -45,7 +59,6 @@
     });
     
     it('Test events scraping max 3', () => {
-      (new MikkeliCasemMocker()).mock();
 
       const testScraper = new MikkeliCasemScraper({
         "host": "localhost"

@@ -1,0 +1,61 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Ajankohtaiset asiat",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "4",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "<p>Johtaja, ovo. tilaajap&auml;&auml;llikk&ouml;&nbsp;Mikko Nurmisen&nbsp;katsaus ajankohtaisiin asioihin.</p>\n\n<p>- Tampereen seudun keskuspuhdistamon asemakaavat, projektiarkkitehti Marjut Ahponen/MASU ja toimitusjohtaja Timo Heinonen / Keskuspuhdistamo Oy,</p>\n\n<p>- Hyv&auml; johtamis- ja hallintotapa ja sis&auml;inen valvonta, esityslistalla olevan asian esittely, tarkastusjohtaja Markus Kiviaho,</p>\n\n<p>- K&auml;velyopastuksen konsepti, liikenneinsin&ouml;&ouml;ri Helj&auml; Aarnikko,</p>\n\n<p>- liikenteen kehitys Tampereella 2015, liikenneonnettomuusraportti - esityslistalla olevan asian esittely, liikenneinsin&ouml;&ouml;ri Helj&auml; Aarnikko,</p>\n\n<p>- liikenteen kehitys Tampereella 2015, ajoneuvoliikenteen liikennem&auml;&auml;r&auml;raportti&nbsp; - esityslistalla olevan asian esittely, suunnittelup&auml;&auml;llikk&ouml; Ari Vandell.</p>\n\n<p>&nbsp;</p>\n\n<p>Merkittiin, ett&auml; projektiarkkitehti Marjut Ahponen ja toimitusjohtaja Timo Heinonen esitteliv&auml;t Tampereen seudun keskuspuhdistamon asemakaavat.&nbsp;Johtaja, ovo. tilaajap&auml;&auml;llikk&ouml; Mikko Nurminen saapui kokoukseen Ahposen esityksen aikana klo 16.17.</p>\n\n<p>Ahponen ja Heinonen poistuivat kokouksesta esityksens&auml; ja siit&auml; k&auml;ydyn keskustelun j&auml;lkeen klo 16.45.</p>\n\n<p>Merkittiin, ett&auml; tarkastusjohtaja Markus Kiviaho esitteli esityslista-asian Hyv&auml; johtamis- ja hallintotapa ja sis&auml;inen valvonta ja poistui kokouksesta esityksens&auml; ja siit&auml; k&auml;ydyn keskustelun j&auml;lkeen klo 17.40.</p>\n\n<p>Merkittiin, ett&auml; liikenneinsin&ouml;&ouml;ri Helj&auml; Aarnikko esitteli k&auml;velyopastuksen konsepti-asian. Esityksen ja siit&auml; k&auml;ydyn keskustelun j&auml;lkeen klo 18.10 puheenjohtaja esitti kokoukseen 15 minuutin taukoa.</p>\n\n<p>Tauon j&auml;lkeen Helj&auml; Aarnikko jatkoi esittelem&auml;ll&auml; esityslista-asian Liikenneonnettomuusraportti, ja poistui kokouksesta esityksen ja siit&auml; k&auml;ydyn keskustelun j&auml;lkeen klo 19.40. Esityksen j&auml;lkeen kokouksesta poistuivat my&ouml;s j&auml;sen Kalle Hy&ouml;tynen ja kaupunginhallituksen edustaja Ilkka Sasi.</p>\n\n<p>Merkittiin, ett&auml; suunnittelup&auml;&auml;llikk&ouml; Ari Vandell esitteli lopuksi esityslista-asian Ajoneuvoliikenten liikennem&auml;&auml;r&auml;raportti.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Johtaja, ovo. tilaajap&auml;&auml;llik&ouml;n 1. varahenkil&ouml; Taru Hurme:</p>\n\n<p>Yhdyskuntalautakunta p&auml;&auml;tt&auml;&auml;</p>\n\n<p>merkit&auml; katsauksen tiedoksi.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "<p>P&auml;&auml;t&ouml;sehdotus hyv&auml;ksyttiin.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1796,
+      "Name": "Presenters",
+      "Text": "Mikko Nurminen;#Johtaja;#;#Mikko.Nurminen@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+[
+         {
+             "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+            "name": "Kaupunginhallitus",
+             "parent": null,
+             "sourceId": "11292"
+         },
+         {
+           "classification": "lautakunta",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Lautakunta",
+             "parent": null,
+           "sourceId": "11312"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11478"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11544"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11575"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11636"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11661"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11679"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11746"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11778"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11819"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11855"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11862"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "11877"
+         },
+         {
+           "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "11888"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "11913"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "11937"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "11948"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "11976"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "11987"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "12012"
+         },
+         {
+             "classification": "toimikunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Toimikunta",
+             "parent": null,
+             "sourceId": "12021"
+         },
+         {
+             "classification": "toimikunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Toimikunta",
+             "parent": null,
+             "sourceId": "12052"
+         },
+         {
+             "classification": "toimikunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Toimikunta",
+             "parent": null,
+             "sourceId": "12071"
+         },
+         {
+             "classification": "toimikunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Toimikunta",
+             "parent": null,
+             "sourceId": "12085"
+         },
+         {
+             "classification": "toimikunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Toimikunta",
+             "parent": null,
+             "sourceId": "12091"
+         },
+         {
+             "classification": "johtokunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Johtokunta",
+             "parent": null,
+             "sourceId": "12125"
+         },
+         {
+             "classification": "valtuusto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginvaltuusto",
+             "parent": null,
+             "sourceId": "12137"
+         },
+         {
+           "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+           "name": "Hallitus",
+             "parent": null,
+           "sourceId": "12146"
+         },
+         {
+           "classification": "lautakunta",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Lautakunta",
+             "parent": null,
+             "sourceId": "12168"
+         },
+         {
+             "classification": "jaosto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Jaosto",
+             "parent": null,
+             "sourceId": "12355"
+         },
+         {
+           "classification": "neuvosto",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupungin neuvosto",
+             "parent": null,
+             "sourceId": "12371"
+         },
+         {
+             "classification": "hallitus",
+             "dissolution_date": null,
+             "founding_date": null,
+             "name": "Kaupunginhallitus",
+             "parent": null,
+             "sourceId": "12486"
+         }
+       ]

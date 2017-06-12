@@ -12,12 +12,12 @@
   
   chai.use(require('chai-as-promised'));
   
-  const TampereCasemMocker = require(__dirname + '/mockers/tampere-casem-mocker');
-  const TampereCasemScraper = require(__dirname + '/../scrapers/casem/tampere/tampere-casem-scraper');
-  const tampereToimielimet = require(__dirname + '/data/tampere/tampere_toimielimet');
-  const mocker = new TampereCasemMocker();
+  const MikkeliCasemMocker = require(__dirname + '/mockers/mikkeli-casem-mocker');
+  const MikkeliCasemScraper = require(__dirname + '/../scrapers/casem/mikkeli/mikkeli-casem-scraper');
+  const mikkeliToimielimet = require(__dirname + '/data/mikkeli/mikkeli_toimielimet');
+  const mocker = new MikkeliCasemMocker();
   
-  describe('Tampere Organization Scraper tests', () => {
+  describe('Mikkeli Organization Scraper tests', () => {
     
     before((done) => {
       mocker.mock();
@@ -29,13 +29,13 @@
       done();
     });
     
-    const testScraper = new TampereCasemScraper({
+    const testScraper = new MikkeliCasemScraper({
       "host": "localhost"
     });
     
     it('Test organizations scraping', () => {
       return expect(Promise.resolve(testScraper.extractOrganizations()))
-        .to.eventually.eql(tampereToimielimet);
+        .to.eventually.eql(mikkeliToimielimet);
     });
     
   });

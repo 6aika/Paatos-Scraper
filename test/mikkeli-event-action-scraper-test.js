@@ -17,11 +17,21 @@
   const MikkeliCasemMocker = require(__dirname + '/mockers/mikkeli-casem-mocker');
   const MikkeliCasemScraper = require(__dirname + '/../scrapers/casem/mikkeli/mikkeli-casem-scraper');
   const mikkeliKhActions170605 = require(__dirname + '/data/mikkeli/mikkeli_kh_actions_170605');
+  const mocker = new MikkeliCasemMocker();
   
   describe('Mikkeli Event actions scraper tests', () => {
     
+    before((done) => {
+      mocker.mock();
+      done();
+    });
+      
+    after((done) => {
+      mocker.cleanAll();
+      done();
+    });
+    
     it('Test event actions scraping', () => {
-      (new MikkeliCasemMocker()).mock();
 
       const testScraper = new MikkeliCasemScraper({
         "host": "localhost"
