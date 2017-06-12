@@ -1,0 +1,117 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Rakennuslupahakemus, Kiinteistö Oy Tampereen Topaasi, asuinkerrostalon ja kevytrakenteisen rakennelman rakentaminen, Sarvijaakonkatu 39 (16-629-R) 837-119-0845-0002, aloittamisoikeus",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "4",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "TRE:6029/10.03.01/2016",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "<p>Rakennuslupa, MRL 125.1 &sect;, 126 &sect; ja aloittamisoikeus 144 &sect;</p>\n\n<p>Asuinkerrostalon ja kevytrakenteisen rakennelman rakentaminen.</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Kiinteist&ouml; Oy Tampereen Topaasin rakennuslupa hyv&auml;ksyt&auml;&auml;n liitteess&auml; mainituin ehdoin ja</p>\n\n<p>Kiinteist&ouml; Oy Tampereen Topaasin hakemus aloittaa rakennusty&ouml;t ennen p&auml;&auml;t&ouml;ksen lainvoimaisuutta hyv&auml;ksyt&auml;&auml;n.</p>\n\n<p>&nbsp;</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "<p>Hyv&auml;ksyttiin.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1793,
+      "Name": "Inform",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=83441&GUID={58e84d27-f5ef-4813-b4e0-36b0917db5ee}' target='_blank'>Toimenpideselvitys ja lupaehdot, päätös § 4.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1720,
+      "Name": "Correctioninstructions",
+      "Text": "<p><strong>Valitusosoitus: Rakennus- ja toimenpidelupa</strong></p>\n\n<p>Rakennus- ja toimenpidelupap&auml;&auml;t&ouml;kseen saa hakea muutosta kirjallisella valituksella H&auml;meenlinnan hallinto-oikeudelta. Valitusoikeus on:</p>\n\n<p>-&nbsp;viereisen tai vastap&auml;&auml;t&auml; olevan alueen omistajalla ja haltijalla<br />\n-&nbsp;sellaisen kiinteist&ouml;n omistajalla ja haltijalla, jonka rakentamiseen tai muuhun k&auml;ytt&auml;miseen p&auml;&auml;t&ouml;s voi olennaisesti vaikuttaa<br />\n-&nbsp;sill&auml;, jonka oikeuteen, velvollisuuteen tai etuun p&auml;&auml;t&ouml;s v&auml;litt&ouml;m&auml;sti vaikuttaa<br />\n-&nbsp;kunnalla<br />\n-&nbsp;jos rakennusluvan mukainen rakentaminen merkitsee purkamislupaa edel-lytt&auml;v&auml;n rakennuksen purkamista, valitusoikeus rakennusluvasta on my&ouml;s Pirkan-maan elinkeino-, liikenne- ja ymp&auml;rist&ouml;keskuksella<br />\n-&nbsp;oikaisuvaatimuksen johdosta annettuun p&auml;&auml;t&ouml;kseen saa hakea muutosta vain se, joka on tehnyt oikaisuvaatimuksen<br />\n-&nbsp;jos lupap&auml;&auml;t&ouml;st&auml; on oikaisuvaatimusmenettelyss&auml; muutettu tai se on kumot-tu, oikaisuvaatimusp&auml;&auml;t&ouml;kseen saa hakea muutosta valittamalla my&ouml;s se, jolla on maank&auml;ytt&ouml;- ja rakennuslain 192 &sect;:n mukaan valitusoikeus asiassa.</p>\n\n<p><strong>Valitusosoitus: Purkamis- ja maisematy&ouml;lupa</strong></p>\n\n<p>Purkamis- ja maisematy&ouml;lupap&auml;&auml;t&ouml;kseen saa hakea muutosta kirjallisella valituksella H&auml;meenlinnan hallinto-oikeudelta. Valitusoikeus on:</p>\n\n<p>-&nbsp;sill&auml;, jonka oikeuteen, velvollisuuteen tai etuun p&auml;&auml;t&ouml;s v&auml;litt&ouml;m&auml;sti vaikuttaa<br />\n-&nbsp;kunnan j&auml;senell&auml;<br />\n-&nbsp;kunnalla ja naapurikunnalla, jonka maank&auml;yt&ouml;n suunnitteluun p&auml;&auml;t&ouml;s vaikuttaa sek&auml;<br />\n-&nbsp;Pirkanmaan elinkeino-, liikenne- ja ymp&auml;rist&ouml;keskuksella</p>\n\n<p><strong>Valitusosoitus: Maa-aineslain mukainen ottamislupa</strong></p>\n\n<p>P&auml;&auml;t&ouml;kseen saa hakea muutosta se, johon p&auml;&auml;t&ouml;s kohdistuu tai jonka oikeuteen, velvollisuuteen tai etuun p&auml;&auml;t&ouml;s v&auml;litt&ouml;m&auml;sti vaikuttaa (asianosainen) sek&auml; kunnan j&auml;sen. Oikaisuvaatimuksen johdosta annettuun p&auml;&auml;t&ouml;kseen, kun se ei ole muuttunut ymp&auml;rist&ouml;- ja rakennusjaostossa, saa muutosta hakea vain se, joka on tehnyt oikaisuvaatimuksen (Kuntalaki 92 &sect;).</p>\n\n<p>Valituksen saa tehd&auml; sill&auml; perusteella, ett&auml;</p>\n\n<p>-&nbsp;p&auml;&auml;t&ouml;s on syntynyt virheellisess&auml; j&auml;rjestyksess&auml;<br />\n-&nbsp;p&auml;&auml;t&ouml;ksen tehnyt viranomainen on ylitt&auml;nyt toimivaltansa tai<br />\n-&nbsp;p&auml;&auml;t&ouml;s on muutoin lainvastainen</p>\n\n<p>Kunnallisvalitusta ei saa tehd&auml; p&auml;&auml;t&ouml;ksest&auml;, joka koskee vain valmistelua tai t&auml;yt&auml;nt&ouml;&ouml;n-panoa (Kuntalaki 91 &sect;).</p>\n\n<p><strong>Valitusosoitus: Erillinen tonttijako</strong></p>\n\n<p>Erillisen tonttijaon hyv&auml;ksymist&auml; koskevaan p&auml;&auml;t&ouml;kseen saa hakea muutosta kirjallisella valituksella H&auml;meenlinnan hallinto-oikeudelta. Valitusoikeus on:</p>\n\n<p>-&nbsp;samassa korttelissa olevan, tonttijaolla jaettavaan alueeseen rajoittuvan kiinteist&ouml;n omistajalla ja haltijalla,<br />\n-&nbsp;vastap&auml;isen kiinteist&ouml;n omistajalla ja haltijalla, jos p&auml;&auml;t&ouml;s voi olennaisesti vaikuttaa kiinteist&ouml;n rakentamiseen tai muuhun k&auml;ytt&auml;miseen sek&auml;<br />\n-&nbsp;kunnalla</p>\n\n<p><strong>Valitusviranomainen</strong></p>\n\n<p>Valitus tehd&auml;&auml;n H&auml;meenlinnan hallinto-oikeudelle.</p>\n\n<p><strong>Valitusaika</strong></p>\n\n<p>A. Valitus on teht&auml;v&auml; kirjallisesti kolmenkymmenen (30) p&auml;iv&auml;n kuluessa siit&auml;, kun p&auml;&auml;t&ouml;s on julkipanon j&auml;lkeen annettu. P&auml;&auml;t&ouml;ksen antamisp&auml;iv&auml;&auml; ei lueta m&auml;&auml;r&auml;aikaan. Jos m&auml;&auml;r&auml;ajan viimeinen p&auml;iv&auml; on pyh&auml;p&auml;iv&auml; tai muu sellainen p&auml;iv&auml; jolloin tuomioistuimessa ei ty&ouml;skennell&auml;, saa valituksen toimittaa ensimm&auml;isen&auml; arkip&auml;iv&auml;n&auml; sen j&auml;lkeen.</p>\n\n<p>B. Erillisen tonttijaon hyv&auml;ksymist&auml; koskevaan p&auml;&auml;t&ouml;kseen valitus on teht&auml;v&auml; kirjallisesti kolmenkymmenen (30) p&auml;iv&auml;n kuluessa p&auml;&auml;t&ouml;ksen tiedoksisaannista.</p>\n\n<p>Asianosaisen on katsottava saaneen p&auml;&auml;t&ouml;ksest&auml; tiedon, jollei muuta n&auml;ytet&auml;, seitsem&auml;n p&auml;iv&auml;n kuluessa kirjeen l&auml;hett&auml;misest&auml;, kolmen p&auml;iv&auml;n kuluttua s&auml;hk&ouml;postin l&auml;hett&auml;misest&auml;, saantitodistuksen osoittamana aikana tai erilliseen tiedoksisaantitodistukseen merkittyn&auml; aikana. Tiedoksisaantip&auml;iv&auml;&auml; ei lueta m&auml;&auml;r&auml;aikaan. Jos m&auml;&auml;r&auml;ajan viimeinen p&auml;iv&auml; on pyh&auml;p&auml;iv&auml; tai muu sellainen p&auml;iv&auml; jolloin tuomioistuimessa ei ty&ouml;skennell&auml;, saa valituksen toimittaa ensimm&auml;isen&auml; arkip&auml;iv&auml;n&auml; sen j&auml;lkeen.</p>\n\n<p><strong>Valituskirjelm&auml;n sis&auml;lt&ouml; ja liitteet</strong></p>\n\n<p>&nbsp;Valituskirjelm&auml;ss&auml;, joka on osoitettava H&auml;meenlinnan hallinto-oikeudelle, on ilmoitettava:</p>\n\n<p>-&nbsp;p&auml;&auml;t&ouml;s, johon haetaan muutosta<br />\n-&nbsp;milt&auml; kohdin p&auml;&auml;t&ouml;kseen haetaan muutosta ja mit&auml; muutoksia siihen vaaditaan teht&auml;v&auml;ksi<br />\n-&nbsp;perusteet, joilla muutoksia vaaditaan<br />\n-&nbsp;muutoksenhakijan nimi ja kotikunta<br />\n-&nbsp;postiosoite ja puhelinnumero, joihin asiaa koskevat ilmoitukset valittajalle voidaan toimittaa<br />\n-&nbsp;jos muutoksenhakijan puhevaltaa k&auml;ytt&auml;&auml; h&auml;nen laillinen edustajansa tai asiamiehens&auml; tai jos oikaisuvaatimuksen laatijana on muu henkil&ouml;, oikaisuvaatimuksessa on ilmoitettava my&ouml;s t&auml;m&auml;n nimi ja kotikunta.</p>\n\n<p>Kuntalain 90 &sect;:n mukaan valittajan tulee esitt&auml;&auml; kaikki valituksen perusteet ennen valitusajan p&auml;&auml;ttymist&auml;.</p>\n\n<p>Valituskirjelm&auml; on muutoksenhakijan, t&auml;m&auml;n laillisen edustajan tai asiamiehen omak&auml;tisesti allekirjoitettava.</p>\n\n<p>Valituskirjelm&auml;&auml;n on liitett&auml;v&auml;:</p>\n\n<p>-&nbsp;p&auml;&auml;t&ouml;s, johon haetaan muutosta alkuper&auml;isen&auml; tai j&auml;ljenn&ouml;ksen&auml;<br />\n-&nbsp;todistus siit&auml;, min&auml; p&auml;iv&auml;n&auml; p&auml;&auml;t&ouml;s on annettu tiedoksi, tai muu selvitys valitusajan alkamisen ajankohdasta<br />\n-&nbsp;asiakirjat, joihin valittaja vetoaa vaatimuksensa tueksi, jollei niit&auml; jo aiemmin ole toimitettu viranomaiselle<br />\n-&nbsp;asiamiehen on liitett&auml;v&auml; valtakirja tai muulla luotettavalla tavalla osoitettava olevansa oikeutettu edustamaan p&auml;&auml;miest&auml;, jollei h&auml;n ole asianajaja tai yleinen oikeusavustaja.</p>\n\n<p><strong>Valituskirjelm&auml;n toimittaminen</strong></p>\n\n<p>Valituskirjelm&auml; on toimitettava valitusajan kuluessa H&auml;meenlinnan hallinto-oikeuteen osoitteella:</p>\n\n<p>H&auml;meenlinnan hallinto-oikeus<br />\nRaatihuoneenkatu 1<br />\n13100 H&auml;meenlinna<br />\nFaksinumero: 029 56 42269<br />\nS&auml;hk&ouml;posti: hameenlinna.hao@oikeus.fi</p>\n\n<p>Valituskirjelm&auml;n voi toimittaa henkil&ouml;kohtaisesti tai valtuutetun asiamiehen v&auml;lityksell&auml; taikka l&auml;hett&auml;&auml; l&auml;hetin v&auml;lityksell&auml;, postitse, faksina tai s&auml;hk&ouml;postina. Valituskirjelm&auml;n l&auml;hett&auml;minen tapahtuu l&auml;hett&auml;j&auml;n vastuulla.</p>\n\n<p>Valituskirjelm&auml;n on oltava perill&auml; m&auml;&auml;r&auml;ajan viimeisen&auml; p&auml;iv&auml;n&auml; ennen valitusviranomaisen virka-ajan p&auml;&auml;ttymist&auml;. S&auml;hk&ouml;isesti (faksina tai s&auml;hk&ouml;postina) toimitetun valituskirjelm&auml;n on oltava toimitettu niin, ett&auml; se on m&auml;&auml;r&auml;ajan viimeisen&auml; p&auml;iv&auml;n&auml; ennen virka-ajan p&auml;&auml;ttymist&auml; viranomaisen k&auml;ytett&auml;viss&auml; vastaanottolaitteessa tai tietoj&auml;rjestelm&auml;ss&auml; siten, ett&auml; viesti&auml; voidaan k&auml;sitell&auml;.</p>\n\n<p><strong>Oikeudenk&auml;yntimaksu</strong></p>\n\n<p>Hallinto-oikeudessa valituksen k&auml;sittelyst&auml; peritt&auml;v&auml; oikeudenk&auml;yntimaksu on 250 euroa. Mik&auml;li hallinto-oikeus muuttaa valituksenalaista p&auml;&auml;t&ouml;st&auml; muutoksenhakijan eduksi, oikeudenk&auml;yntimaksua ei perit&auml;. Maksua ei my&ouml;sk&auml;&auml;n perit&auml; er&auml;iss&auml; asiaryhmiss&auml; eik&auml; my&ouml;sk&auml;&auml;n mik&auml;li asianosainen on muualla laissa vapautettu maksusta. Maksuvelvollinen on vireillepanija ja maksu on valituskirjelm&auml;kohtainen.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1795,
+      "Name": "Draftsmans",
+      "Text": "Eija Muttonen-Mattila;#Rakennustarkastaja;#;#Eija.Muttonen-Mattila@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1796,
+      "Name": "Presenters",
+      "Text": "Eija Muttonen-Mattila;#Rakennustarkastaja;#;#Eija.Muttonen-Mattila@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1847,
+      "Name": "DraftingNotes",
+      "Text": "Lupa-arkkitehti Minna Järvinen, puh. 040 806 2441 klo 11.30-13.00, minnamaarit.jarvinen@tampere.fi",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1848,
+      "Name": "DecisionNotes",
+      "Text": "Päätösvalmistelusihteeri Kirsi Grönberg, etunimi.sukunimi@tampere.fi, puh. 040 806 3502",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1864,
+      "Name": "PersonalData",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1866,
+      "Name": "Opinions",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

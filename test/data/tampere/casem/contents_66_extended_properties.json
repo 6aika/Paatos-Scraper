@@ -1,0 +1,26 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1702,
+      "Name": "Participant_councilman",
+      "Text": "Matti Höyssä;#puheenjohtaja;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#member;#!#Grönberg Kirsi;#sihteeri;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#other;#!#Eija Muttonen-Mattila;#esittelijä;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#other;#!#Olkanen Emilia;#jäsen;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#member;#!#Hyötynen Kalle;#jäsen;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#member;#!#Rantaviita-Tiainen Anna-Kaarina;#jäsen;#;#;#member;#!#Kovanen Päivi;#varajäsenen;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#member;#!#Järvinen Matti;#varajäsenen;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#member;#!#Sasi Ilkka;#kaupunginhallituksen edustaja;#;#;#other;#!#Nurminen Mikko;#johtaja, ovo tilaajapäällikkö;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#other;#!#Nikupaavo-Oksanen Tarja;#viestintäsihteeri;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#other;#!#Neva Maija;#lakimies;#2016-09-13 09:00:00;#2016-09-13 09:50:00;#other;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1701,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=83436&GUID={1fceb0a5-47e6-485a-b88d-48dba70962f4}' target='_blank'>file.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1859,
+      "Name": "AgendaAttachment",
+      "Text": "<a href='download.aspx?ID=83437&GUID={e65da585-938c-4a55-9a98-0b8811e75768}' target='_blank'>file.pdf</a>",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

@@ -13,10 +13,15 @@
       this.options = options;
     }
     
+    cleanAll() {
+      nock.cleanAll();
+    }
+    
     mockResponse(resource, file) {
       const url = util.format('/api/opennc/v1/%s?%24format=json', resource);
       nock(this.options.baseUrl)
         .get(url)
+        .times(5)
         .replyWithFile(200, util.format('%s/%s', this.options.baseDir, file));
     }
     

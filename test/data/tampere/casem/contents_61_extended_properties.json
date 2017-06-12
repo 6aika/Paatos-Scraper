@@ -1,0 +1,103 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Näsijärven rantareitti välillä Lielahti-Hiedanranta, urakkahinta",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "15",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "TRE:1863/10.03.02/2016",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "<p>&rdquo;Tuomi Logistiikka Oy pyysi tarjouksia Tampereen kaupungin kaupunkiymp&auml;rist&ouml;n palvelualueen toimeksiannosta N&auml;sij&auml;rven rantareitin urakasta v&auml;lill&auml; Lielahti - Hiedanranta.</p>\n\n<p>Hankintamenettely oli avoin. Kyseess&auml; on EU-kynnysarvon alittava urakka. Hankinnasta ilmoitettiin HILMA-palvelussa 18.7.2016 ja tarjouspyynt&ouml; oli saatavilla internetiss&auml; Tarjouspalvelu.fi -portaalissa.</p>\n\n<p>Tarjouskilpailua koskeva p&auml;&auml;t&ouml;sehdotus on toimitettu lautakunnan j&auml;senille esityslistan yhteydess&auml; ja tulee julkiseksi yhdyskuntalautakunnan kokouksen j&auml;lkeen.&rdquo;</p>\n\n<p>J&auml;sen Hannele Str&ouml;mberg esitti, ett&auml; asia j&auml;tet&auml;&auml;n p&ouml;yd&auml;lle.<br />\nPuheenjohtaja Pekka Salmi kannatti esityst&auml;.</p>\n\n<p>Tiedusteltuaan Str&ouml;mbergin p&ouml;yd&auml;llej&auml;tt&ouml;esityksen saamaa kannatusta, puheenjohtaja totesi sen tulleen hyv&auml;ksytyksi yksimielisesti.</p>\n\n<p>P&auml;&auml;t&ouml;s&nbsp;Asia j&auml;tettiin p&ouml;yd&auml;lle.</p>\n\n<p>&nbsp;&nbsp;_________________</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Vs. rakennuttamisp&auml;&auml;llikk&ouml; Kantola:</p>\n\n<p>Uudistan p&auml;&auml;t&ouml;sehdotuksen.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "<p>Asia palautettiin uudelleen valmisteltavaksi.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1793,
+      "Name": "Inform",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1795,
+      "Name": "Draftsmans",
+      "Text": "Petri Kantola;#Rakennuttamispäällikkö;#;#Petri.Kantola@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1796,
+      "Name": "Presenters",
+      "Text": "Petri Kantola;#Rakennuttamispäällikkö;#;#Petri.Kantola@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1847,
+      "Name": "DraftingNotes",
+      "Text": "Vs. rakennuttamispäällikkö Petri Kantola, puh.  050 364 6095, etunimi.sukunimi@tampere.fi ",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1848,
+      "Name": "DecisionNotes",
+      "Text": "Päätösvalmistelusihteeri Anneli Harjuntausta, puh. 040 806 3149, etunimi.sukunimi@tampere.fi",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1864,
+      "Name": "PersonalData",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1866,
+      "Name": "Opinions",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

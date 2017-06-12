@@ -18,11 +18,11 @@
   chai.use(require('chai-as-promised'));
   
   const options = require(__dirname + '/../app/options');
-  const MikkeliCasemMocker = require(__dirname + '/mockers/mikkeli-casem-mocker');
+  const TampereCasemMocker = require(__dirname + '/mockers/tampere-casem-mocker');
   const DataExtractorFactory = require(__dirname + '/../extract/data-extractor-factory');
-  const mocker = new MikkeliCasemMocker();
+  const mocker = new TampereCasemMocker();
   
-  describe('Mikkeli extract tests', function () {
+  describe('Tampere extract tests', function () {
     this.timeout(60000);
     
     before((done) => {
@@ -34,21 +34,20 @@
       mocker.cleanAll();
       done();
     });
-    
+
     it('Test organizations scraping', () => {
-      
       const tempFolder = fs.mkdtempSync('paatos-scraper');
-      const zipFile = util.format('%s/mli.zip', tempFolder);
-      const output = util.format('%s/mli', tempFolder); 
+      const zipFile = util.format('%s/tre.zip', tempFolder);
+      const output = util.format('%s/tre', tempFolder); 
       
       options.options = {
-        'organization-id': '11217',
+        'organization-id': '11292',
         'max-events': 1,
         'output-zip': zipFile,
         'host': 'localhost'
       };
       
-      const extractor = DataExtractorFactory.createDataExtractor('mikkeli', {
+      const extractor = DataExtractorFactory.createDataExtractor('tampere', {
         host: options.getOption('host')
       });
       
@@ -60,7 +59,7 @@
               .promise()
               .then(() => {
                 setTimeout(() => {
-                  expect(output).to.be.a.directory().and.deep.equal(__dirname + '/data/mikkeli/extracted');
+                  expect(output).to.be.a.directory().and.deep.equal(__dirname + '/data/tampere/extracted');
                   rimraf.sync(tempFolder);
                   resolve(null);
                 }, 500);

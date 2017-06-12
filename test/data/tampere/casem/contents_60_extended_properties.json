@@ -1,0 +1,138 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Oikaisuvaatimus suunnittelupäällikön päätökseen koskien Lamminpäänkadun katusuunnitelmaa",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "10",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "TRE:6985/10.03.02/2014",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "<p>&rdquo;Suunnittelup&auml;&auml;llikk&ouml; teki 12.4.2016 &sect; 60 p&auml;&auml;t&ouml;ksen Lamminp&auml;&auml;nkadun katusuunnitelman hyv&auml;ksymisest&auml;. Lars Granroth on tehnyt p&auml;&auml;t&ouml;ksest&auml; oikaisuvaatimuksen.</p>\n\n<p>Granrothin oikaisuvaatimuksen mukaan katusuunnitelmassa esitetty ratkaisu Lamminp&auml;&auml;nkadun ja Jussinkadun liittym&auml;n uudelleenmuotoilusta on tarpeeton ja j&auml;rjet&ouml;n. Liittym&auml;n kaventaminen katusuunnitelman mukaisesti tekee oikaisuvaatimuksen mukaan liittym&auml;st&auml; hankalan ja vaarallisen.</p>\n\n<p>Lis&auml;ksi oikaisuvaatimuksessa vaaditaan Lamminp&auml;&auml;nkatu 2 kohdalla katualueella olevien oikaisuvaatimuksen mukaan luvatta rakennettujen tontin piha-alueiden osien poistamista katusaneeraust&ouml;iden yhteydess&auml;.&rdquo;</p>\n\n<p>Katuinsin&ouml;&ouml;ri Pasi Palmu:</p>\n\n<p>&rdquo;Katusuunnitelmissa esitetyt muutokset Lamminp&auml;&auml;nkadun ja Jussinkadun liittym&auml;&auml;n ovat katusuunnitteluohjeiden mukaisia ratkaisuja. Katusuunnitelman mukainen liittym&auml;n muotoilu edist&auml;&auml; liikenneturvallisuutta, koska t&auml;ll&ouml;in liittymiskulmat ja liikennenopeudet saadaan liittym&auml;ss&auml; liikenneturvallisuuden kannalta paremmiksi. Liittym&auml;muutokset eiv&auml;t kuitenkaan oleellisesti huononna katuliittymien k&auml;ytett&auml;vyytt&auml;.</p>\n\n<p>Granroth esitti ko. katuliittym&auml;&auml;n liittyen saman asian muistutuksessaan katusuunnitelmaehdotusta vastaan. Oikaisuvaatimuksessa, eik&auml; alkuper&auml;isess&auml; muistutuksessa kuitenkaan esitet&auml;, ett&auml; mit&auml; liittym&auml;n osalta halutaan tilalle. Oikaisuvaatimuksessa ei tuoda mit&auml;&auml;n sellaista uutta esille, mink&auml; takia olisi syyt&auml; muuttaa hyv&auml;ksytyn katusuunnitelman ratkaisua ko. katuliittym&auml;n osalta.</p>\n\n<p>Granroth oli katusuunnitelmaan vastaan tehdyss&auml; muistutuksessa esitt&auml;nyt Lamminp&auml;&auml;nkatu 2 kohdalla olevien muistutuksen mukaan luvatta rakennettujen tonttiliittymien tiettyjen rakenteiden poistamista. Oikaisuvaatimuksessa sen sijaan Granroth vaatii Lamminp&auml;&auml;nkatu 2 kohdalla koko tontin matkalla katualueelle tehtyjen piha-alueiden poistamista.</p>\n\n<p>Hyv&auml;ksytyss&auml; katusuunnitelmassa on otettu kantaa katualueen k&auml;ytt&auml;miseen Lamminp&auml;&auml;nkatu 2 kohdalla. Katusuunnitelmassa n&auml;kyy selke&auml;sti tonttiliittym&auml;t ja muun katualueen k&auml;ytt&ouml;. Lamminp&auml;&auml;nkatu 2 kiinteist&ouml;ll&auml; on hyv&auml;ksyttyjen rakennuslupien mukaiset tonttiliittym&auml;t. Tonttiliittym&auml;t kuuluvat kokonaisuudessaan ajoradan reunaan asti kiinteist&ouml;ille. N&auml;in ollen Lamminp&auml;&auml;nkatu 2 tonttiliittymiin ei ole syyt&auml; tehd&auml; muutoksia katurakentamisen aikana ja katusuunnitelmissa on huomioitu ainoastaan nykytilanteen ennallistaminen tonttiliittymien osalta katurakennust&ouml;iden j&auml;lkeen. Tonttiliittymi&auml; lukuunottamatta Tampereen kaupungilla on oikeus k&auml;ytt&auml;&auml; kuten parhaaksi katsoo koko katualuettaan tarpeellisten katusaneeraustoimenpiteiden toteuttamiseksi. Lamminp&auml;&auml;nkatu 2 kohdalla n&auml;in on my&ouml;s katusuunnitelman mukaan osoitettu teht&auml;v&auml;ksi. Katusuunnitelman mukaisen avo-ojan toteuttaminen edellytt&auml;&auml; koko katualueen k&auml;ytt&auml;mist&auml;.</p>\n\n<p>Oikaisuvaatimuksessa ei tuoda t&auml;m&auml;nk&auml;&auml;n asian osalta esille mit&auml;&auml;n sellaista uutta tietoa, mik&auml; aiheuttaisi muutostarpeita katusuunnitelmassa esitettyihin ratkaisuihin.&rdquo;</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Suunnittelup&auml;&auml;llikk&ouml; Vandell:</p>\n\n<p>Yhdyskuntalautakunta p&auml;&auml;tt&auml;&auml;,</p>\n\n<p>ett&auml; Lars Granrothin oikaisuvaatimus hyl&auml;t&auml;&auml;n.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "<p>P&auml;&auml;t&ouml;sehdotus hyv&auml;ksyttiin.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1793,
+      "Name": "Inform",
+      "Text": "Lars Granroth, Pasi Palmu/kake, Mikko Vainiomäki/kake, Kristiina Lindberg/kake",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73392&GUID={d6f8ef8c-7c1b-43fc-97c4-541bb188b62a}' target='_blank'> Oikaisuvaatimus.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73393&GUID={6c087290-1525-4d8b-b35e-8ff1083b7dd9}' target='_blank'>Muistutus Kahiluoto.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73394&GUID={495a43d4-0f30-44f9-9740-46e5720f3edc}' target='_blank'>Muistutus2 Granroth.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73395&GUID={1493dc65-c655-4030-b2c5-cfb18bd687f5}' target='_blank'>Suunnittelupäällikön päätöspöytäkirja.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73396&GUID={a3e6a626-12f2-47d8-9daf-1c8f78315fce}' target='_blank'>Muistutus Granroth.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73397&GUID={07c243f9-89c9-4603-abdb-6543e6cc415a}' target='_blank'>Katujärjestelypiirustus.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1796,
+      "Name": "Presenters",
+      "Text": "Ari Vandell;#Suunnittelupäällikkö;#;#Ari.Vandell@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1847,
+      "Name": "DraftingNotes",
+      "Text": "Katuinsinööri Pasi Palmu, puh. 040 801 6812, etunimi.sukunimi@tampere.fi ",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1848,
+      "Name": "DecisionNotes",
+      "Text": "Päätösvalmistelusihteeri Anneli Harjuntausta, puh. 040 806 3149, etunimi.sukunimi@tampere.fi",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1864,
+      "Name": "PersonalData",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1866,
+      "Name": "Opinions",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}
