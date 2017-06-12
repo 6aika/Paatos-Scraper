@@ -116,7 +116,7 @@
     }
     
     /**
-     * Returns a promise for organization event action contents.s
+     * Returns a promise for organization event action contents
      * 
      * @param {String} organizationId organizationId 
      * @param {String} eventId eventId
@@ -130,13 +130,15 @@
             const contents = [];
             extendedProperties.forEach((extendedProperty) => {
               if (extendedProperty.Name && extendedProperty.Text) {
-                const contentValue = this.processContentValue(extendedProperty.Name, extendedProperty.Text);
-                if (contentValue) {
-                  contents.push({
-                    order: order++,
-                    title: contentValue.title,
-                    content: contentValue.value
-                  }); 
+                const contentValues = this.processContentValues(extendedProperty.Name, extendedProperty.Text);
+                if (contentValues) {
+                  contentValues.forEach((contentValue) => {
+                    contents.push({
+                      order: order++,
+                      title: contentValue.title,
+                      content: contentValue.value
+                    }); 
+                  });
                 }
               }  
             });
@@ -459,7 +461,7 @@
       });
     }
     
-    processContentValue (name, value) {
+    processContentValues (name, value) {
       switch (name) {
         case 'Attachments':
         case 'AgendaAttachment':
@@ -468,64 +470,69 @@
         case 'Name':
         case 'Article':
         case 'Votings':
-          return null;
+          return [];
         case "CaseNativeId": 
-          return {
+          return [{
             "title": "Dno",
             "value": value
-          };
+          }];
         case "Correctioninstructions":
-          return {
+          return [{
             "title": "Muutoksenhaku",
             "value": value
-          };
+          }];
         case "Disqualification": 
-          return {
+          return [{
             "title": "Esteellisyys",
             "value": value
-          };
+          }];
         case "Description":
-          return {
+          return [{
             "title": "Kuvaus",
             "value": value
-          };
+          }];
         case "Decisionproposal":
-          return {
+          return [{
             "title": "Päätösehdotus",
             "value": value
-          };
+          }];
         case "Decision":
-          return {
+          return [{
             "title": "Päätös",
             "value": value
-          };
+          }];
         case "Inform":
-          return {
+          return [{
             "title": "Tiedoksi",
             "value": value
-          };
+          }];
         case 'Draftsmans':
-          return {
+          return [{
             "title": "Valmistelijat",
             "value": this.parsePresenters(value)
-          };
+          }];
+        case 'DecisionNotes':
+          return [{
+            "title": "Lisätietoja päätöksestä",
+            "value": value
+          }];
         case "Presenters":
-          return {
+          return [{
             "title": "Esittelijät",
             "value": this.parsePresenters(value)
-          };
+          }];
         case 'Participant_councilman': 
-          return {
+          return [{
             "title": 'Kokouksen osallistujat',
             "value": this.parseParticipantCouncilmen(value)
-          };
+          }];
         default:
           winston.log('warn', util.format('Unknown content property %s (%s), returning as-is', name, value));                
           
-          return {
+          return [{
             "title": name,
             "value": value
-          };
+          }];
       }
     }
     

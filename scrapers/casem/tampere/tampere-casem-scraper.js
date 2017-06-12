@@ -23,6 +23,35 @@
       
     }
     
+    processContentValues (name, value) {
+      switch (name) {
+        case "DraftingNotes":
+          return [{
+            "title": "Valmistelijan yhteystiedot",
+            "value": value
+          }];
+        case "CaseNativeId": 
+          return [{
+            "title": "Dno",
+            "value": value
+          }, {
+            "title": "functionId",
+            "value": this.extractFunctionId(value)
+          }];
+      }
+      
+      return super.processContentValues(name, value);
+    }
+    
+    extractFunctionId(dno) {
+      const result = dno.split('/');
+      if (result.length === 3) {
+        return result[1].replace(/\./g, ' ');
+      }
+      
+      winston.log('warn', util.format('Could not extract functionId from dno %s', dno)); 
+    }
+    
   }
   
   module.exports = TampereCasemScraper;
