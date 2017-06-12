@@ -16,6 +16,10 @@
       super(options, new MikkeliCasemScraper(options));
     }
     
+    extractFunctionId(dno) {
+      return 'mikkeli-function';
+    }
+    
   }
   
   module.exports = MikkeliDataExtractor;
