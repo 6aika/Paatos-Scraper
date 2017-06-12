@@ -90,9 +90,6 @@
                         actionOrganizationIds.push(eventOrganizationId);
                         actionEventIds.push(eventId);
 
-                        let date = moment(resultBuilder.getOrganizationEvent(eventOrganizationId, eventId).startDate);
-                        let articleNumber = actions[actionIndex]['articleNumber'];
-
                         contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                         attachmentPromises.push(this.extractOrganizationEventActionAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                       }
@@ -123,7 +120,7 @@
                           if (caseRegisterId) {
                             resultBuilder.addOrganizationCase(actionOrganizationId, {
                               "registerId": caseRegisterId,
-                              "functionId": null,
+                              "functionId": this.extractFunctionId(caseRegisterId),
                               "sourceId": caseRegisterId,
                               "geometries": [],
                               "title": resultBuilder.getOrganizationEventAction(actionOrganizationId, actionEventId, actionId).title
@@ -177,6 +174,16 @@
         }
       }
       
+      return null;
+    }
+    
+    extractFunctionId(dno) {
+      const result = dno.split('/');
+      if (result.length === 3) {
+        return result[1].replace(/\./g, ' ');
+      }
+      
+      winston.log('warn', util.format('Could not extract functionId from dno %s', dno));
       return null;
     }
     
