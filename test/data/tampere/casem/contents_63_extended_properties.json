@@ -1,0 +1,61 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Viranhaltijoiden päätösten otto-oikeus",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "16",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "<p>Yhdyskuntalautakunnalle on saapunut seuraavat p&auml;&auml;t&ouml;sp&ouml;yt&auml;kirjat:</p>\n\n<p><br />\nApulaispormestari Pekka Salmi&nbsp;&nbsp;22.-30.8.2016&nbsp;</p>\n\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t 22, 25</p>\n\n<p>Johtaja, ovo. tilaajap&auml;&auml;llikk&ouml; Mikko Nurminen&nbsp;18.-30.8.2016<br />\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t 64-67</p>\n\n<p>Suunnittelup&auml;&auml;llikk&ouml; Ari Vandell&nbsp;&nbsp;19.-31.8.2016<br />\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t 141-151</p>\n\n<p>Vs. rakennuttamisp&auml;&auml;llikk&ouml; Petri Kantola&nbsp;26.-30.8.2016<br />\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t&nbsp; 149-153<br />\nsek&auml; salainen p&auml;&auml;t&ouml;s&nbsp;&nbsp;&nbsp;22.8.2016 &sect; 147</p>\n\n<p>- 1. varahenkil&ouml; Kimmo Myllynen&nbsp;&nbsp;16.-17.8.2016<br />\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t 144-146</p>\n\n<p>Asemakaavap&auml;&auml;llikk&ouml; Elina Karppinen&nbsp;&nbsp;25.8.2016 &sect;:t 18-19</p>\n\n<p>Kaupungingeodeetti Anna Mustajoki&nbsp;&nbsp;6.7.-12.8.2016<br />\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t 25,29<br />\n- 2. varahenkil&ouml; Antti Alarotu&nbsp;&nbsp;14.-22.7.2016<br />\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&sect;:t 26-28</p>\n\n<p><br />\nP&auml;&auml;t&ouml;sp&ouml;yt&auml;kirjat ovat luottamushenkil&ouml;iden n&auml;ht&auml;vill&auml; esityslistan yhteydess&auml;.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Johtaja, ovo. tilaajap&auml;&auml;llikk&ouml; Nurminen:</p>\n\n<p>Yhdyskuntalautakunta p&auml;&auml;tt&auml;&auml;,</p>\n\n<p>ett&auml; p&ouml;yt&auml;kirjoista ilmenevi&auml; p&auml;&auml;t&ouml;ksi&auml; ei oteta lautakunnan k&auml;sitelt&auml;v&auml;ksi.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "<p>P&auml;&auml;t&ouml;sehdotus hyv&auml;ksyttiin.</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1796,
+      "Name": "Presenters",
+      "Text": "Mikko Nurminen;#Johtaja;#;#Mikko.Nurminen@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

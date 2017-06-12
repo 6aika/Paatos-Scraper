@@ -9,7 +9,9 @@
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "test-coverage": "nyc --reporter=lcov -- mocha && cat ./coverage/lcov.info | coveralls",
     "test-turku": "nyc --reporter=lcov -- mocha --grep 'Turku'",
-    "test-espoo": "nyc --reporter=lcov -- mocha --grep 'Espoo'"
+    "test-espoo": "nyc --reporter=lcov -- mocha --grep 'Espoo'",
+    "test-tampere": "nyc --reporter=lcov -- mocha --grep 'Tampere'",
+    "test-mikkeli": "nyc --reporter=lcov -- mocha --grep 'Mikkeli'"
   },
   "repository": {
     "type": "git",
@@ -30,14 +32,16 @@
     "command-line-usage": "^4.0.0",
     "content-disposition": "^0.5.2",
     "html-entities": "^1.2.1",
+    "isemail": "^2.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "normalize-space": "^1.0.2",
-    "npm": "^4.4.4",
+    "odata-client": "^0.5.5",
     "pdf2json": "^1.1.7",
     "request": "^2.81.0",
     "rimraf": "^2.6.1",
     "sync-request": "^4.0.2",
+    "unzipper": "^0.8.8",
     "winston": "^2.3.1"
   },
   "devDependencies": {
@@ -46,6 +50,7 @@
     "coveralls": "2.13.0",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
-    "nyc": "10.2.0"
+    "nyc": "10.2.0",
+    "rimraf": "^2.6.1"
   }
 }

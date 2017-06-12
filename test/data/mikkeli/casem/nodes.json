@@ -1,0 +1,77 @@
+{
+  "odata.metadata": "http://mikkeli.cloudnc.fi/api/opennc/v1/$metadata#Nodes",
+  "value": [
+    {
+      "NodeId": 10717,
+      "ParentId": 23,
+      "Names": [
+        {
+          "LanguageId": 1,
+          "Name": "Toimielimet",
+          "Link": ""
+        },
+        {
+          "LanguageId": 2,
+          "Name": "Toimielimet en",
+          "Link": ""
+        },
+        {
+          "LanguageId": 3,
+          "Name": "Toimielimet sv",
+          "Link": ""
+        }
+      ],
+      "SortOrder": 20,
+      "Date": "2015-05-21T16:21:47.953",
+      "Type": 8
+    },
+    {
+      "NodeId": 11533,
+      "ParentId": 23,
+      "Names": [
+        {
+          "LanguageId": 1,
+          "Name": "Viranhaltijat",
+          "Link": ""
+        },
+        {
+          "LanguageId": 2,
+          "Name": "Viranhaltijat",
+          "Link": ""
+        },
+        {
+          "LanguageId": 3,
+          "Name": "Viranhaltijat",
+          "Link": ""
+        }
+      ],
+      "SortOrder": 25,
+      "Date": "2017-01-30T13:33:53.483",
+      "Type": 0
+    },
+    {
+      "NodeId": 10686,
+      "ParentId": 23,
+      "Names": [
+        {
+          "LanguageId": 1,
+          "Name": "Ylälaidan linkit",
+          "Link": ""
+        },
+        {
+          "LanguageId": 2,
+          "Name": "Ylälaidan linkit",
+          "Link": ""
+        },
+        {
+          "LanguageId": 3,
+          "Name": "Ylälaidan linkit",
+          "Link": ""
+        }
+      ],
+      "SortOrder": 99992,
+      "Date": "2013-06-07T09:31:21.76",
+      "Type": 0
+    }
+  ]
+}

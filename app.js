@@ -30,7 +30,11 @@
     htmlDownloadInterval: options.getOption('html-download-interval') || 10
   };
   
-  let extractor = DataExtractorFactory.createDataExtractor(options.getOption('source'), extractorOptions);
+  if (options.getOption('host')) {
+    extractorOptions.host = options.getOption('host');
+  }
+  
+  const extractor = DataExtractorFactory.createDataExtractor(options.getOption('source'), extractorOptions);
   
   if (options.getOption('print-organizations')) {
     extractor.extractOrganizations()
@@ -44,7 +48,14 @@
       });
       
   } else {
-    extractor.extractOrganizationData(options);
+    extractor.extractOrganizationData(options)
+      .then(() => {
+        console.log("Done.");
+      })
+      .catch((err) => {
+        console.error(err);
+        process.exitCode = 1;
+      });
   }
   
 }).call(this);

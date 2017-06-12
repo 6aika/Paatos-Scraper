@@ -1,0 +1,29 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#Nodes",
+  "value": [
+    {
+      "NodeId": 11291,
+      "ParentId": 11290,
+      "Names": [
+        {
+          "LanguageId": 1,
+          "Name": "Kokoukset",
+          "Link": null
+        },
+        {
+          "LanguageId": 2,
+          "Name": "Meetings",
+          "Link": null
+        },
+        {
+          "LanguageId": 3,
+          "Name": "Möten",
+          "Link": null
+        }
+      ],
+      "SortOrder": 0,
+      "Date": "2016-09-16T09:30:54.937",
+      "Type": 0
+    }
+  ]
+}

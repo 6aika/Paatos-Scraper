@@ -25,6 +25,7 @@
         { name: 'max-events', type: Number },
         { name: 'pdf-download-interval', type: Number },
         { name: 'html-download-interval', type: Number },
+        { name: 'host', type: String },
         { name: 'events-after', type: String },
         { name: "error-log", type: String },
         { name: 'help', alias: 'h', type: Boolean }
@@ -90,6 +91,9 @@
         }, {
           name: 'html-download-interval',
           description: 'Interval between downloading HTML-pages in milliseconds. Defaults to 10ms'
+        }, {
+          name: 'host',
+          description: 'Override the default hostname of service being scraped'
         }, {
           name: 'events-after',
           description: 'Extract only events after specified date. Date should be formatted in following format: YYYY-MM-DD'

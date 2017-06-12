@@ -1,0 +1,110 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Hyvä johtamis- ja hallintotapa ja sisäinen valvonta",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "5",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "TRE:417/00.01.01/2016",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "<p>Tampereen kaupungin Hyv&auml; johtamis- ja hallintotapa ja sis&auml;inen valvonta -ohje on p&auml;ivitetty. Kh hyv&auml;ksyi p&auml;ivitetyn ohjeen 1.2. ja m&auml;&auml;r&auml;si, ett&auml; ohje tulee k&auml;sitell&auml; kaikissa luottamustoimielimiss&auml; ja tehd&auml; tarvittavat p&auml;&auml;t&ouml;kset oman toiminnan osalta sis&auml;isen valvonnan ja riskienhallinnan asianmukaisesta j&auml;rjest&auml;misest&auml;.</p><p>Keskeisimpi&auml; muutoksia olivat kaupunginhallituksen velvollisuus huolehtia sis&auml;isest&auml; valvonnasta ja riskienhallinnan j&auml;rjest&auml;misest&auml;, konsernihallinnon uudistuminen, konsernijohtajan teht&auml;v&auml;- ja vastuukysymykset, johtoryhm&auml;ty&ouml;skentely, sis&auml;isen valvonnan ja riskienhallinnan sek&auml; ohjeella korvattavan riskienhallintapolitiikan keskeisen sis&auml;ll&ouml;n yhdist&auml;minen, hankintaprosessin kokonaisuus sek&auml; sopimushallinnan ja ulkoistettujen palveluiden tarkastusoikeudet, henkil&ouml;st&ouml;asioiden prosessin tarkennukset, tietoj&auml;rjestelm&auml;investointien hy&ouml;dynt&auml;minen ja priorisointi, teht&auml;v&auml;- ja vastuum&auml;&auml;rittelyt sek&auml; hankinnat ja sopimusmenettelyt.</p><p>Ohjeessa esitet&auml;&auml;n my&ouml;s tarkastustoimikunnan toimintaymp&auml;rist&ouml;analyysi, joka esimerkinomaisesti havainnollistaa Tampereen kaupunkikonsernin moninaista toiminta- ja riskiymp&auml;rist&ouml;&auml;.</p><p>Hyv&auml; johtamis- ja hallintotapa ja sis&auml;inen valvonta -ohjetta lautakunnalle esittelee tarkastusjohtaja Markus Kiviaho.</p>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Yhdyskuntalautakunta p&auml;&auml;tt&auml;&auml;,</p><p>ett&auml; kaupunginvaltuuston 15.6.2015 hyv&auml;ksym&auml;n sis&auml;isen valvonnan ja riskienhallinnan perusteiden sek&auml; kaupunginhallituksen 1.2.2016 hyv&auml;ksym&auml;n Hyv&auml; johtamis- ja hallintotapa ja sis&auml;inen valvonta -asiakirjan mukaisesti laaditaan lautakunnan vastuulla olevasta toiminnasta vuoden 2016 aikana toimintaymp&auml;rist&ouml;analyysi ja riskiprofiili sek&auml; k&auml;ynnistet&auml;&auml;n sis&auml;isen valvonnan ja riskienhallinnan suunnitelmien yhdist&auml;minen yhdeksi asiakirjaksi, jossa sis&auml;inen valvonta ja riskienhallinta muodostavat toiminnallisen kokonaisuuden.</p>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "P&auml;&auml;t&ouml;sehdotus hyv&auml;ksyttiin.",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1793,
+      "Name": "Inform",
+      "Text": "Kiviaho Markus, Kantola Petri, Pyymäki Ilpo",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1719,
+      "Name": "Attachments",
+      "Text": "<a href='download.aspx?ID=73401&GUID={5623fe30-8215-4488-ad4f-53d1b956b5d8}' target='_blank'>Hyvä johtamis- ja hallintotapa ja sisäinen valvonta -ohje.pdf</a>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1795,
+      "Name": "Draftsmans",
+      "Text": "Mikko Nurminen;#Johtaja;#;#Mikko.Nurminen@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1796,
+      "Name": "Presenters",
+      "Text": "Mikko Nurminen;#Johtaja;#;#Mikko.Nurminen@tampere.fi;#",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1847,
+      "Name": "DraftingNotes",
+      "Text": "<p>tarkastusjohtaja Markus Kiviaho, puh. 040 160 1529, etunimi.sukunimi@tampere.fi</p>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1848,
+      "Name": "DecisionNotes",
+      "Text": "<p>P&auml;&auml;t&ouml;svalmistelusihteeri Anneli Harjuntausta, puh. 040 806 3149, etunimi.sukunimi@tampere.fi</p>",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1864,
+      "Name": "PersonalData",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1866,
+      "Name": "Opinions",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

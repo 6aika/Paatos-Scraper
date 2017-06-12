@@ -1,0 +1,1 @@
+{"odata.metadata":"http://mikkeli.cloudnc.fi/api/opennc/v1/$metadata#Nodes","value":[{"NodeId":11218,"ParentId":11217,"Names":[{"LanguageId":1,"Name":"Kokoukset","Link":null},{"LanguageId":2,"Name":"Meetings","Link":null},{"LanguageId":3,"Name":"M\u00f6ten","Link":null}],"SortOrder":0,"Date":"2015-06-01T12:22:50.337","Type":0}]}

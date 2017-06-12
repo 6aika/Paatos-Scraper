@@ -121,7 +121,13 @@
         });
       });
       
-      archive.finalize();
+      return new Promise((resolve) => {
+        archive.on("end", () => {
+          resolve();
+        });  
+      
+        archive.finalize();
+      });
     }
     
   }

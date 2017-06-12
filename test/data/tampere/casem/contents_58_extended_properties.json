@@ -1,0 +1,54 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Läsnäolo- ja puheoikeuden myöntäminen",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "2",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>Puheenjohtaja:</p>\n\n<p>Yhdyskuntalautakunta p&auml;&auml;tt&auml;&auml;</p>\n\n<p>my&ouml;nt&auml;&auml; l&auml;sn&auml;olo- ja puheoikeuden</p>\n\n<p>toimitusjohtaja Timo Heinoselle Keskuspuhdistamo Oy:st&auml;, projektiarkkitehti Marjut Ahposelle, tarkastusjohtaja Markus Kiviaholle ja liikenneinsin&ouml;&ouml;ri Helj&auml; Aarnikolle &sect; 256 Ajankohtaiset asiat ajaksi.</p>\n\n<p>Merkittiin, ett&auml; kaupunginhallituksen edustaja Ilkka Sasi saapui kokoukseen t&auml;m&auml;n pyk&auml;l&auml;n k&auml;sittelyn aikana klo 16.05</p>\n\n<p>&nbsp;</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "<p>P&auml;&auml;t&ouml;sehdotus hyv&auml;ksyttiin.</p>\n",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

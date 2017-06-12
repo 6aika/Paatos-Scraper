@@ -1,0 +1,425 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#Contents",
+  "value": [
+    {
+      "ContentId": 57,
+      "Subject": "",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:19.763",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:19.763",
+      "EditedDate": "2016-09-13T21:02:54.713",
+      "TemplateId": 71,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 2956,
+          "NodeName": "Näytä tason esittelynä",
+          "Type": 43
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": [
+        {
+          "FileId": 73283
+        },
+        {
+          "FileId": 73284
+        }
+      ]
+    },
+    {
+      "ContentId": 58,
+      "Subject": "Konsernihallinnon varahenkilöiden nimeäminen v. 2016",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:21.277",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:21.277",
+      "EditedDate": "2016-09-13T21:02:54.963",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    },
+    {
+      "ContentId": 59,
+      "Subject": "Valtuustoaloite Etyk-veistoksen sijoittamiseksi sen arvoiselle paikalle - Terhi Kiemunki ym.",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:21.607",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:21.607",
+      "EditedDate": "2016-09-13T21:03:11.607",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": [
+        {
+          "FileId": 73285
+        },
+        {
+          "FileId": 73295
+        }
+      ]
+    },
+    {
+      "ContentId": 60,
+      "Subject": "Kokouksen laillisuus ja päätösvaltaisuus",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:21.903",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:21.903",
+      "EditedDate": "2016-09-13T21:02:56.293",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    },
+    {
+      "ContentId": 61,
+      "Subject": "Pöytäkirjan tarkastus",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:22.06",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:22.06",
+      "EditedDate": "2016-09-13T21:02:56.463",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    },
+    {
+      "ContentId": 62,
+      "Subject": "Tampereen kaupungin maaseutuohjelma 2020 - Hallitusti luonnollinen - väliarviointiraportti",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:22.403",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:22.403",
+      "EditedDate": "2016-09-13T21:03:08.153",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": [
+        {
+          "FileId": 73286
+        }
+      ]
+    },
+    {
+      "ContentId": 63,
+      "Subject": "Tampereen kaupungin lausunto terveydenhuoltolain ja sosiaalihuoltolain sekä päivystysasetuksen muutoksista",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:22.667",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:22.667",
+      "EditedDate": "2016-09-13T21:03:09.463",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": [
+        {
+          "FileId": 73287
+        },
+        {
+          "FileId": 73288
+        },
+        {
+          "FileId": 73289
+        },
+        {
+          "FileId": 73290
+        },
+        {
+          "FileId": 73291
+        }
+      ]
+    },
+    {
+      "ContentId": 64,
+      "Subject": "Kadunnimitoimikunnan asettaminen",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:22.903",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:22.903",
+      "EditedDate": "2016-09-13T21:03:11.95",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": [
+        {
+          "FileId": 73296
+        },
+        {
+          "FileId": 73297
+        }
+      ]
+    },
+    {
+      "ContentId": 65,
+      "Subject": "Tampereen kaupungin lausunto Pirkanmaan sairaanhoitopiirille alueellisen apuvälinepalvelun suunnitelmasta",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:23.137",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:23.137",
+      "EditedDate": "2016-09-13T21:03:11.403",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": [
+        {
+          "FileId": 73292
+        },
+        {
+          "FileId": 73293
+        },
+        {
+          "FileId": 73294
+        }
+      ]
+    },
+    {
+      "ContentId": 66,
+      "Subject": "Tiedoksi merkittävät asiat",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:23.34",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:23.34",
+      "EditedDate": "2016-09-13T21:03:05.917",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    },
+    {
+      "ContentId": 67,
+      "Subject": "Kaupunkikuvatoimikunnan asettaminen",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:23.543",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:23.543",
+      "EditedDate": "2016-09-13T21:03:06.107",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    },
+    {
+      "ContentId": 68,
+      "Subject": "Asemakaavan muutos Kaleva-Petsamo-Kauppi-Kissanmaa, Kekkosentie-Teiskontie, joukkoliikennesilta, liikenne- ja katualuetta, kaava nro 8602",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:23.763",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:23.763",
+      "EditedDate": "2016-09-13T21:03:06.45",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    },
+    {
+      "ContentId": 69,
+      "Subject": "Lautakuntien ja jaostojen ym. pöytäkirjat sekä viranhaltijoiden ym. päätöspöytäkirjat",
+      "LanguageId": 1,
+      "PublicDate": "2016-09-06T13:10:23.963",
+      "ExpiryDate": "2018-12-31T23:59:59",
+      "CreatedDate": "2016-09-06T13:10:23.963",
+      "EditedDate": "2016-09-13T21:03:06.903",
+      "TemplateId": 70,
+      "Version": 1,
+      "CreatorId": 7519,
+      "Editor": 7519,
+      "EventStartDate": null,
+      "EventEndDate": null,
+      "Classifications": [
+        {
+          "NodeId": 59,
+          "NodeName": "Internet",
+          "Type": 12
+        },
+        {
+          "NodeId": 11292,
+          "NodeName": "Kokous 5.9.2016",
+          "Type": 7
+        }
+      ],
+      "FileLinks": []
+    }
+  ]
+}

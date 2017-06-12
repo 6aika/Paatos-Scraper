@@ -1,0 +1,61 @@
+{
+  "odata.metadata": "http://tampere.cloudnc.fi/api/opennc/v1/$metadata#ExtendedProperties",
+  "value": [
+    {
+      "Id": 1725,
+      "Name": "Name",
+      "Text": "Pöytäkirjan tarkastus",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1718,
+      "Name": "Article",
+      "Text": "2",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1791,
+      "Name": "CaseNativeId",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1792,
+      "Name": "IsAdditionalTopic",
+      "Text": "False",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1723,
+      "Name": "Description",
+      "Text": "",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1722,
+      "Name": "Decisionproposal",
+      "Text": "<p>T&auml;m&auml;n kokouksen p&ouml;yt&auml;kirjantarkastajiksi valitaan Emilia Olkanen ja P&auml;ivi Kovanen.</p>\n\n<p>&nbsp;</p>\n",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1721,
+      "Name": "Decision",
+      "Text": "Valittiin Emilia Olkanen ja P&auml;ivi Kovanen sek&auml; varalle Matti J&auml;rvinen.",
+      "Number": null,
+      "Date": null
+    },
+    {
+      "Id": 1720,
+      "Name": "Correctioninstructions",
+      "Text": "<p>Oikaisuvaatimusta ei saa tehd&auml; p&auml;&auml;t&ouml;ksist&auml; jotka koskevat</p>\n\n<p style=\"margin-left:40px\">- yksinomaan valmistelua tai t&auml;yt&auml;nt&ouml;&ouml;npanoa (KuntaL 91 &sect;)</p>\n\n<p style=\"margin-left:40px\">- virka- tai ty&ouml;ehtosopimuksen tulkintaa tai soveltamista ja viranhaltija on j&auml;senen&auml; viranhaltijayhdistyksess&auml;, jolla on oikeus panna asia vireille ty&ouml;tuomioistuimessa (KVhl 50 &sect; 2 mom.)</p>\n",
+      "Number": null,
+      "Date": null
+    }
+  ]
+}

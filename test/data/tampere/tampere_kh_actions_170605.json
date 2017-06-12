@@ -1,0 +1,51 @@
+[
+    {
+        "articleNumber": "3",
+        "eventId": "12486",
+          "ordering": 0,
+        "sourceId": 69,
+        "title": "Lautakuntien ja jaostojen ym. pöytäkirjat sekä viranhaltijoiden ym. päätöspöytäkirjat"
+    },
+    {
+        "articleNumber": "4",
+        "eventId": "12486",
+          "ordering": 1,
+        "sourceId": 68,
+        "title": "Asemakaavan muutos Kaleva-Petsamo-Kauppi-Kissanmaa, Kekkosentie-Teiskontie, joukkoliikennesilta, liikenne- ja katualuetta, kaava nro 8602"
+    },
+    {
+        "articleNumber": "5",
+        "eventId": "12486",
+          "ordering": 2,
+        "sourceId": 62,
+        "title": "Tampereen kaupungin maaseutuohjelma 2020 - Hallitusti luonnollinen - väliarviointiraportti"
+    },
+    {
+        "articleNumber": "8",
+        "eventId": "12486",
+          "ordering": 3,
+        "sourceId": 59,
+        "title": "Valtuustoaloite Etyk-veistoksen sijoittamiseksi sen arvoiselle paikalle - Terhi Kiemunki ym."
+    },
+    {
+        "articleNumber": "10",
+        "eventId": "12486",
+          "ordering": 4,
+        "sourceId": 60,
+        "title": "Kokouksen laillisuus ja päätösvaltaisuus"
+    },
+    {
+        "articleNumber": "11",
+        "eventId": "12486",
+          "ordering": 5,
+        "sourceId": 65,
+        "title": "Tampereen kaupungin lausunto Pirkanmaan sairaanhoitopiirille alueellisen apuvälinepalvelun suunnitelmasta"
+    },
+    {
+        "articleNumber": "15",
+        "eventId": "12486",
+          "ordering": 6,
+        "sourceId": 61,
+        "title": "Pöytäkirjan tarkastus"
+    }
+]
