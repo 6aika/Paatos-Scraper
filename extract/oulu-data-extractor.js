@@ -138,7 +138,7 @@
                             });
                           }
 
-                          resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, this.filterContents(contents));
+                          resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, this.cleanContents(contents));
                           resultBuilder.setOrganizationActionAttachments(actionOrganizationId, actionEventId, actionId, attachments);
                         }
 
@@ -215,12 +215,6 @@
       }
       
       return null;
-    }
-    
-    filterContents(contents) {
-      return _.filter(contents, (content) => { 
-        return content.title !== 'Dno' && content.title !== 'functionId'; 
-      });
     }
     
   }
