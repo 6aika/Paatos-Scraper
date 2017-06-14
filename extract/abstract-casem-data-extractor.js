@@ -127,7 +127,7 @@
                             });
                           }
 
-                          resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, contents);
+                          resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, this.cleanContents(contents));
                           resultBuilder.setOrganizationActionAttachments(actionOrganizationId, actionEventId, actionId, attachments);
                         }
 

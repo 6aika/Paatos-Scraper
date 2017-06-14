@@ -90,10 +90,6 @@
                         actionIds.push(actions[actionIndex].sourceId);
                         actionOrganizationIds.push(eventOrganizationId);
                         actionEventIds.push(eventId);
-
-                        let date = moment(resultBuilder.getOrganizationEvent(eventOrganizationId, eventId).startDate);
-                        let articleNumber = actions[actionIndex]['articleNumber'];
-
                         contentPromises.push(this.extractOrganizationEventActionContents(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                         attachmentPromises.push(this.extractOrganizationEventActionAttachments(eventOrganizationId, eventId, actions[actionIndex].sourceId));
                       }
@@ -134,7 +130,7 @@
                             });
                           }
 
-                          resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, this.filterContents(contents));
+                          resultBuilder.setOrganizationActionContents(actionOrganizationId, actionEventId, actionId, this.cleanContents(contents));
                           resultBuilder.setOrganizationActionAttachments(actionOrganizationId, actionEventId, actionId, attachments);
                         }
 
@@ -166,7 +162,7 @@
       return this._htmlScraper.extractOrganizationEventActions(organizationId, eventId);
     }
     
-    extractOrganizationEventActionContents(organizationId, eventId, actionId, date, articleNumber) {
+    extractOrganizationEventActionContents(organizationId, eventId, actionId) {
       return this._htmlScraper.extractOrganizationEventActionContents(organizationId, eventId, actionId);
     }
     
@@ -192,12 +188,6 @@
       }
       
       return null;
-    }
-    
-    filterContents(contents) {
-      return _.filter(contents, (content) => { 
-        return content.title !== 'Dno' && content.title !== 'functionId'; 
-      });
     }
     
   }

@@ -79,6 +79,7 @@
             
             var result = [];
             var unscrapableContents = false;
+            let order = 0;
                 
             var blocks = this.detectBlocks(pdfTexts, ignoreZones);
             for (let blockIndex = 0; blockIndex < blocks.length; blockIndex++) {
@@ -151,7 +152,7 @@
                 }
                 
                 result.push({
-                  order: blockIndex,
+                  order: order++,
                   title: blockCaption,
                   content: blockValue 
                 });
