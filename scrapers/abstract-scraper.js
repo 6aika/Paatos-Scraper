@@ -9,6 +9,8 @@
   const contentDisposition = require('content-disposition');
   const request = require('request');
   const syncRequest = require('sync-request');
+  const Entities = require('html-entities').AllHtmlEntities;
+  const entities = new Entities();
   
   process.on('unhandledRejection', function(error, promise) {
     console.error("UNHANDLED REJECTION", error.stack);
@@ -173,6 +175,10 @@
     decodeString(string, fromEncoding) {
       const buffer = new Buffer(string, fromEncoding);
       return buffer.toString();
+    }
+    
+    decodeHtmlEntities(html) {
+      return entities.decode(html);
     }
     
   }

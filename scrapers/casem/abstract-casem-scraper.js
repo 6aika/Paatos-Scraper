@@ -130,7 +130,7 @@
             const contents = [];
             extendedProperties.forEach((extendedProperty) => {
               if (extendedProperty.Name && extendedProperty.Text) {
-                const contentValues = this.processContentValues(extendedProperty.Name, extendedProperty.Text);
+                const contentValues = this.processContentValues(extendedProperty.Name, this.decodeHtmlEntities(extendedProperty.Text));
                 if (contentValues) {
                   contentValues.forEach((contentValue) => {
                     contents.push({

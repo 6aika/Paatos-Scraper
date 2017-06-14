@@ -9,8 +9,6 @@
   const cheerio = require('cheerio');
   const normalize = require('normalize-space');
   const AbstractScraper = require('./abstract-scraper');
-  const Entities = require('html-entities').AllHtmlEntities;
-  const entities = new Entities();
   
   class AbstractHtmlScraper extends AbstractScraper {
     
@@ -56,10 +54,6 @@
           }
         }
       });
-    }
-    
-    decodeHtmlEntities(html) {
-      return entities.decode(html);
     }
     
     cleanWordHtml(html) {
