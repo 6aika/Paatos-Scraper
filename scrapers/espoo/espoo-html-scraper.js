@@ -278,6 +278,7 @@
               winston.log('warn', util.format('Unexpected dno from event %s action %s (%s)', eventId, actionId, url));
             } else {
               contents.push({
+                order: order++,
                 title: 'Dno',
                 content: dno 
               });
@@ -287,6 +288,7 @@
               winston.log('warn', util.format('Unexpected functionId from event %s action %s (%s)', eventId, actionId, url));
             } else {
               contents.push({
+                order: order++,
                 title: 'functionId',
                 content: functionId.replace(/\./g, ' ') 
               });
