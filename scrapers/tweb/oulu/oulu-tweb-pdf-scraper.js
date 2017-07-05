@@ -254,7 +254,8 @@
             });
           })
           .catch((err) => {
-            reject(err);
+            winston.error(`Failed to parse PDF from ${pdfUrl}`);
+            resolve([]);
           });
       });
     }
