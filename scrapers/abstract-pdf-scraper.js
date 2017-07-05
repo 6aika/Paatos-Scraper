@@ -22,19 +22,21 @@
     nextInQueue() {
       if (queue.length) {   
         queueRunning = true;
-        var queued = queue.splice(0, 1)[0];
-        
-        var pdfParser = new PDFParser();
+        const queued = queue.splice(0, 1)[0];
+        const pdfParser = new PDFParser();
         
         pdfParser.on('pdfParser_dataError', (errData) => {
           queued.callback.call(this, errData);
+          setTimeout(() => {             
+            this.nextInQueue();
+          }, this.options.pdfDownloadInterval || 100);
         });
         
         pdfParser.on('pdfParser_dataReady', (pdfData) => {
           queued.callback.call(this, null, pdfData);
           setTimeout(() => {             
             this.nextInQueue();
-           }, this.options.pdfDownloadInterval || 100);
+          }, this.options.pdfDownloadInterval || 100);
         });
         
         if (queued.url.startsWith('file://')) {

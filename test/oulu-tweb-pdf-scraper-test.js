@@ -29,6 +29,19 @@
       return expect(Promise.resolve(smokeTestScraper.extractOrganizationEventActionContents("123", "123", "395959398")))
         .to.eventually.eql(actions395959398);
     });
+    
+    it('Invalid PDF test', () => {
+      nock('http://localhost')
+        .get('/ktwebbin/ktproxy2.dll?doctype=3&docid=631269')
+        .replyWithFile(200, __dirname + '/data/oulu/631269.doc');
+      
+      var smokeTestScraper = new OuluTwebPdfScraper({
+        "host": "localhost"
+      });
+    
+      return expect(Promise.resolve(smokeTestScraper.extractOrganizationEventActionContents("123", "123", "631269")))
+        .to.eventually.eql([]);
+    });
   });
   
 })();
