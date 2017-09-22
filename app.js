@@ -48,7 +48,19 @@
       });
       
   } else {
-    extractor.extractOrganizationData(options)
+    const organizationId = options.getOption('organization-id');
+    const actionId = options.getOption('action-id');
+    const eventId = options.getOption('event-id');
+    const outputZip = options.getOption('output-zip');
+    let operation = null;
+    
+    if (organizationId && actionId && eventId) {
+      operation = extractor.extractActionData(organizationId, eventId, actionId, outputZip);
+    } else {
+      operation = extractor.extractOrganizationData(options);
+    }
+    
+    operation
       .then(() => {
         console.log("Done.");
       })

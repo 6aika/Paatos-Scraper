@@ -22,6 +22,8 @@
         { name: "print-organizations", type: Boolean },
         { name: 'output-zip', alias: 'z', type: String },
         { name: 'organization-id', alias: 'o', type: String },
+        { name: 'action-id', alias: 'a', type: String },
+        { name: 'event-id', alias: 'e', type: String },
         { name: 'max-events', type: Number },
         { name: 'pdf-download-interval', type: Number },
         { name: 'html-download-interval', type: Number },
@@ -55,6 +57,23 @@
           return "events-after must be in YYYY-MM-DD format (e.g. 2017-01-01)"; 
         }
       }
+      
+      const actionId = this.options['action-id'];
+      const eventId = this.options['event-id'];
+      
+      if (actionId || eventId) {
+        if (!actionId) {
+          return "action-id is required when event-id is specified"; 
+        }
+        
+        if (!eventId) {
+          return "event-id is required when action-id is specified"; 
+        }
+        
+        if (!DataExtractorFactory.getSingleActionSource().includes(this.options['source'])) {
+          return util.format("Source: %s does not support extracting single actions", this.options['source']);
+        }
+      }
     }
     
     getSections() {
@@ -82,6 +101,12 @@
         }, {
           name: 'organization-id',
           description: 'Organization id in source system format'
+        }, {
+          name: 'event-id',
+          description: 'Event id in source system format. Specify this and action-id to scrape single action'
+        }, {
+          name: 'action-id',
+          description: 'Action id in source system format. Specify this and event-id to scrape single action'
         }, {
           name: 'max-events',
           description: 'Limit number of events'
