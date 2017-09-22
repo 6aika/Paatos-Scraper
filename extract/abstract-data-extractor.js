@@ -23,6 +23,10 @@
       throw new Error("Unimplemented");
     }
     
+    extractActionData(organizationId, eventId, actionId, outputZip) {
+      throw new Error("Source does not support single action extracting");
+    }
+    
     cleanContents(contents) {
       return this.reassignContentsOrders(this.filterContents(contents));
     }

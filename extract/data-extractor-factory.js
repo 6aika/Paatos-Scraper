@@ -27,6 +27,10 @@
       return ['oulu', 'vantaa'];
     }
     
+    static getSingleActionSource() {
+      return ['espoo'];
+    }
+    
     static createDataExtractor(source, options) {
       switch (source) {
         case 'oulu':

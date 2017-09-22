@@ -27,7 +27,7 @@
     }
     
     addOrganizationEvents(organizationId, events) {
-      for (var i = 0; i < events.length; i++) {
+      for (let i = 0; i < events.length; i++) {
         var event = events[i];
         this.organizationDatas[organizationId].eventDatas[event.sourceId] = {
           actionDatas: {},
@@ -55,7 +55,14 @@
     }
     
     getOrganizationEventAction(organizationId, eventId, actionId) {
-      return this.organizationDatas[organizationId].eventDatas[eventId].actionDatas[actionId].action;
+      const eventData = this.organizationDatas[organizationId].eventDatas[eventId];
+      
+      if (eventData) {
+        const actionData = eventData.actionDatas[actionId];
+        return actionData ? actionData.action : null;
+      }
+      
+      return null;
     }
     
     setOrganizationEventAction(organizationId, eventId, actionId, eventAction) {
